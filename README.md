@@ -1,10 +1,10 @@
 # Documentacão
 
-# Sobre
+## Sobre
 
-# Iniciando Projeto
+## Iniciando Projeto
 
-## Primeiros Passos
+### Primeiros Passos
 
 - Apos clonar o repositorio, entre na pasta da api e rode o seguinte comando:
 
