@@ -1,5 +1,5 @@
 import { NativeBaseProvider } from "native-base";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Routes from "./src/router";
 
 export default function App() {
