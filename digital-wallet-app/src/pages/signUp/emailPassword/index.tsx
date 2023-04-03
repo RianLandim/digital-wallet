@@ -95,7 +95,7 @@ export function EmailPassword() {
             justifyContent="space-evenly"
             marginTop={10}
           >
-            <Button borderRadius={50} backgroundColor={THEME.COLORS.PRIMARY}>
+            <Button borderRadius={50} backgroundColor={'primary'}>
               <Text
                 fontWeight={600}
                 fontSize={"lg"}

@@ -79,7 +79,7 @@ export function Login() {
             justifyContent="space-evenly"
             marginTop={10}
           >
-            <Button borderRadius={50} backgroundColor={THEME.COLORS.PRIMARY}>
+            <Button borderRadius={50} backgroundColor="primary">
               <Text fontWeight={600} fontSize={"lg"} color={"#fff"}>
                 Entrar
               </Text>
@@ -91,7 +91,7 @@ export function Login() {
               <Text
                 fontWeight={600}
                 fontSize={"md"}
-                color={THEME.COLORS.SECONDARY}
+                color={'secondary'}
               >
                 Esqueceu a senha?
               </Text>
@@ -112,7 +112,7 @@ export function Login() {
               <Text
                 fontWeight={600}
                 fontSize={"md"}
-                color={THEME.COLORS.SECONDARY}
+                color={'secondary'}
               >
                 Cadastrar
               </Text>
