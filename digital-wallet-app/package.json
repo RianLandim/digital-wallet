@@ -12,7 +12,9 @@
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
     "@tanstack/react-query": "^4.28.0",
-    "expo": "~47.0.12",
+    "ansi-regex": "^6.0.1",
+    "expo": "^48.0.9",
+    "expo-font": "~11.1.1",
     "expo-status-bar": "~1.4.2",
     "native-base": "^3.4.25",
     "react": "18.1.0",
@@ -23,6 +25,7 @@
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.9",
+    "react-query": "^3.39.3",
     "zod": "^3.21.4"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import { Box, Button, FormControl, Input, Text, VStack } from "native-base";
 import { Controller, useForm } from "react-hook-form";
-import { THEME } from "../../theme/theme";
+import { THEME } from "../../../theme/theme";
 import {
   TouchableWithoutFeedback,
   Keyboard,
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export function Login() {
+export function EmailPassword() {
   const navigator = useNavigation();
 
   const {
@@ -29,13 +29,13 @@ export function Login() {
           marginTop="25%"
         >
           <Image
-            source={require("../../../assets/logo.png")}
+            source={require("../../../../assets/logo.png")}
             style={{ width: 100, height: 100, resizeMode: "stretch" }}
           />
 
-          <Box alignItems={"center"} marginTop={"15%"}>
-            <Text fontSize={"3xl"} fontWeight={700}>
-              Entrar
+          <Box alignItems={"center"} marginTop={"15%"} width={"80%"}>
+            <Text fontSize={"3xl"} fontWeight={700} textAlign="center">
+              Informe o seu e-mail e defina sua senha
             </Text>
           </Box>
 
@@ -43,7 +43,7 @@ export function Login() {
             <FormControl>
               <Controller
                 control={control}
-                name="Username"
+                name="Email"
                 defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
@@ -62,10 +62,26 @@ export function Login() {
                 defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
-                    secureTextEntry={true}
                     onBlur={onBlur}
                     value={value}
+                    secureTextEntry={true}
                     placeholder="Senha"
+                    onChangeText={(val) => onChange(val)}
+                  />
+                )}
+              />
+            </FormControl>
+            <FormControl marginTop={5}>
+              <Controller
+                control={control}
+                name="ConfirmPassord"
+                defaultValue=""
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    onBlur={onBlur}
+                    value={value}
+                    placeholder="Confirmar senha"
+                    secureTextEntry={true}
                     onChangeText={(val) => onChange(val)}
                   />
                 )}
@@ -80,39 +96,11 @@ export function Login() {
             marginTop={10}
           >
             <Button borderRadius={50} backgroundColor={THEME.COLORS.PRIMARY}>
-              <Text fontWeight={600} fontSize={"lg"} color={"#fff"}>
-                Entrar
-              </Text>
-            </Button>
-          </VStack>
-
-          <VStack flex={1} width="50%" justifyContent="space-evenly">
-            <Button borderRadius={50} backgroundColor={"transparent"}>
               <Text
                 fontWeight={600}
-                fontSize={"md"}
-                color={THEME.COLORS.SECONDARY}
-              >
-                Esqueceu a senha?
-              </Text>
-            </Button>
-          </VStack>
-
-          <VStack
-            flex={1}
-            width="50%"
-            justifyContent="space-evenly"
-            marginTop="20%"
-          >
-            <Button
-              borderRadius={50}
-              backgroundColor={"transparent"}
-              onPress={() => navigator.navigate("PersonalData" as never)}
-            >
-              <Text
-                fontWeight={600}
-                fontSize={"md"}
-                color={THEME.COLORS.SECONDARY}
+                fontSize={"lg"}
+                color={"#fff"}
+                onPress={() => navigator.navigate("Welcome" as never)}
               >
                 Cadastrar
               </Text>
