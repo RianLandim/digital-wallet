@@ -1,5 +1,4 @@
 import { Box, Button, Text, VStack } from "native-base";
-import { THEME } from "../../../theme/theme";
 import {
   TouchableWithoutFeedback,
   Keyboard,

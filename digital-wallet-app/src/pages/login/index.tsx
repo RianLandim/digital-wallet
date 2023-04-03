@@ -1,6 +1,5 @@
 import { Box, Button, FormControl, Input, Text, VStack } from "native-base";
 import { Controller, useForm } from "react-hook-form";
-import { THEME } from "../../theme/theme";
 import {
   TouchableWithoutFeedback,
   Keyboard,
