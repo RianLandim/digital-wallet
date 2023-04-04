@@ -94,8 +94,8 @@ export function PersonalData() {
           >
             <Button
               borderRadius={50}
-              backgroundColor={'primary'}
-              onPress={() => navigator.navigate("EmailPassword" as never)}
+              backgroundColor={"primary"}
+              onPress={() => navigator.navigate("MonthlyEarning" as never)}
             >
               <Text fontWeight={600} fontSize={"lg"} color={"#fff"}>
                 Próximo
@@ -114,11 +114,7 @@ export function PersonalData() {
               backgroundColor={"transparent"}
               onPress={() => navigator.navigate("Login" as never)}
             >
-              <Text
-                fontWeight={600}
-                fontSize={"md"}
-                color={'secondary'}
-              >
+              <Text fontWeight={600} fontSize={"md"} color={"secondary"}>
                 Entrar
               </Text>
             </Button>
