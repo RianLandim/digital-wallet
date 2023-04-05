@@ -1,11 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { EmailPassword, Home, Login, PersonalData, Welcome } from "../../pages";
-import { MonthlyEarning } from "../../pages/signUp/monthlyEarning";
-import { DayPayment } from "../../pages/signUp/dayPayment";
+import {  Home, Login, Welcome } from "../../pages";
+import { SignUpPage } from "../../pages/signUp";
 
-type StackRouteProps = {
+export type StackRouteProps = {
   Login: undefined;
-  PersonalData: undefined;
+  SignUp: undefined;
   Welcome: undefined;
   EmailPassword: undefined;
   Home: undefined;
@@ -25,13 +24,8 @@ export function StackRoutes() {
 
       <Stack.Screen name="Welcome" component={Welcome} />
 
-      <Stack.Screen name="PersonalData" component={PersonalData} />
+      <Stack.Screen name="SignUp" component={SignUpPage} />
 
-      <Stack.Screen name="EmailPassword" component={EmailPassword} />
-
-      <Stack.Screen name="MonthlyEarning" component={MonthlyEarning} />
-
-      <Stack.Screen name="DayPayment" component={DayPayment} />
     </Stack.Navigator>
   );
 }

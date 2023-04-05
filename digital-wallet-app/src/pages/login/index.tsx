@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackRouteProps } from "../../router/stack";
 
 export function Login() {
   const navigator = useNavigation();
@@ -106,7 +107,7 @@ export function Login() {
             <Button
               borderRadius={50}
               backgroundColor={"transparent"}
-              onPress={() => navigator.navigate("PersonalData" as never)}
+              onPress={() => navigator.navigate("SignUp" as never)}
             >
               <Text
                 fontWeight={600}
