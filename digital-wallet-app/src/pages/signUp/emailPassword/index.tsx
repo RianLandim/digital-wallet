@@ -7,9 +7,11 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackScreenNavigation } from "../../../router/stack";
 
 export function EmailPassword() {
-  const navigator = useNavigation();
+  const navigator = useNavigation<StackScreenNavigation>();
+
 
   const {
     control,
@@ -99,7 +101,7 @@ export function EmailPassword() {
                 fontWeight={600}
                 fontSize={"lg"}
                 color={"#fff"}
-                onPress={() => navigator.navigate("Welcome" as never)}
+                onPress={() => navigator.navigate("Welcome")}
               >
                 Cadastrar
               </Text>

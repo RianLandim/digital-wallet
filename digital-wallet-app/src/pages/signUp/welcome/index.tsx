@@ -6,9 +6,11 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackScreenNavigation } from "../../../router/stack";
 
 export function Welcome() {
-  const navigator = useNavigation();
+  const navigator = useNavigation<StackScreenNavigation>();
+
 
   return (
     <ScrollView>
@@ -42,7 +44,7 @@ export function Welcome() {
                 fontWeight={600}
                 fontSize={"lg"}
                 color={"#fff"}
-                onPress={() => navigator.navigate("Home" as never)}
+                onPress={() => navigator.navigate("Home")}
               >
                 Iniciar
               </Text>

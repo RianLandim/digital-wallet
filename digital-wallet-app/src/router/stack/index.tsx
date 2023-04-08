@@ -1,6 +1,7 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
 import {  Home, Login, Welcome } from "../../pages";
-import { SignUpPage } from "../../pages/signUp";
+import { SignUpNavigationScreens, SignUpPage } from "../../pages/signUp";
+import { CompositeNavigationProp } from "@react-navigation/native";
 
 export type StackRouteProps = {
   Login: undefined;
@@ -8,6 +9,11 @@ export type StackRouteProps = {
   Welcome: undefined;
   Home: undefined;
 };
+
+export type StackScreenNavigation  = CompositeNavigationProp<
+  NativeStackNavigationProp<StackRouteProps, 'SignUp'>,
+  NativeStackNavigationProp<SignUpNavigationScreens>
+>
 
 export function StackRoutes() {
   const Stack = createNativeStackNavigator<StackRouteProps>();

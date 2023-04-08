@@ -15,16 +15,16 @@ const createUserSchema = z.object({
 
 type CreateUserFormData = z.infer<typeof createUserSchema>
 
-type StackNavigationScreens = {
+export type SignUpNavigationScreens = {
   personalData: undefined;
   emailPassword: undefined;
-  montlyEarning: undefined;
+  monthlyEarning: undefined;
   dayPayment: undefined;
 }
 
 export function SignUpPage() {
 
-  const Stack = createNativeStackNavigator<StackNavigationScreens>()
+  const Stack = createNativeStackNavigator<SignUpNavigationScreens>()
 
   const { 
     watch,
@@ -39,7 +39,7 @@ export function SignUpPage() {
     <Stack.Navigator initialRouteName='personalData' screenOptions={{ headerShown: false }}>
       <Stack.Screen name='personalData' component={PersonalData} />
       <Stack.Screen name='emailPassword' component={EmailPassword} />
-      <Stack.Screen name='montlyEarning' component={MonthlyEarning} />
+      <Stack.Screen name='monthlyEarning' component={MonthlyEarning} />
       <Stack.Screen name='dayPayment' component={DayPayment} />
     </Stack.Navigator>
   )

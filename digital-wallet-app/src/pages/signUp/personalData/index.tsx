@@ -7,9 +7,11 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackScreenNavigation } from "../../../router/stack";
 
 export function PersonalData() {
-  const navigator = useNavigation();
+  
+  const navigator = useNavigation<StackScreenNavigation>();
 
   const {
     control,
@@ -95,7 +97,7 @@ export function PersonalData() {
             <Button
               borderRadius={50}
               backgroundColor={"primary"}
-              onPress={() => navigator.navigate("MonthlyEarning" as never)}
+              onPress={() => navigator.navigate("monthlyEarning")}
             >
               <Text fontWeight={600} fontSize={"lg"} color={"#fff"}>
                 Próximo
@@ -112,7 +114,7 @@ export function PersonalData() {
             <Button
               borderRadius={50}
               backgroundColor={"transparent"}
-              onPress={() => navigator.navigate("Login" as never)}
+              onPress={() => navigator.navigate("Login")}
             >
               <Text fontWeight={600} fontSize={"md"} color={"secondary"}>
                 Entrar

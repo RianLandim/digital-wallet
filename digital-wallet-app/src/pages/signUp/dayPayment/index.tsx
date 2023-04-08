@@ -7,9 +7,11 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackScreenNavigation } from "../../../router/stack";
 
 export function DayPayment() {
-  const navigator = useNavigation();
+  const navigator = useNavigation<StackScreenNavigation>();
+
 
   const {
     control,
@@ -61,7 +63,7 @@ export function DayPayment() {
             <Button
               borderRadius={50}
               backgroundColor={"primary"}
-              onPress={() => navigator.navigate("EmailPassword" as never)}
+              onPress={() => navigator.navigate("emailPassword")}
             >
               <Text fontSize={"lg"} color={"#fff"}>
                 Próximo
