@@ -8,16 +8,11 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
+import { FormPageProp } from "..";
 
-export function PersonalData() {
+export function PersonalData({control, formState} : FormPageProp) {
   
   const navigator = useNavigation<StackScreenNavigation>();
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   return (
     <ScrollView>
@@ -45,7 +40,6 @@ export function PersonalData() {
               <Controller
                 control={control}
                 name="name"
-                defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
                     placeholder="Nome Completo"
@@ -59,8 +53,7 @@ export function PersonalData() {
             <FormControl marginTop={5}>
               <Controller
                 control={control}
-                name="DateBirth"
-                defaultValue=""
+                name="birthday"
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
                     onBlur={onBlur}
@@ -75,7 +68,6 @@ export function PersonalData() {
               <Controller
                 control={control}
                 name="cpf"
-                defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
                     onBlur={onBlur}
