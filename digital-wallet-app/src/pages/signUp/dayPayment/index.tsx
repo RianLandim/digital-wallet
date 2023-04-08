@@ -63,10 +63,10 @@ export function DayPayment() {
             <Button
               borderRadius={50}
               backgroundColor={"primary"}
-              onPress={() => navigator.navigate("emailPassword")}
+              onPress={() => navigator.navigate("Welcome")}
             >
               <Text fontSize={"lg"} color={"#fff"}>
-                Próximo
+                Finalizar
               </Text>
             </Button>
           </VStack>

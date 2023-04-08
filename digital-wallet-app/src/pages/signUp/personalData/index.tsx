@@ -97,7 +97,7 @@ export function PersonalData() {
             <Button
               borderRadius={50}
               backgroundColor={"primary"}
-              onPress={() => navigator.navigate("monthlyEarning")}
+              onPress={() => navigator.navigate("emailPassword")}
             >
               <Text fontWeight={600} fontSize={"lg"} color={"#fff"}>
                 Próximo

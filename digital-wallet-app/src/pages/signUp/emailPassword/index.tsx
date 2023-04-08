@@ -101,9 +101,9 @@ export function EmailPassword() {
                 fontWeight={600}
                 fontSize={"lg"}
                 color={"#fff"}
-                onPress={() => navigator.navigate("Welcome")}
+                onPress={() => navigator.navigate("monthlyEarning")}
               >
-                Cadastrar
+                Proximo
               </Text>
             </Button>
           </VStack>
