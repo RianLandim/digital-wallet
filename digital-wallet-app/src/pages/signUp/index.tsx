@@ -1,19 +1,19 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useForm } from 'react-hook-form'
 import { PersonalData } from './personalData'
-import zod from 'zod'
+import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { EmailPassword } from './emailPassword'
 import { MonthlyEarning } from './monthlyEarning'
 import { DayPayment } from './dayPayment'
 
 
-const zodSchema = zod.object({
-  name: zod.string(),
-  cpf: zod.string()
+const createUserSchema = z.object({
+  name: z.string().nonempty('Nome obrigatório'),
+  cpf: z.string().nonempty('Cpf obrigatório')
 })
 
-type FormProps = zod.infer<typeof zodSchema>
+type CreateUserFormData = z.infer<typeof createUserSchema>
 
 type StackNavigationScreens = {
   personalData: undefined;
@@ -26,7 +26,14 @@ export function SignUpPage() {
 
   const Stack = createNativeStackNavigator<StackNavigationScreens>()
 
-  const { watch, handleSubmit } = useForm<FormProps>({ resolver: zodResolver(zodSchema) })
+  const { 
+    watch,
+    handleSubmit
+  } = useForm<CreateUserFormData>({ resolver: zodResolver(createUserSchema) })
+
+  function createUserSubmit(data: CreateUserFormData) {
+    console.log(data)
+  }
 
   return (
     <Stack.Navigator initialRouteName='personalData' screenOptions={{ headerShown: false }}>

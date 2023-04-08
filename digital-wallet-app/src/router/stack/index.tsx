@@ -6,7 +6,6 @@ export type StackRouteProps = {
   Login: undefined;
   SignUp: undefined;
   Welcome: undefined;
-  EmailPassword: undefined;
   Home: undefined;
 };
 
