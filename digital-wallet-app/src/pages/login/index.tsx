@@ -48,6 +48,7 @@ export function Login() {
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
                     placeholder="Email"
+                    fontSize="md"
                     onBlur={onBlur}
                     value={value}
                     onChangeText={(val) => onChange(val)}
@@ -64,6 +65,7 @@ export function Login() {
                   <Input
                     secureTextEntry={true}
                     onBlur={onBlur}
+                    fontSize="md"
                     value={value}
                     placeholder="Senha"
                     onChangeText={(val) => onChange(val)}
@@ -80,7 +82,7 @@ export function Login() {
             marginTop={10}
           >
             <Button borderRadius={50} backgroundColor="primary">
-              <Text fontWeight={600} fontSize={"lg"} color={"#fff"}>
+              <Text fontWeight={600} fontSize={18} color={"#fff"}>
                 Entrar
               </Text>
             </Button>
@@ -88,11 +90,7 @@ export function Login() {
 
           <VStack flex={1} width="50%" justifyContent="space-evenly">
             <Button borderRadius={50} backgroundColor={"transparent"}>
-              <Text
-                fontWeight={600}
-                fontSize={"md"}
-                color={'secondary'}
-              >
+              <Text fontWeight={600} fontSize={"md"} color={"secondary"}>
                 Esqueceu a senha?
               </Text>
             </Button>
@@ -109,11 +107,7 @@ export function Login() {
               backgroundColor={"transparent"}
               onPress={() => navigator.navigate("SignUp" as never)}
             >
-              <Text
-                fontWeight={600}
-                fontSize={"md"}
-                color={'secondary'}
-              >
+              <Text fontWeight={600} fontSize={"md"} color={"secondary"}>
                 Cadastrar
               </Text>
             </Button>
