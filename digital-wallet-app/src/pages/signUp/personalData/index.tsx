@@ -10,8 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
 import { FormPageProp } from "..";
 
-export function PersonalData({control, formState} : FormPageProp) {
-  
+export function PersonalData({ control, formState }: FormPageProp) {
   const navigator = useNavigation<StackScreenNavigation>();
 
   return (
@@ -43,6 +42,7 @@ export function PersonalData({control, formState} : FormPageProp) {
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
                     placeholder="Nome Completo"
+                    fontSize="md"
                     onBlur={onBlur}
                     value={value}
                     onChangeText={(val) => onChange(val)}
@@ -57,6 +57,7 @@ export function PersonalData({control, formState} : FormPageProp) {
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
                     onBlur={onBlur}
+                    fontSize="md"
                     value={value}
                     placeholder="Data de Nascimento"
                     onChangeText={(val) => onChange(val)}
@@ -73,6 +74,7 @@ export function PersonalData({control, formState} : FormPageProp) {
                     onBlur={onBlur}
                     value={value}
                     placeholder="CPF"
+                    fontSize="md"
                     onChangeText={(val) => onChange(val)}
                   />
                 )}
@@ -91,7 +93,7 @@ export function PersonalData({control, formState} : FormPageProp) {
               backgroundColor={"primary"}
               onPress={() => navigator.navigate("emailPassword")}
             >
-              <Text fontWeight={600} fontSize={"lg"} color={"#fff"}>
+              <Text fontWeight={600} fontSize={18} color={"#fff"}>
                 Próximo
               </Text>
             </Button>
@@ -108,7 +110,7 @@ export function PersonalData({control, formState} : FormPageProp) {
               backgroundColor={"transparent"}
               onPress={() => navigator.navigate("Login")}
             >
-              <Text fontWeight={600} fontSize={"md"} color={"secondary"}>
+              <Text fontWeight={600} fontSize="md" color={"secondary"}>
                 Entrar
               </Text>
             </Button>

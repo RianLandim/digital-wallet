@@ -29,7 +29,9 @@ export function MonthlyEarning() {
           marginTop="25%"
         >
           <Box alignItems={"center"} marginTop={"15%"}>
-            <Text fontSize={"3xl"}>Qual sua renda mensal?</Text>
+            <Text fontSize={"3xl"} fontWeight="600">
+              Qual sua renda mensal?
+            </Text>
           </Box>
 
           <VStack flex={1} width="80%" marginTop={10}>
@@ -43,7 +45,7 @@ export function MonthlyEarning() {
                     placeholder="00,00"
                     onBlur={onBlur}
                     value={value}
-                    fontSize={16}
+                    fontSize="md"
                     onChangeText={(val) => onChange(val)}
                   />
                 )}
@@ -62,7 +64,7 @@ export function MonthlyEarning() {
               backgroundColor={"primary"}
               onPress={() => navigator.navigate("dayPayment")}
             >
-              <Text fontSize={"lg"} color={"#fff"}>
+              <Text fontSize={20} color={"#fff"}>
                 Próximo
               </Text>
             </Button>

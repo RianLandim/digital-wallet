@@ -12,7 +12,6 @@ import { StackScreenNavigation } from "../../../router/stack";
 export function EmailPassword() {
   const navigator = useNavigation<StackScreenNavigation>();
 
-
   const {
     control,
     handleSubmit,
@@ -29,11 +28,6 @@ export function EmailPassword() {
           justifyContent="center"
           marginTop="25%"
         >
-          <Image
-            source={require("../../../../assets/logo.png")}
-            style={{ width: 100, height: 100, resizeMode: "stretch" }}
-          />
-
           <Box alignItems={"center"} marginTop={"15%"} width={"80%"}>
             <Text fontSize={"3xl"} fontWeight={700} textAlign="center">
               Informe o seu e-mail e defina sua senha
@@ -49,6 +43,7 @@ export function EmailPassword() {
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
                     placeholder="Email"
+                    fontSize={"md"}
                     onBlur={onBlur}
                     value={value}
                     onChangeText={(val) => onChange(val)}
@@ -66,6 +61,7 @@ export function EmailPassword() {
                     onBlur={onBlur}
                     value={value}
                     secureTextEntry={true}
+                    fontSize={"md"}
                     placeholder="Senha"
                     onChangeText={(val) => onChange(val)}
                   />
@@ -81,6 +77,7 @@ export function EmailPassword() {
                   <Input
                     onBlur={onBlur}
                     value={value}
+                    fontSize="md"
                     placeholder="Confirmar senha"
                     secureTextEntry={true}
                     onChangeText={(val) => onChange(val)}
@@ -96,10 +93,10 @@ export function EmailPassword() {
             justifyContent="space-evenly"
             marginTop={10}
           >
-            <Button borderRadius={50} backgroundColor={'primary'}>
+            <Button borderRadius={50} backgroundColor={"primary"}>
               <Text
                 fontWeight={600}
-                fontSize={"lg"}
+                fontSize={20}
                 color={"#fff"}
                 onPress={() => navigator.navigate("monthlyEarning")}
               >

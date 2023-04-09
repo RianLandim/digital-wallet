@@ -12,7 +12,6 @@ import { StackScreenNavigation } from "../../../router/stack";
 export function DayPayment() {
   const navigator = useNavigation<StackScreenNavigation>();
 
-
   const {
     control,
     handleSubmit,
@@ -30,7 +29,7 @@ export function DayPayment() {
           marginTop="25%"
         >
           <Box alignItems={"center"} marginTop={"15%"}>
-            <Text fontSize={"3xl"} textAlign="center">
+            <Text fontSize={"3xl"} textAlign="center" fontWeight="600">
               Qual o dia do seu pagamento?
             </Text>
           </Box>
@@ -46,7 +45,7 @@ export function DayPayment() {
                     placeholder="00"
                     onBlur={onBlur}
                     value={value}
-                    fontSize={16}
+                    fontSize="md"
                     onChangeText={(val) => onChange(val)}
                   />
                 )}
@@ -65,7 +64,7 @@ export function DayPayment() {
               backgroundColor={"primary"}
               onPress={() => navigator.navigate("Welcome")}
             >
-              <Text fontSize={"lg"} color={"#fff"}>
+              <Text fontSize={20} color={"#fff"}>
                 Finalizar
               </Text>
             </Button>
