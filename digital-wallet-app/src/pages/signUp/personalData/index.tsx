@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, Input, Text, VStack } from "native-base";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import {
   TouchableWithoutFeedback,
   Keyboard,
@@ -8,10 +8,21 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
-import { FormPageProp } from "..";
+import { CreateUserFormData } from "..";
 
-export function PersonalData({ control, formState }: FormPageProp) {
+export function PersonalData() {
   const navigator = useNavigation<StackScreenNavigation>();
+
+  const { control, formState: { errors }, trigger } = useFormContext<CreateUserFormData>()
+
+
+  async function nextPage() {
+    const result = await trigger(['name', 'birthday', 'cpf'], { shouldFocus: true })
+
+    if(result) {
+      navigator.navigate("emailPassword")
+    }
+  }
 
   return (
     <ScrollView>
@@ -39,28 +50,29 @@ export function PersonalData({ control, formState }: FormPageProp) {
               <Controller
                 control={control}
                 name="name"
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field: { onChange, value, ref } }) => (
                   <Input
                     placeholder="Nome Completo"
                     fontSize="md"
-                    onBlur={onBlur}
                     value={value}
                     onChangeText={(val) => onChange(val)}
+                    ref={ref}
                   />
                 )}
               />
+              <FormControl.ErrorMessage>{!!errors.name && errors.name.message}</FormControl.ErrorMessage>
             </FormControl>
             <FormControl marginTop={5}>
               <Controller
                 control={control}
                 name="birthday"
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field: { onChange, value, ref } }) => (
                   <Input
-                    onBlur={onBlur}
                     fontSize="md"
                     value={value}
                     placeholder="Data de Nascimento"
                     onChangeText={(val) => onChange(val)}
+                    ref={ref}
                   />
                 )}
               />
@@ -69,13 +81,13 @@ export function PersonalData({ control, formState }: FormPageProp) {
               <Controller
                 control={control}
                 name="cpf"
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field: { onChange, value, ref } }) => (
                   <Input
-                    onBlur={onBlur}
                     value={value}
                     placeholder="CPF"
                     fontSize="md"
                     onChangeText={(val) => onChange(val)}
+                    ref={ref}
                   />
                 )}
               />
@@ -91,7 +103,7 @@ export function PersonalData({ control, formState }: FormPageProp) {
             <Button
               borderRadius={50}
               backgroundColor={"primary"}
-              onPress={() => navigator.navigate("emailPassword")}
+              onPress={nextPage}
             >
               <Text fontWeight={600} fontSize={18} color={"#fff"}>
                 Próximo
