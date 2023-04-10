@@ -2,6 +2,8 @@ import { Login } from '@application/usecases/auth/login-usecase';
 import { ValidateUser } from '@application/usecases/auth/vailidate-user-usecase';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { UserController } from './controllers/user.controller';
+import { CreateUser } from '@application/usecases/user/create-user';
 
 @Module({
   imports: [
@@ -10,7 +12,7 @@ import { JwtModule } from '@nestjs/jwt';
       signOptions: { expiresIn: '360s' },
     }),
   ],
-  controllers: [],
-  providers: [Login, ValidateUser],
+  controllers: [UserController],
+  providers: [Login, ValidateUser, CreateUser],
 })
 export class HttpModule {}

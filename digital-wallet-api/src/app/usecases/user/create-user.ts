@@ -7,11 +7,11 @@ interface UserRequestProps {
   password: string;
   name: string;
   cpf: string;
-  earning: string;
-  earningDay: Date;
+  earning: number;
+  earningDay: number;
 }
 
-interface UserResponseProps {
+export interface UserResponseProps {
   user: User;
 }
 

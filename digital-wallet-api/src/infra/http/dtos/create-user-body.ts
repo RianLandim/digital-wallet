@@ -14,8 +14,8 @@ export class CreateUserBody {
   cpf: string;
 
   @IsNotEmpty()
-  earning: string;
+  earning: number;
 
   @IsNotEmpty()
-  earningDay: Date;
+  earningDay: number;
 }

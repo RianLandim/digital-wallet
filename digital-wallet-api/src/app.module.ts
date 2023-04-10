@@ -1,3 +1,5 @@
+import { DatabaseModule } from '@infra/database/database.module';
+import { HttpModule } from '@infra/http/http.module';
 import { Module } from '@nestjs/common';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
 
@@ -6,6 +8,8 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
     DevtoolsModule.register({
       http: true,
     }),
+    HttpModule,
+    DatabaseModule,
   ],
   controllers: [],
   providers: [],

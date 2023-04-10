@@ -7,8 +7,8 @@ interface UserProps {
   password: string;
   name: string;
   cpf: string;
-  earning: string;
-  earningDay: Date;
+  earning: number;
+  earningDay: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -65,7 +65,7 @@ export class User {
     return this.props.name;
   }
 
-  set earning(earning: string) {
+  set earning(earning: number) {
     this.props.earning = earning;
   }
 
@@ -73,7 +73,7 @@ export class User {
     return this.props.earning;
   }
 
-  set earningDay(earningDay: Date) {
+  set earningDay(earningDay: number) {
     this.props.earningDay = earningDay;
   }
 

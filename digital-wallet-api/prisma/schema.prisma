@@ -17,7 +17,7 @@ model User {
   name       String
   cpf        String
   earning    Int?
-  earningDay DateTime?
+  earningDay Int?
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
   CreditCard CreditCard[]
