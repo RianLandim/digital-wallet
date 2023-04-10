@@ -8,13 +8,11 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
-import { CreateUserFormData } from "..";
 
 export function PersonalData() {
   const navigator = useNavigation<StackScreenNavigation>();
 
-  const { control, formState: { errors }, trigger } = useFormContext<CreateUserFormData>()
-
+  const { control, trigger } = useFormContext()
 
   async function nextPage() {
     const result = await trigger(['name', 'birthday', 'cpf'], { shouldFocus: true })
@@ -46,22 +44,23 @@ export function PersonalData() {
           </Box>
 
           <VStack flex={1} width="80%" marginTop={10}>
-            <FormControl>
               <Controller
                 control={control}
                 name="name"
-                render={({ field: { onChange, value, ref } }) => (
-                  <Input
-                    placeholder="Nome Completo"
-                    fontSize="md"
-                    value={value}
-                    onChangeText={(val) => onChange(val)}
-                    ref={ref}
-                  />
+                render={({ field: { onChange, value, ref }, formState: { errors } }) => (
+                  <FormControl isInvalid={!!errors.name}>
+                    <Input
+                      placeholder="Nome Completo"
+                      fontSize="md"
+                      value={value}
+                      onChangeText={(val) => onChange(val)}
+                      ref={ref}
+                    />
+                    <FormControl.ErrorMessage>{errors?.name?.message}</FormControl.ErrorMessage>
+                  </FormControl>
                 )}
               />
-              <FormControl.ErrorMessage>{!!errors.name && errors.name.message}</FormControl.ErrorMessage>
-            </FormControl>
+              
             <FormControl marginTop={5}>
               <Controller
                 control={control}
