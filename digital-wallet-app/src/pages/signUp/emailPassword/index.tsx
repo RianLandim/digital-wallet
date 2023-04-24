@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, Input, Text, VStack } from "native-base";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useFormContext } from "react-hook-form";
 import {
   TouchableWithoutFeedback,
   Keyboard,
@@ -8,15 +8,12 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
+import { CreateUserFormData } from "..";
 
 export function EmailPassword() {
   const navigator = useNavigation<StackScreenNavigation>();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { control, trigger } = useFormContext<CreateUserFormData>()
 
   return (
     <ScrollView>

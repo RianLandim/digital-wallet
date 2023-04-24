@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { useForm, FormProvider, Control, FormState, UseFormTrigger } from 'react-hook-form'
+import { useForm, FormProvider, FieldPath } from 'react-hook-form'
 import { PersonalData } from './personalData'
 import * as z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { EmailPassword } from './emailPassword'
 import { MonthlyEarning } from './monthlyEarning'
 import { DayPayment } from './dayPayment'
+import { createContext, useMemo } from 'react'
 
 const createUserSchema = z.object({
   name: z.string({ required_error: 'Nome obrigatório' }),
@@ -34,6 +35,11 @@ export type SignUpNavigationScreens = {
 
 export type CreateUserFormData = z.infer<typeof createUserSchema>
 
+
+type FormContextProps = {
+  handleNext(fields: FieldPath<CreateUserFormData> | FieldPath<CreateUserFormData>[] , callback: Function) : Promise<void> 
+}
+
 export function SignUpPage() {
 
   const Stack = createNativeStackNavigator<SignUpNavigationScreens>()
@@ -42,18 +48,32 @@ export function SignUpPage() {
     resolver: zodResolver(createUserSchema),
   })
 
-  function createUserSubmit(data: CreateUserFormData) {
+    function createUserSubmit(data: CreateUserFormData) {
     console.log(data)
   }
 
+  const FormContext = createContext({} as FormContextProps)
+
+  async function handleNext(fields: FieldPath<CreateUserFormData> | FieldPath<CreateUserFormData>[] , callback: Function) {
+    const result = await methods.trigger(fields, { shouldFocus: true })
+  
+    if(result) {
+      callback()
+    }
+  }
+
+  const ContextValue = useMemo(() => ({ handleNext }), [])
+
   return (
     <FormProvider {...methods}>
-      <Stack.Navigator initialRouteName='personalData' screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='personalData' component={PersonalData}/>
-        <Stack.Screen name='emailPassword' component={EmailPassword} />
-        <Stack.Screen name='monthlyEarning' component={MonthlyEarning} />
-        <Stack.Screen name='dayPayment' component={DayPayment} />
-      </Stack.Navigator>
+      <FormContext.Provider value={ContextValue}>
+        <Stack.Navigator initialRouteName='personalData' screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='personalData' component={PersonalData}/>
+          <Stack.Screen name='emailPassword' component={EmailPassword} />
+          <Stack.Screen name='monthlyEarning' component={MonthlyEarning} />
+          <Stack.Screen name='dayPayment' component={DayPayment} />
+        </Stack.Navigator>
+      </FormContext.Provider>
     </FormProvider>
   )
 }
