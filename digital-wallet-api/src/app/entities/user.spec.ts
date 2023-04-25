@@ -5,9 +5,9 @@ describe('User Entity', () => {
     const user = new User({
       username: 'username-test',
       password: 'password-test',
-      earning: 'earning-test',
+      earning: 1200,
       name: 'name-test',
-      earningDay: new Date(),
+      earningDay: new Date().getDay(),
       cpf: 'cpf-test',
     });
 

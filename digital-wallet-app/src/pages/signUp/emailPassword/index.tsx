@@ -35,7 +35,7 @@ export function EmailPassword() {
             <FormControl>
               <Controller
                 control={control}
-                name="Email"
+                name="email"
                 defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
@@ -51,7 +51,7 @@ export function EmailPassword() {
             <FormControl marginTop={5}>
               <Controller
                 control={control}
-                name="Password"
+                name="password"
                 defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
@@ -68,7 +68,7 @@ export function EmailPassword() {
             <FormControl marginTop={5}>
               <Controller
                 control={control}
-                name="ConfirmPassord"
+                name="cPassword"
                 defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
