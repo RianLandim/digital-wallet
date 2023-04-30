@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
+import { TextInputMask } from "react-native-masked-text";
 
 export function PersonalData() {
   const navigator = useNavigation<StackScreenNavigation>();
@@ -17,7 +18,7 @@ export function PersonalData() {
   async function nextPage() {
     const result = await trigger(['name', 'birthday', 'cpf'], { shouldFocus: true })
 
-    if(result) {
+    if (result) {
       navigator.navigate("emailPassword")
     }
   }
@@ -44,53 +45,61 @@ export function PersonalData() {
           </Box>
 
           <VStack flex={1} width="80%" marginTop={10}>
-              <Controller
-                control={control}
-                name="name"
-                render={({ field: { onChange, value, ref }, formState: { errors } }) => (
-                  <FormControl isInvalid={!!errors.name}>
-                    <Input
-                      placeholder="Nome Completo"
-                      fontSize="md"
-                      value={value}
-                      onChangeText={(val) => onChange(val)}
-                      ref={ref}
-                    />
-                    <FormControl.ErrorMessage>{errors?.name?.message}</FormControl.ErrorMessage>
-                  </FormControl>
-                )}
-              />
-              
-            <FormControl marginTop={5}>
-              <Controller
-                control={control}
-                name="birthday"
-                render={({ field: { onChange, value, ref } }) => (
+            <Controller
+              control={control}
+              name="name"
+              render={({ field: { onChange, value, ref }, formState: { errors } }) => (
+                <FormControl isInvalid={!!errors.name}>
                   <Input
+                    placeholder="Nome Completo"
                     fontSize="md"
                     value={value}
+                    onChangeText={(val) => onChange(val)}
+                    ref={ref}
+                  />
+                  <FormControl.ErrorMessage>{errors?.name?.message}</FormControl.ErrorMessage>
+                </FormControl>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="birthday"
+              render={({ field: { onChange, value, ref }, formState: { errors } }) => (
+                <FormControl isInvalid={!!errors.birthday} marginTop={5}>
+                  <TextInputMask
+                    style={{ borderWidth: 1, borderColor: "#CECECE", height: 47, borderRadius: 5, paddingLeft: 20, fontSize: 16 }}
+                    type="datetime"
                     placeholder="Data de Nascimento"
-                    onChangeText={(val) => onChange(val)}
-                    ref={ref}
-                  />
-                )}
-              />
-            </FormControl>
-            <FormControl marginTop={5}>
-              <Controller
-                control={control}
-                name="cpf"
-                render={({ field: { onChange, value, ref } }) => (
-                  <Input
                     value={value}
-                    placeholder="CPF"
-                    fontSize="md"
                     onChangeText={(val) => onChange(val)}
                     ref={ref}
                   />
-                )}
-              />
-            </FormControl>
+                  <FormControl.ErrorMessage>{errors?.birthday?.message}</FormControl.ErrorMessage>
+                </FormControl>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="cpf"
+              render={({ field: { onChange, value, ref }, formState: { errors } }) => (
+                <FormControl isInvalid={!!errors.cpf}  marginTop={5}>
+                  <TextInputMask
+                    style={{ borderWidth: 1, borderColor: "#CECECE", height: 47, borderRadius: 5, paddingLeft: 20, fontSize: 16 }}
+                    type="cpf"
+                    placeholder="CPF"
+                    value={value}
+                    onChangeText={(val) => onChange(val)}
+                    ref={ref}
+
+                  />
+
+                  <FormControl.ErrorMessage>{errors?.cpf?.message}</FormControl.ErrorMessage>
+
+                </FormControl>
+              )}
+            />
           </VStack>
 
           <VStack
@@ -100,18 +109,18 @@ export function PersonalData() {
             marginTop={10}
           >
             <Button
-              borderRadius={50}
+              borderRadius="50"
               backgroundColor={"primary"}
               onPress={nextPage}
             >
-              <Text fontWeight={600} fontSize={18} color={"#fff"}>
+              <Text fontWeight="600" fontSize="18" color={"#fff"}>
                 Próximo
               </Text>
             </Button>
           </VStack>
 
           <VStack
-            flex={1}
+            flex="1"
             width="50%"
             justifyContent="space-evenly"
             marginTop="20%"
