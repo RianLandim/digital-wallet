@@ -44,7 +44,7 @@ export function Welcome() {
                 fontWeight={600}
                 fontSize={"lg"}
                 color={"#fff"}
-                onPress={() => navigator.navigate("Home")}
+                onPress={() => navigator.navigate("BottomNavigationBar" as never)}
               >
                 Iniciar
               </Text>

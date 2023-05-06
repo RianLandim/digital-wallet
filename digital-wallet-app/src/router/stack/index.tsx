@@ -2,12 +2,14 @@ import { NativeStackNavigationProp, createNativeStackNavigator } from "@react-na
 import {  Home, Login, Welcome } from "../../pages";
 import { SignUpNavigationScreens, SignUpPage } from "../../pages/signUp";
 import { CompositeNavigationProp } from "@react-navigation/native";
+import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavigationBar";
 
 export type StackRouteProps = {
   Login: undefined;
   SignUp: undefined;
   Welcome: undefined;
   Home: undefined;
+  BottomNavigationBar: undefined;
 };
 
 export type StackScreenNavigation  = CompositeNavigationProp<
@@ -31,6 +33,8 @@ export function StackRoutes() {
 
       <Stack.Screen name="SignUp" component={SignUpPage} />
 
+      <Stack.Screen name="BottomNavigationBar" component={BottomNavigationBar} />
+      
     </Stack.Navigator>
   );
 }
