@@ -1,4 +1,3 @@
-import { randomUUID } from 'crypto';
 import { Launch, LaunchType } from './launch';
 
 describe('Launch entity', () => {

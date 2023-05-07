@@ -1,54 +1,54 @@
-import { randomUUID } from 'crypto';
-import { Replace } from 'src/helpers/replace';
-
-export enum LaunchType {
-  credit = 'credit',
-  debit = 'debit'
+import { randomUUID } from "crypto";
+interface GoalProps {
+  value: number;
+  limitDate: Date;
+  title: string;
+  description: string;
 }
 
-interface LaunchProps {
-  value: string;
-  createdAt: Date;
-  type: LaunchType;
-}
-
-export class Launch {
+export class Goal {
   private _id: string;
-  private props: LaunchProps;
+  private props: GoalProps;
 
-  constructor(props: Replace<LaunchProps, { createdAt?: Date }>) {
+  constructor(props: GoalProps) {
     this._id = randomUUID();
-    this.props = {
-      ...props,
-      createdAt: props.createdAt ?? new Date(),
-    };
+    this.props = props;
   }
 
   get id() {
     return this._id;
   }
 
-  set value(value: string) {
-    this.props.value = value;
+  set value(value: number) {
+    this.props.value;
   }
 
   get value() {
     return this.props.value;
   }
 
-  set createdAt(createdAt: Date) {
-    this.props.createdAt = createdAt;
+  set limitDate(limitDate: Date) {
+    this.props.limitDate;
   }
 
-  get createdAt() {
-    return this.props.createdAt;
+  get limitDate() {
+    return this.props.limitDate;
+  }
+  
+  set title(title: string) {
+    this.props.title;
   }
 
-  set type(type: LaunchType) {
-    this.props.type = type;
+  get title() {
+    return this.props.title;
   }
 
-  get type() {
-    return this.props.type;
+  set description(description: string) {
+    this.props.description;
+  }
+  
+  get description() {
+    return this.props.description;
   }
 }
+

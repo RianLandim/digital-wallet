@@ -1,4 +1,4 @@
-import { Launch } from "@application/entities/launch";
+import { Launch, LaunchType } from "@application/entities/launch";
 import { LaunchRepository } from "@application/repositories/launch-repository";
 import { Injectable } from "@nestjs/common";
 
