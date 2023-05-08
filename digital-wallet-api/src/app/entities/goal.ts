@@ -1,28 +1,18 @@
 import { randomUUID } from 'crypto';
-import { Replace } from 'src/helpers/replace';
-
 interface GoalProps {
   value: number;
   limitDate: Date;
   title: string;
   description: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 export class Goal {
   private _id: string;
   private props: GoalProps;
 
-  constructor(
-    props: Replace<GoalProps, { createdAt?: Date; updatedAt?: Date }>,
-  ) {
+  constructor(props: GoalProps) {
     this._id = randomUUID();
-    this.props = {
-      ...props,
-      createdAt: props.createdAt ?? new Date(),
-      updatedAt: props.updatedAt ?? new Date(),
-    };
+    this.props = props;
   }
 
   get id() {
@@ -30,7 +20,7 @@ export class Goal {
   }
 
   set value(value: number) {
-    this.props.value = value;
+    this.props.value;
   }
 
   get value() {
@@ -38,7 +28,7 @@ export class Goal {
   }
 
   set limitDate(limitDate: Date) {
-    this.props.limitDate = limitDate;
+    this.props.limitDate;
   }
 
   get limitDate() {
@@ -46,7 +36,7 @@ export class Goal {
   }
 
   set title(title: string) {
-    this.props.title = title;
+    this.props.title;
   }
 
   get title() {
@@ -54,26 +44,10 @@ export class Goal {
   }
 
   set description(description: string) {
-    this.props.description = description;
+    this.props.description;
   }
 
   get description() {
     return this.props.description;
-  }
-
-  set createdAt(createdAt: Date) {
-    this.props.createdAt = createdAt;
-  }
-
-  get createdAt() {
-    return this.props.createdAt;
-  }
-
-  set updatedAt(updatedAt: Date) {
-    this.props.updatedAt = updatedAt;
-  }
-
-  get updatedAt() {
-    return this.props.updatedAt;
   }
 }

@@ -82,7 +82,7 @@ export function Login() {
             marginTop={10}
           >
             <Button borderRadius={50} backgroundColor="primary">
-              <Text fontWeight={600} fontSize={18} color={"#fff"}>
+              <Text fontWeight={600} fontSize={18} color={"#fff"} onPress={() =>  navigator.navigate("BottomNavigationBar" as never)}>
                 Entrar
               </Text>
             </Button>
