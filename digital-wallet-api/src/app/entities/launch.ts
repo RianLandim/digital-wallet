@@ -3,7 +3,7 @@ import { Replace } from 'src/helpers/replace';
 
 export enum LaunchType {
   credit = 'credit',
-  debit = 'debit'
+  debit = 'debit',
 }
 
 interface LaunchProps {

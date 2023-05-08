@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from 'crypto';
 
 interface CategoryProps {
   name: string;
@@ -11,7 +11,7 @@ export class Category {
   constructor(props: CategoryProps) {
     this._id = randomUUID();
     this.props = props;
-  };
+  }
 
   get id() {
     return this._id;
