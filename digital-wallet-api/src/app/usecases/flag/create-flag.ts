@@ -12,7 +12,7 @@ interface CreateFlagResponse {
 export class CreateFlag {
   constructor(private flagRepository: FlagRepository) {}
 
-  execute(request: CreateFlagRequest) {
+  async execute(request: CreateFlagRequest): Promise<CreateFlagResponse> {
     const { image, name } = request;
 
     const flag = new Flag({
@@ -20,7 +20,7 @@ export class CreateFlag {
       image,
     });
 
-    this.flagRepository.create(flag);
+    await this.flagRepository.create(flag);
 
     return { flag };
   }
