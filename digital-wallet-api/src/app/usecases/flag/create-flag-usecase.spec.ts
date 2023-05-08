@@ -1,5 +1,5 @@
 import { InMemoryFlagRepository } from '@test/repositories/in-memory-flag-repository';
-import { CreateFlag } from './create-flag';
+import { CreateFlag } from './create-flag-usecase';
 
 describe('', () => {
   it('should be able to create an flag in usecase', async () => {

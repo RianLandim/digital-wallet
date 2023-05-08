@@ -1,5 +1,5 @@
 import { InMemoryCategoryRepository } from '@test/repositories/in-memory-category-repository';
-import { CreateCategory } from './create-category';
+import { CreateCategory } from './create-category-usecase';
 
 describe('create category [usecase]', () => {
   it('should be able to create an category with yout own usecase', () => {

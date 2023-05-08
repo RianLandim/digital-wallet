@@ -1,6 +1,6 @@
 import { LaunchType } from '@application/entities/launch';
 import { InMemoryLaunchRepository } from '@test/repositories/in-memory-launch-repository';
-import { CreateLaunch } from './create-launch';
+import { CreateLaunch } from './create-launch-usecase';
 
 describe('create launch [usecase]', () => {
   it('should be able to create an credit launch', () => {
