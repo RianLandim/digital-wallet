@@ -18,7 +18,7 @@ export class Category {
   }
 
   set name(name: string) {
-    this.props.name;
+    this.props.name = name;
   }
 
   get name() {
