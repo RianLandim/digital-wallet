@@ -4,6 +4,11 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { UserController } from './controllers/user.controller';
 import { CreateUser } from '@application/usecases/user/create-user';
+import { CreditCardController } from './controllers/credit-card.controller';
+import { CreateCreditCard } from '@application/usecases/credit-card/create-credit-card-usecase';
+import { JwtStrategy } from './auth/jwt-strategy';
+import { PrismaService } from '@infra/database/prisma/prisma.service';
+import { AuthController } from './controllers/auth.controller';
 
 @Module({
   imports: [
@@ -12,7 +17,14 @@ import { CreateUser } from '@application/usecases/user/create-user';
       signOptions: { expiresIn: '360s' },
     }),
   ],
-  controllers: [UserController],
-  providers: [Login, ValidateUser, CreateUser],
+  controllers: [UserController, CreditCardController, AuthController],
+  providers: [
+    Login,
+    ValidateUser,
+    CreateUser,
+    CreateCreditCard,
+    JwtStrategy,
+    PrismaService,
+  ],
 })
 export class HttpModule {}
