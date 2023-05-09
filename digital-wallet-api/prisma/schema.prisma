@@ -10,16 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserProvider {
+  GOOGLE
+  FACEBOOK
+}
+
 model User {
-  id         String       @id @default(uuid())
-  email      String       @unique
+  id         String        @id @default(uuid())
+  email      String        @unique
+  provider   UserProvider? @default(GOOGLE)
+  providerId String?
   password   String
   name       String
   cpf        String
   earning    Int?
   earningDay Int?
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
   CreditCard CreditCard[]
 }
 

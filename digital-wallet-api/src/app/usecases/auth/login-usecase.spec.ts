@@ -16,8 +16,8 @@ describe('', () => {
 
     const { user } = await createUser.execute({
       cpf: 'cpf-test',
-      earning: 'earning-test',
-      earningDay: new Date(),
+      earning: 1200,
+      earningDay: new Date().getDay(),
       name: 'name-user',
       password,
       username: 'username-test',
