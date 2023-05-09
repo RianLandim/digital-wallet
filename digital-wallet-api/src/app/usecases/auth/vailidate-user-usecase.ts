@@ -22,13 +22,13 @@ export class ValidateUser {
     const user = await this.userRepository.getByUsername(username);
 
     if (!user) {
-      throw new UnauthorizedException('Usuario ou senha incorretos');
+      throw new UnauthorizedException('Usuário ou senha incorretos');
     }
 
     const isPasswordCorrect = compareSync(password, user.password);
 
     if (!isPasswordCorrect) {
-      throw new UnauthorizedException('Usuario ou senha incorretos');
+      throw new UnauthorizedException('Usuário ou senha incorretos');
     }
 
     return {

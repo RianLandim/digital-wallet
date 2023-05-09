@@ -19,6 +19,7 @@ export class PrismaUserMapper {
       cpf,
       email: username,
       name,
+      earningDay,
       password,
       createdAt,
       earning: Number(earning),
