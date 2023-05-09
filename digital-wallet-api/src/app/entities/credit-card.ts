@@ -1,12 +1,14 @@
 import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/replace';
+import { Flag } from './flag';
 import { User } from './user';
 
 interface CreditCardProps {
   ownerName: string;
-  flag: string;
-  bank: string;
   expiratedAt: Date;
+  bankId: string;
+  flagId: string;
+  flag?: Flag;
   closedAt: Date;
   userId: string;
   user?: User;
@@ -41,19 +43,43 @@ export class CreditCard {
     return this.props.ownerName;
   }
 
-  set flag(flag: string) {
-    this.props.flag = flag;
+  set expiratedAt(expiratedAt: Date) {
+    this.props.expiratedAt = expiratedAt;
   }
 
-  get flag() {
-    return this.props.flag;
+  get expiratedAt() {
+    return this.props.expiratedAt;
   }
 
-  set bank(bank: string) {
-    this.props.bank = bank;
+  set closedAt(closedAt: Date) {
+    this.props.closedAt = closedAt;
   }
 
-  get bank() {
-    return this.props.bank;
+  get closedAt() {
+    return this.props.closedAt;
+  }
+
+  set userId(userId: string) {
+    this.props.userId = userId;
+  }
+
+  get userId() {
+    return this.props.userId;
+  }
+
+  set bankId(bankId: string) {
+    this.props.bankId = bankId;
+  }
+
+  get bankId() {
+    return this.props.bankId;
+  }
+
+  set flagId(flagId: string) {
+    this.props.flagId = flagId;
+  }
+
+  get flagId() {
+    return this.props.flagId;
   }
 }

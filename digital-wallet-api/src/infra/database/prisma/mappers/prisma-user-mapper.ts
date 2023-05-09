@@ -22,7 +22,6 @@ export class PrismaUserMapper {
       password,
       createdAt,
       earning: Number(earning),
-      earningDay,
       updatedAt,
     };
   }

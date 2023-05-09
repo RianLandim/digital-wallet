@@ -1,7 +1,7 @@
 import { Category } from '@application/entities/category';
 import { CategoryRepository } from '@application/repositories/category-repository';
 
-export class InMemoryCategoryRepository extends CategoryRepository {
+export class InMemoryCategoryRepository implements CategoryRepository {
   category: Category[] = [];
 
   async create(category: Category) {
