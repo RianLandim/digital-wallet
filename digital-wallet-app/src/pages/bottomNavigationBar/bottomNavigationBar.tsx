@@ -8,6 +8,7 @@ import { Home } from "../home";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Orcamento } from "../orcamento";
 
 
 
@@ -41,7 +42,7 @@ export function BottomNavigationBar() {
       />
       <Screen
         name="money"
-        component={Home}
+        component={Orcamento}
         options={{
           headerShadowVisible: false,
           headerShown: false,

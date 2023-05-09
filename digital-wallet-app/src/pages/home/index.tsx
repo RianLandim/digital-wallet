@@ -1,32 +1,18 @@
 import { Box, Divider, ScrollView, Select, Text, Flex } from "native-base";
-import { UserCircle, ArrowUp, ArrowDown } from "phosphor-react-native";
-import { Image } from "react-native";
+import { ArrowUp, ArrowDown } from "phosphor-react-native";
 import { Button } from "../../layout/components/Button";
 import { Card } from "../../layout/components/Card";
 import { CardSaldo } from "../../layout/components/CardSaldo";
+import { Menu } from "../../layout/components/Menu";
 
 // import logo from '../../../assets/logo.png';
 
 export function Home() {
   return (
     <>
-      <Box display="flex" flexDirection="row" justifyContent="space-between">
-        <Image
-          source={require("../../../assets/logo.png")}
-          style={{
-            marginTop: "10%",
-            marginLeft: 10,
-            width: 50,
-            height: 50,
-            resizeMode: "stretch",
-          }}
-        />
-        <Box marginRight={3} marginTop="10%">
-          <UserCircle size={60} />
-        </Box>
-      </Box>
+     <Menu/>
 
-      <CardSaldo title={"Saldo"} value={"1.000,00"}>
+      <CardSaldo value={"1.000,00"}>
         <Flex flexDirection={"row"} justifyContent={"space-between"}>
           <Box>
             <ArrowUp size={30} color="#34D399" />
