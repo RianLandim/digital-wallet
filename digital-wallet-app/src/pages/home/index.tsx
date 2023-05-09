@@ -1,8 +1,9 @@
-import { Box, Divider, ScrollView, Select, Text } from "native-base";
-import { UserCircle } from "phosphor-react-native";
+import { Box, Divider, ScrollView, Select, Text, Flex } from "native-base";
+import { UserCircle, ArrowUp, ArrowDown } from "phosphor-react-native";
 import { Image } from "react-native";
 import { Button } from "../../layout/components/Button";
 import { Card } from "../../layout/components/Card";
+import { CardSaldo } from "../../layout/components/CardSaldo";
 
 // import logo from '../../../assets/logo.png';
 
@@ -24,44 +25,36 @@ export function Home() {
           <UserCircle size={60} />
         </Box>
       </Box>
-      <Box
-        marginLeft="5%"
-        backgroundColor="gray.200"
-        width="90%"
-        height="20%"
-        alignItems="center"
-        borderRadius={20}
-      >
-        <Text marginTop="5%">Saldo</Text>
-        <Text>R$ 1.000,00</Text>
-        <Box
-          marginTop="5%"
-          display="flex"
-          flexDirection="row"
-          alignItems="center"
-        >
-          <Box width="45%" marginLeft="25%">
+
+      <CardSaldo title={"Saldo"} value={"1.000,00"}>
+        <Flex flexDirection={"row"} justifyContent={"space-between"}>
+          <Box>
+            <ArrowUp size={30} color="#34D399" />
+          </Box>
+          <Box width={"45%"}>
             <Text>Receitas</Text>
             <Text>R$ 0,00</Text>
           </Box>
-          <Box width="45%">
+
+          <ArrowDown size={30} color="#F87171" />
+          <Box>
             <Text>Despesas</Text>
             <Text>R$ 0,00</Text>
           </Box>
-        </Box>
-      </Box>
+        </Flex>
+      </CardSaldo>
 
       <ScrollView h="80">
         <Card title={"Contas"}>
           <Text>Cadastre seu cartão</Text>
-          <Divider bg="gray.400"/>
+          <Divider bg="gray.400" />
 
           <Button title={"Adicionar Cartão"} />
         </Card>
 
         <Card title={"Metas"}>
           <Text>Adicione metas para o ano </Text>
-          <Divider bg="gray.400"/>
+          <Divider bg="gray.400" />
           <Button title={"Visitar minhas metas"} />
         </Card>
 
@@ -74,7 +67,7 @@ export function Home() {
           <Select
             selectedValue={"Selecione um Período"}
             accessibilityLabel="Selecione um Período"
-            placeholder="Selecione um Período" 
+            placeholder="Selecione um Período"
             width={299}
           >
             <Select.Item label="Opção 1" value="opcao-um" />
