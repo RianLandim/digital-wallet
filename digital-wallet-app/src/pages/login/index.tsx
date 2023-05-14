@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Input, Text, VStack } from "native-base";
+import { Box, FormControl, Input, Text, VStack } from "native-base";
 import { Controller, useForm } from "react-hook-form";
 import {
   TouchableWithoutFeedback,
@@ -7,7 +7,8 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { StackRouteProps } from "../../router/stack";
+import { Button } from "../../layout/components/Button";
+import { ButtonSecondary } from "../../layout/components/ButtonSecondary";
 
 export function Login() {
   const navigator = useNavigation();
@@ -81,19 +82,12 @@ export function Login() {
             justifyContent="space-evenly"
             marginTop={10}
           >
-            <Button borderRadius={50} backgroundColor="primary">
-              <Text fontWeight={600} fontSize={18} color={"#fff"} onPress={() =>  navigator.navigate("BottomNavigationBar" as never)}>
-                Entrar
-              </Text>
-            </Button>
+
+            <Button title="Entrar" onPress={() => navigator.navigate("BottomNavigationBar" as never)} />
           </VStack>
 
           <VStack flex={1} width="50%" justifyContent="space-evenly">
-            <Button borderRadius={50} backgroundColor={"transparent"}>
-              <Text fontWeight={600} fontSize={"md"} color={"secondary"}>
-                Esqueceu a senha?
-              </Text>
-            </Button>
+            <ButtonSecondary title="Esqueceu a senha?" />
           </VStack>
 
           <VStack
@@ -102,15 +96,7 @@ export function Login() {
             justifyContent="space-evenly"
             marginTop="20%"
           >
-            <Button
-              borderRadius={50}
-              backgroundColor={"transparent"}
-              onPress={() => navigator.navigate("SignUp" as never)}
-            >
-              <Text fontWeight={600} fontSize={"md"} color={"secondary"}>
-                Cadastrar
-              </Text>
-            </Button>
+            <ButtonSecondary title="Cadastrar"  onPress={() => navigator.navigate("SignUp" as never)} />
           </VStack>
         </Box>
       </TouchableWithoutFeedback>

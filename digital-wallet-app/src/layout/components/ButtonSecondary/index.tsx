@@ -6,16 +6,17 @@ interface ButtonProps extends IButtonProps {
   title: String;
 }
 
-export function Button({ title, variant = "solid", ...props }: ButtonProps) {
+export function ButtonSecondary({ title, variant = "solid", ...props }: ButtonProps) {
   return (
     <NativeButton
       variant={variant}
       {...props}
-      bgColor={"#5AE468"}
+      // bgColor={"#5AE468"}
       rounded={10}
       onPress={props.onPress}
     >
-      <Text color={"white"} fontSize={18}  fontWeight="bold">{title}</Text>
+      
+      <Text  fontWeight="600" fontSize="md"  color="#1A78E5">{title}</Text>
     </NativeButton>
   );
 }
