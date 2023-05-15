@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Input, Text, VStack } from "native-base";
+import { Box, FormControl, Input, Text, VStack } from "native-base";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   TouchableWithoutFeedback,
@@ -9,6 +9,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
 import { TextInputMask } from "react-native-masked-text";
+import { Button } from "../../../layout/components/Button";
+import { ButtonSecondary } from "../../../layout/components/ButtonSecondary";
 
 export function PersonalData() {
   const navigator = useNavigation<StackScreenNavigation>();
@@ -31,11 +33,11 @@ export function PersonalData() {
           flex={1}
           alignItems="center"
           justifyContent="center"
-          marginTop="25%"
+          marginTop="10%"
         >
           <Image
             source={require("../../../../assets/logo.png")}
-            style={{ width: 100, height: 100, resizeMode: "stretch" }}
+            style={{ width: 90, height: 90, resizeMode: "stretch" }}
           />
 
           <Box alignItems={"center"} marginTop={"15%"}>
@@ -108,15 +110,7 @@ export function PersonalData() {
             justifyContent="space-evenly"
             marginTop={10}
           >
-            <Button
-              borderRadius="50"
-              backgroundColor={"primary"}
-              onPress={nextPage}
-            >
-              <Text fontWeight="600" fontSize="18" color={"#fff"}>
-                Próximo
-              </Text>
-            </Button>
+            <Button title="Próximo" onPress={nextPage} />
           </VStack>
 
           <VStack
@@ -125,15 +119,7 @@ export function PersonalData() {
             justifyContent="space-evenly"
             marginTop="20%"
           >
-            <Button
-              borderRadius={50}
-              backgroundColor={"transparent"}
-              onPress={() => navigator.navigate("Login")}
-            >
-              <Text fontWeight={600} fontSize="md" color={"secondary"}>
-                Entrar
-              </Text>
-            </Button>
+            <ButtonSecondary title="Entrar" onPress={() => navigator.navigate("Login")}/>
           </VStack>
         </Box>
       </TouchableWithoutFeedback>

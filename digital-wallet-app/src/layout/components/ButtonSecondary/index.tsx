@@ -11,12 +11,11 @@ export function ButtonSecondary({ title, variant = "solid", ...props }: ButtonPr
     <NativeButton
       variant={variant}
       {...props}
-      // bgColor={"#5AE468"}
       rounded={10}
       onPress={props.onPress}
     >
       
-      <Text  fontWeight="600" fontSize="md"  color="#1A78E5">{title}</Text>
+      <Text  fontWeight="600" fontSize="18"  color="#1A78E5">{title}</Text>
     </NativeButton>
   );
 }

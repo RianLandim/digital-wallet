@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Input, Text, VStack } from "native-base";
+import { Box, FormControl, Input, Text, VStack } from "native-base";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import {
   TouchableWithoutFeedback,
@@ -9,6 +9,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
 import { CreateUserFormData } from "..";
+import { Button } from "../../../layout/components/Button";
+import { ButtonSecondary } from "../../../layout/components/ButtonSecondary";
 
 export function EmailPassword() {
   const navigator = useNavigation<StackScreenNavigation>();
@@ -21,7 +23,7 @@ export function EmailPassword() {
     });
 
     if (result) {
-      navigator.navigate("emailPassword");
+      navigator.navigate("financialData" as never);
     }
   }
 
@@ -64,12 +66,14 @@ export function EmailPassword() {
                 </FormControl>
               )}
             />
-            <FormControl marginTop={5}>
-              <Controller
-                control={control}
-                name="password"
-                defaultValue=""
-                render={({ field: { onChange, onBlur, value } }) => (
+
+            <Controller
+              control={control}
+              name="password"
+              defaultValue=""
+              render={({ field: { onChange, onBlur, value }, formState: { errors }, }) => (
+                <FormControl marginTop={5} isInvalid={!!errors.password}>
+
                   <Input
                     onBlur={onBlur}
                     value={value}
@@ -78,15 +82,18 @@ export function EmailPassword() {
                     placeholder="Senha"
                     onChangeText={(val) => onChange(val)}
                   />
-                )}
-              />
-            </FormControl>
-            <FormControl marginTop={5}>
-              <Controller
-                control={control}
-                name="cPassword"
-                defaultValue=""
-                render={({ field: { onChange, onBlur, value } }) => (
+                  <FormControl.ErrorMessage>
+                    {errors?.password?.message}
+                  </FormControl.ErrorMessage>
+                </FormControl>
+              )}
+            />
+            <Controller
+              control={control}
+              name="cPassword"
+              defaultValue=""
+              render={({ field: { onChange, onBlur, value }, formState: {errors} }) => (
+                <FormControl marginTop={5} isInvalid={!!errors.cPassword}>
                   <Input
                     onBlur={onBlur}
                     value={value}
@@ -95,9 +102,12 @@ export function EmailPassword() {
                     secureTextEntry={true}
                     onChangeText={(val) => onChange(val)}
                   />
-                )}
-              />
-            </FormControl>
+                  <FormControl.ErrorMessage>
+                    {errors?.cPassword?.message}
+                  </FormControl.ErrorMessage>
+                </FormControl>
+              )}
+            />
           </VStack>
 
           <VStack
@@ -107,7 +117,7 @@ export function EmailPassword() {
             width="80%"
             justifyContent="space-between"
           >
-            <Button
+            {/* <Button
               borderRadius="50"
               backgroundColor="transparent"
               width="45%"
@@ -125,9 +135,14 @@ export function EmailPassword() {
               >
                 Voltar
               </Text>
-            </Button>
+            </Button> */}
+            <VStack width="50%">
 
-            <Button borderRadius="50" backgroundColor="primary" width="45%" height="12">
+              <ButtonSecondary title="Voltar" borderColor="black" marginRight="5%"
+                borderWidth="1" />
+            </VStack>
+
+            {/* <Button borderRadius="50" backgroundColor="primary" width="45%" height="12">
               <Text
                 fontWeight="black"
                 fontSize="20"
@@ -136,7 +151,12 @@ export function EmailPassword() {
               >
                 Proximo
               </Text>
-            </Button>
+            </Button> */}
+
+            <VStack width="50%" >
+              <Button title="Próximo" onPress={nextPage} />
+
+            </VStack>
           </VStack>
         </Box>
       </TouchableWithoutFeedback>

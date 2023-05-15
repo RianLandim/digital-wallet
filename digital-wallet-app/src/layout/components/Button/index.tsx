@@ -11,7 +11,7 @@ export function Button({ title, variant = "solid", ...props }: ButtonProps) {
     <NativeButton
       variant={variant}
       {...props}
-      bgColor={"#5AE468"}
+      bgColor={"#15D706"}
       rounded={10}
       onPress={props.onPress}
     >

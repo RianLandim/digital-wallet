@@ -4,8 +4,7 @@ import { PersonalData } from './personalData'
 import * as z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { EmailPassword } from './emailPassword'
-import { MonthlyEarning } from './monthlyEarning'
-import { DayPayment } from './dayPayment'
+import { FinancialData } from './financialData'
 
 const createUserSchema = z.object({
   name: z.string({ required_error: 'Nome obrigatório' }),
@@ -60,8 +59,7 @@ export function SignUpPage() {
       <Stack.Navigator initialRouteName='personalData' screenOptions={{ headerShown: false }}>
         <Stack.Screen name='personalData' component={PersonalData}/>
         <Stack.Screen name='emailPassword' component={EmailPassword} />
-        <Stack.Screen name='monthlyEarning' component={MonthlyEarning} />
-        <Stack.Screen name='dayPayment' component={DayPayment} />
+        <Stack.Screen name='financialData' component={FinancialData} />
       </Stack.Navigator>
     </FormProvider>
   )
