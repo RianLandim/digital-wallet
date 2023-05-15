@@ -1,12 +1,8 @@
-import { Category }  from './category';
+import { Category } from './category';
 
 describe('Category entity', () => {
   it('should create a launch entity with valid values', () => {
-    const props = {
-      name: 'mercado'
-    };
-
-    const category = new Category(props);
+    const category = new Category({ name: 'test-name', userId: 'userId-test' });
 
     expect(category).toBeInstanceOf(Category);
     expect(category.id).toBeTruthy();

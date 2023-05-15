@@ -10,6 +10,7 @@ describe('create category [usecase]', () => {
       async () =>
         await createCategory.execute({
           name: 'name-test',
+          userId: 'userId-test',
         }),
     ).not.toThrow();
   });

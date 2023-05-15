@@ -9,8 +9,9 @@ describe('create launch [usecase]', () => {
 
     expect(async () =>
       createLaunch.execute({
-        value: '1000',
-        type: LaunchType.credit,
+        userId: 'test-userId',
+        value: 1000,
+        type: LaunchType.CREDIT,
         createdAt: new Date(),
       }),
     ).not.toThrow();
@@ -22,8 +23,9 @@ describe('create launch [usecase]', () => {
 
     expect(async () =>
       createLaunch.execute({
-        value: '1000',
-        type: LaunchType.debit,
+        value: 1000,
+        type: LaunchType.DEBIT,
+        userId: 'test-userId',
         createdAt: new Date(),
       }),
     ).not.toThrow();

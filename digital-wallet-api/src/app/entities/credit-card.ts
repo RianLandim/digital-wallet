@@ -1,17 +1,13 @@
 import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/replace';
-import { Flag } from './flag';
-import { User } from './user';
 
 interface CreditCardProps {
   ownerName: string;
   expiratedAt: Date;
   bankId: string;
   flagId: string;
-  flag?: Flag;
   closedAt: Date;
   userId: string;
-  user?: User;
   createdAt: Date;
   updatedAt: Date;
 }

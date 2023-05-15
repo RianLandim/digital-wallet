@@ -3,8 +3,9 @@ import { Launch, LaunchType } from './launch';
 describe('Launch entity', () => {
   it('should create a launch entity with valid values', () => {
     const props = {
-      value: '10',
-      type: LaunchType.credit,
+      value: 10,
+      type: LaunchType.CREDIT,
+      userId: 'test-userId',
     };
 
     const launch = new Launch(props);
@@ -13,13 +14,14 @@ describe('Launch entity', () => {
     expect(launch.id).toBeTruthy();
     expect(launch.createdAt).toBeInstanceOf(Date);
     expect(launch.value).toEqual('10');
-    expect(launch.type).toEqual(LaunchType.credit);
+    expect(launch.type).toEqual(LaunchType.CREDIT);
   });
 
   it('should create a launch entity with default createdAt value', () => {
     const props = {
-      value: '20',
-      type: LaunchType.debit,
+      value: 20,
+      type: LaunchType.DEBIT,
+      userId: 'test-userId',
     };
 
     const launch = new Launch(props);
@@ -28,31 +30,29 @@ describe('Launch entity', () => {
     expect(launch.id).toBeTruthy();
     expect(launch.createdAt).toBeInstanceOf(Date);
     expect(launch.value).toEqual('20');
-    expect(launch.type).toEqual(LaunchType.debit);
+    expect(launch.type).toEqual(LaunchType.DEBIT);
   });
 
   it('should update value property of a launch entity', () => {
-    const props = {
-      value: '30',
-      type: LaunchType.credit,
-    };
-
-    const launch = new Launch(props);
+    const launch = new Launch({
+      value: 30,
+      type: LaunchType.CREDIT,
+      userId: 'test-userId',
+    });
 
     expect(launch.value).toEqual('30');
 
-    launch.value = '40';
+    launch.value = 40;
 
     expect(launch.value).toEqual('40');
   });
 
   it('should update createdAt property of a launch entity', () => {
-    const props = {
-      value: '50',
-      type: LaunchType.debit,
-    };
-
-    const launch = new Launch(props);
+    const launch = new Launch({
+      value: 50,
+      type: LaunchType.DEBIT,
+      userId: 'test-userId',
+    });
 
     expect(launch.createdAt).toBeInstanceOf(Date);
 
@@ -63,17 +63,16 @@ describe('Launch entity', () => {
   });
 
   it('should update type property of a launch entity', () => {
-    const props = {
-      value: '60',
-      type: LaunchType.credit,
-    };
+    const launch = new Launch({
+      value: 60,
+      type: LaunchType.CREDIT,
+      userId: 'test-userId',
+    });
 
-    const launch = new Launch(props);
+    expect(launch.type).toEqual(LaunchType.CREDIT);
 
-    expect(launch.type).toEqual(LaunchType.credit);
+    launch.type = LaunchType.DEBIT;
 
-    launch.type = LaunchType.debit;
-
-    expect(launch.type).toEqual(LaunchType.debit);
+    expect(launch.type).toEqual(LaunchType.DEBIT);
   });
 });

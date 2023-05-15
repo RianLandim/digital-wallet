@@ -10,6 +10,7 @@ describe('create goal [usecase]', () => {
       createGoal.execute({
         description: 'description-test',
         limitDate: new Date(),
+        userId: 'rianlandim',
         title: 'title-test',
         value: 1000,
       }),
