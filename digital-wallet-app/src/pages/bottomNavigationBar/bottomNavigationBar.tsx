@@ -60,7 +60,7 @@ export function BottomNavigationBar() {
       />
       <Screen
         name="relatorios"
-        component={Home}
+        component={Orcamento}
         options={{
           headerShadowVisible: false,
           headerShown: false,
