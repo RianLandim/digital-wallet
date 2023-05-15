@@ -8,7 +8,7 @@ export function Orcamento() {
   return (
     <>
       <Menu />
-      <CardSaldo value={"1.000,00"} />
+      <CardSaldo value={"1.000,00"} children={undefined} />
       <ScrollView>
         <Flex
           marginTop="10%"

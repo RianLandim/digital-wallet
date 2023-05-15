@@ -28,7 +28,7 @@ export function Home() {
         </Flex>
       </CardSaldo>
 
-      <ScrollView h="80">
+      <ScrollView>
         <Card title={"Contas"}>
           <Text>Cadastre seu cartão</Text>
           <Divider bg="gray.400" />
@@ -53,7 +53,7 @@ export function Home() {
           </Box>
         </Card>
 
-        <Card title={"Relatórios"}>
+        <Card title="Relatórios">
           <Select
             selectedValue={"Selecione um Período"}
             accessibilityLabel="Selecione um Período"
