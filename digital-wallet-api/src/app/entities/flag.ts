@@ -1,18 +1,25 @@
 import { randomUUID } from 'crypto';
+import { Replace } from 'src/helpers/replace';
 
 interface FlagProps {
   name: string;
   image: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class Flag {
   private _id: string;
   private props: FlagProps;
 
-  constructor(props: FlagProps) {
+  constructor(
+    props: Replace<FlagProps, { createdAt?: Date; updatedAt?: Date }>,
+  ) {
     this._id = randomUUID();
     this.props = {
       ...props,
+      createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
     };
   }
 
@@ -34,5 +41,21 @@ export class Flag {
 
   get image() {
     return this.props.image;
+  }
+
+  set createdAt(createdAt: Date) {
+    this.props.createdAt = createdAt;
+  }
+
+  get createdAt() {
+    return this.props.createdAt;
+  }
+
+  set updatedAt(updatedAt: Date) {
+    this.props.createdAt = updatedAt;
+  }
+
+  get updatedAt() {
+    return this.props.updatedAt;
   }
 }

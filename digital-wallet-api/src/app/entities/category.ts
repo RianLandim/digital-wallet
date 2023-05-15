@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 
 interface CategoryProps {
   name: string;
+  userId: string;
 }
 
 export class Category {
@@ -23,5 +24,13 @@ export class Category {
 
   get name() {
     return this.props.name;
+  }
+
+  set userId(userId: string) {
+    this.props.userId = userId;
+  }
+
+  get userId() {
+    return this.props.userId;
   }
 }

@@ -2,25 +2,30 @@ import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/replace';
 
 export enum LaunchType {
-  credit = 'credit',
-  debit = 'debit',
+  CREDIT = 'CREDIT',
+  DEBIT = 'DEBIT',
 }
 
 interface LaunchProps {
-  value: string;
-  createdAt: Date;
+  value: number;
   type: LaunchType;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class Launch {
   private _id: string;
   private props: LaunchProps;
 
-  constructor(props: Replace<LaunchProps, { createdAt?: Date }>) {
+  constructor(
+    props: Replace<LaunchProps, { createdAt?: Date; updatedAt?: Date }>,
+  ) {
     this._id = randomUUID();
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
     };
   }
 
@@ -28,12 +33,28 @@ export class Launch {
     return this._id;
   }
 
-  set value(value: string) {
+  set value(value: number) {
     this.props.value = value;
   }
 
   get value() {
     return this.props.value;
+  }
+
+  set type(type: LaunchType) {
+    this.props.type = type;
+  }
+
+  get type() {
+    return this.props.type;
+  }
+
+  set userId(userId: string) {
+    this.props.userId = userId;
+  }
+
+  get userId() {
+    return this.props.userId;
   }
 
   set createdAt(createdAt: Date) {
@@ -44,11 +65,11 @@ export class Launch {
     return this.props.createdAt;
   }
 
-  set type(type: LaunchType) {
-    this.props.type = type;
+  set updatedAt(updatedAt: Date) {
+    this.props.updatedAt = updatedAt;
   }
 
-  get type() {
-    return this.props.type;
+  get updatedAt() {
+    return this.props.updatedAt;
   }
 }
