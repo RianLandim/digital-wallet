@@ -10,6 +10,7 @@ async function bootstrap() {
     .setTitle('Carteira Digital Api')
     .setDescription('')
     .setVersion('1.0.0')
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'jwt' })
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('', app, document);

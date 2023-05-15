@@ -3,9 +3,10 @@ import { LaunchRepository } from '@application/repositories/launch-repository';
 import { Injectable } from '@nestjs/common';
 
 export interface CreateLaunchRequest {
-  value: string;
+  value: number;
   createdAt: Date;
   type: LaunchType;
+  userId: string;
 }
 
 export interface CreateLaunchResponse {
@@ -17,12 +18,13 @@ export class CreateLaunch {
   constructor(private launchRepository: LaunchRepository) {}
 
   async execute(request: CreateLaunchRequest): Promise<CreateLaunchResponse> {
-    const { value, createdAt, type } = request;
+    const { value, createdAt, type, userId } = request;
 
     const launch = new Launch({
       value,
       createdAt,
       type,
+      userId,
     });
 
     await this.launchRepository.create(launch);

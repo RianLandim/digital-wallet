@@ -6,10 +6,18 @@ export class PrismaCreditCardMapper {
     const { id, ownerName, bankId, closedAt, expiratedAt, flagId, userId } =
       creditCard;
     return {
-      bank: bankId,
+      bank: {
+        connect: {
+          id: bankId,
+        },
+      },
       closedAt,
       expiratedAt,
-      flag: flagId,
+      flag: {
+        connect: {
+          id: flagId,
+        },
+      },
       ownerName,
       id,
       user: { connect: { id: userId } },

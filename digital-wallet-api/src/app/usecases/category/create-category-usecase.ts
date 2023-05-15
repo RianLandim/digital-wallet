@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 
 export interface CreateCategoryRequest {
   name: string;
+  userId: string;
 }
 
 export interface CreateCategoryResponse {
@@ -17,10 +18,11 @@ export class CreateCategory {
   async execute(
     request: CreateCategoryRequest,
   ): Promise<CreateCategoryResponse> {
-    const { name } = request;
+    const { name, userId } = request;
 
     const category = new Category({
       name,
+      userId,
     });
 
     await this.categoryRepository.create(category);

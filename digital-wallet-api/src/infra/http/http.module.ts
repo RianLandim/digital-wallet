@@ -9,6 +9,7 @@ import { CreateCreditCard } from '@application/usecases/credit-card/create-credi
 import { JwtStrategy } from './auth/jwt-strategy';
 import { PrismaService } from '@infra/database/prisma/prisma.service';
 import { AuthController } from './controllers/auth.controller';
+import { FindByUsername } from '@application/usecases/user/find-user-by-username';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthController } from './controllers/auth.controller';
     CreateCreditCard,
     JwtStrategy,
     PrismaService,
+    FindByUsername,
   ],
 })
 export class HttpModule {}

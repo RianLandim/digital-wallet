@@ -19,7 +19,7 @@ export class ValidateUser {
   ): Promise<ValidateUserResponseProps> {
     const { password, username } = request;
 
-    const user = await this.userRepository.getByUsername(username);
+    const user = await this.userRepository.findByUsername(username);
 
     if (!user) {
       throw new UnauthorizedException('Usuário ou senha incorretos');

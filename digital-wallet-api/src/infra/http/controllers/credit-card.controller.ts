@@ -3,9 +3,10 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateCreditCard } from '@application/usecases/credit-card/create-credit-card-usecase';
 import { CurrentUser, User } from '../auth/decorator/currente-user.decorator';
 import { CreateCreditCardBody } from '../dtos/create-credit-card-body';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Cartão de credito')
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('credit-card')
 export class CreditCardController {

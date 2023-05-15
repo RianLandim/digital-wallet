@@ -20,8 +20,9 @@ export class Launch {
 
   constructor(
     props: Replace<LaunchProps, { createdAt?: Date; updatedAt?: Date }>,
+    id?: string,
   ) {
-    this._id = randomUUID();
+    this._id = id ?? randomUUID();
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),

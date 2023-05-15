@@ -19,8 +19,9 @@ export class User {
 
   constructor(
     props: Replace<UserProps, { createdAt?: Date; updatedAt?: Date }>,
+    id?: string,
   ) {
-    this._id = randomUUID();
+    this._id = id ?? randomUUID();
     this.props = {
       ...props,
       password: hashSync(props.password, 16),

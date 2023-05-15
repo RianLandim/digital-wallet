@@ -8,11 +8,11 @@ export class InMemoryUserRepository implements UserRepository {
     this.user.push(user);
   }
 
-  async get(): Promise<User[]> {
+  async find(): Promise<User[]> {
     return this.user;
   }
 
-  async getByUsername(username: string): Promise<User> {
+  async findByUsername(username: string): Promise<User> {
     const index = this.user.findIndex((item) => item.username === username);
 
     return this.user[index];

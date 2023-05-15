@@ -1,5 +1,5 @@
-import { Launch } from '@application/entities/launch';
-import { Prisma } from '@prisma/client';
+import { Launch, LaunchType } from '@application/entities/launch';
+import { Prisma, Launch as PrismaLaunch } from '@prisma/client';
 
 export class PrismaLaunchMapper {
   static toPrisma(launch: Launch): Prisma.LaunchCreateInput {
@@ -17,5 +17,18 @@ export class PrismaLaunchMapper {
       createdAt,
       updatedAt,
     };
+  }
+
+  static toDomain(launch: PrismaLaunch): Launch {
+    return new Launch(
+      {
+        type: launch.type as LaunchType,
+        userId: launch.userId,
+        value: launch.value,
+        createdAt: launch.createdAt,
+        updatedAt: launch.updatedAt,
+      },
+      launch.id,
+    );
   }
 }
