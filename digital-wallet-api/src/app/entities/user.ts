@@ -24,7 +24,6 @@ export class User {
     this._id = id ?? randomUUID();
     this.props = {
       ...props,
-      password: hashSync(props.password, 16),
       createdAt: props.createdAt ?? new Date(),
       updatedAt: props.updatedAt ?? new Date(),
     };

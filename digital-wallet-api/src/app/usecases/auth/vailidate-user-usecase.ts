@@ -1,6 +1,6 @@
 import { User } from '@application/entities/user';
 import { UserRepository } from '@application/repositories/user-repository';
-import { UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { compareSync } from 'bcrypt';
 
 interface ValidateUserRequestProps {
@@ -11,6 +11,7 @@ interface ValidateUserResponseProps {
   user: User;
 }
 
+@Injectable()
 export class ValidateUser {
   constructor(private userRepository: UserRepository) {}
 

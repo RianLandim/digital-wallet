@@ -15,7 +15,7 @@ import { FindByUsername } from '@application/usecases/user/find-user-by-username
   imports: [
     JwtModule.register({
       secret: 'test-key',
-      signOptions: { expiresIn: '360s' },
+      signOptions: { expiresIn: '7d' },
     }),
   ],
   controllers: [UserController, CreditCardController, AuthController],

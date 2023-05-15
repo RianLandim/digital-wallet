@@ -1,6 +1,7 @@
 import { User } from '@application/entities/user';
 import { UserRepository } from '@application/repositories/user-repository';
 import { Injectable } from '@nestjs/common';
+import { hashSync } from 'bcrypt';
 
 interface UserRequestProps {
   username: string;
@@ -22,8 +23,10 @@ export class CreateUser {
   async execute(request: UserRequestProps): Promise<UserResponseProps> {
     const { username, earning, earningDay, name, password, cpf } = request;
 
+    const hashedPassword = hashSync(password, 16);
+
     const user = new User({
-      password,
+      password: hashedPassword,
       username,
       earning,
       earningDay,
