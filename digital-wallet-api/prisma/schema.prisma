@@ -15,6 +15,11 @@ enum UserProvider {
   FACEBOOK
 }
 
+enum LaunchType {
+  CREDIT
+  DEBIT 
+}
+
 model User {
   id         String        @id @default(uuid())
   email      String        @unique
@@ -41,4 +46,30 @@ model CreditCard {
   userId      String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Launch {
+  id          String   @id @default(uuid())
+  value       String
+  createdAt   DateTime
+  type        LaunchType
+}
+
+model Goal {
+  id          String   @id @default(uuid())
+  value       Int
+  limitDate   DateTime
+  title       String
+  description String
+}
+
+model Flag {
+  id     String   @id @default(uuid())
+  name   String
+  image  String
+}
+
+model Category {
+  id     String   @id @default(uuid())
+  name   String
 }

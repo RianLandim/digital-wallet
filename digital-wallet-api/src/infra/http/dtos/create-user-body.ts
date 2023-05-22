@@ -17,5 +17,5 @@ export class CreateUserBody {
   earning: number;
 
   @IsNotEmpty()
-  earningDay: number;
+  earningDay: string | Date;
 }

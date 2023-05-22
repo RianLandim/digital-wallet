@@ -2,8 +2,8 @@ import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/replace';
 
 export enum LaunchType {
-  credit = 'credit',
-  debit = 'debit',
+  CREDIT = 'CREDIT',
+  DEBIT = 'DEBIT',
 }
 
 interface LaunchProps {

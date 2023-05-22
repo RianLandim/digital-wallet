@@ -4,10 +4,11 @@ import { Button } from "../../layout/components/Button";
 import { Card } from "../../layout/components/Card";
 import { CardSaldo } from "../../layout/components/CardSaldo";
 import { Menu } from "../../layout/components/Menu";
+import { useNavigation } from "@react-navigation/native";
 
-// import logo from '../../../assets/logo.png';
 
 export function Home() {
+  const navigator = useNavigation();
   return (
     <>
      <Menu/>
@@ -30,26 +31,32 @@ export function Home() {
         </Flex>
       </CardSaldo>
 
-      <ScrollView h="80">
+      <ScrollView>
         <Card title={"Contas"}>
           <Text>Cadastre seu cartão</Text>
           <Divider bg="gray.400" />
 
-          <Button title={"Adicionar Cartão"} />
+          <Box width="75%"  marginBottom="2">
+            <Button title={"Adicionar Cartão"} />
+          </Box>
         </Card>
 
         <Card title={"Metas"}>
           <Text>Adicione metas para o ano </Text>
           <Divider bg="gray.400" />
-          <Button title={"Visitar minhas metas"} />
+          <Box width="75%" marginBottom="2">
+            <Button title="Visitar minhas metas"  onPress={() => navigator.navigate("Metas" as never)} />
+          </Box>
         </Card>
 
         <Card title={"Ranking"}>
           <Text></Text>
-          <Button title={"Acessar ranking"} />
+          <Box width="75%" marginBottom="2">
+            <Button title={"Acessar ranking"} />
+          </Box>
         </Card>
 
-        <Card title={"Relatórios"}>
+        <Card title="Relatórios">
           <Select
             selectedValue={"Selecione um Período"}
             accessibilityLabel="Selecione um Período"
@@ -60,7 +67,9 @@ export function Home() {
             <Select.Item label="Opção 2" value="opcao-um" />
             <Select.Item label="Opção 3" value="opcao-um" />
           </Select>
-          <Button title={"Gerar relatorio"} />
+          <Box width="75%" marginBottom="2">
+            <Button title={"Gerar relatorio"} />
+          </Box>
         </Card>
       </ScrollView>
     </>

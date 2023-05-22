@@ -1,4 +1,4 @@
-import { Box, Button, Text, VStack } from "native-base";
+import { Box, Text, VStack } from "native-base";
 import {
   TouchableWithoutFeedback,
   Keyboard,
@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
+import { Button } from "../../../layout/components/Button";
 
 export function Welcome() {
   const navigator = useNavigation<StackScreenNavigation>();
@@ -29,7 +30,7 @@ export function Welcome() {
 
           <Box alignItems={"center"} marginTop={"15%"} width="80%">
             <Text fontSize={"3xl"} fontWeight={700} textAlign={"center"}>
-              Seja bem vindo a sua carteira digital!
+              Olá Fulano, Bem vindo(a) ao Carteira digital
             </Text>
           </Box>
 
@@ -38,17 +39,12 @@ export function Welcome() {
             width="80%"
             justifyContent="space-evenly"
             marginTop={10}
-          >
-            <Button borderRadius={50} backgroundColor={'primary'}>
-              <Text
-                fontWeight={600}
-                fontSize={"lg"}
-                color={"#fff"}
-                onPress={() => navigator.navigate("BottomNavigationBar" as never)}
-              >
-                Iniciar
-              </Text>
-            </Button>
+          > 
+
+            <Button title="Iniciar"  onPress={() => navigator.navigate("BottomNavigationBar" as never)}/>
+
+           
+           
           </VStack>
         </Box>
       </TouchableWithoutFeedback>
