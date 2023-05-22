@@ -1,5 +1,5 @@
 import { Goal } from '@application/entities/goal';
-import { Prisma } from '@prisma/client';
+import { Prisma, Goal as PrismaGoal } from '@prisma/client';
 
 export class PrismaGoalMapper {
   static toPrisma(goal: Goal): Prisma.GoalCreateInput {
@@ -28,5 +28,20 @@ export class PrismaGoalMapper {
       createdAt,
       updatedAt,
     };
+  }
+
+  static toDomain(goal: PrismaGoal): Goal {
+    return new Goal(
+      {
+        description: goal.description,
+        limitDate: goal.limitDate,
+        title: goal.title,
+        userId: goal.userId,
+        value: goal.value,
+        createdAt: goal.createdAt,
+        updatedAt: goal.updatedAt,
+      },
+      goal.id,
+    );
   }
 }

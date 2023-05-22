@@ -1,5 +1,5 @@
 import { Category } from '@application/entities/category';
-import { Prisma } from '@prisma/client';
+import { Prisma, Category as PrismaCategory } from '@prisma/client';
 
 export class PrismaCategoryMapper {
   static toPrisma(category: Category): Prisma.CategoryCreateInput {
@@ -14,5 +14,12 @@ export class PrismaCategoryMapper {
         },
       },
     };
+  }
+
+  static toDomain(category: PrismaCategory): Category {
+    return new Category({
+      name: category.name,
+      userId: category.userId,
+    });
   }
 }

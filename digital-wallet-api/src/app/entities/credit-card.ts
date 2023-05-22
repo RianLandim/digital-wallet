@@ -18,8 +18,9 @@ export class CreditCard {
 
   constructor(
     props: Replace<CreditCardProps, { createdAt?: Date; updatedAt?: Date }>,
+    id?: string,
   ) {
-    this._id = randomUUID();
+    this._id = id ?? randomUUID();
     this.props = {
       ...props,
       createdAt: new Date(),
