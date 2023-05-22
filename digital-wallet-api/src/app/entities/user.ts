@@ -9,6 +9,7 @@ interface UserProps {
   cpf: string;
   earning: number;
   earningDay: number;
+  birthday: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -79,6 +80,14 @@ export class User {
 
   get earningDay() {
     return this.props.earningDay;
+  }
+
+  set birthday(birthday: Date) {
+    this.props.birthday = birthday;
+  }
+
+  get birthday() {
+    return this.props.birthday;
   }
 
   set createdAt(createdAt: Date) {

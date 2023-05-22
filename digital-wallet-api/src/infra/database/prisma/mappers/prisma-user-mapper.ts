@@ -13,6 +13,7 @@ export class PrismaUserMapper {
       password,
       updatedAt,
       username,
+      birthday,
     } = user;
     return {
       id,
@@ -22,6 +23,7 @@ export class PrismaUserMapper {
       earningDay,
       password,
       createdAt,
+      birthday: new Date(birthday),
       earning: Number(earning),
       updatedAt,
     };
@@ -38,6 +40,7 @@ export class PrismaUserMapper {
         username: user.email,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
+        birthday: user.birthday,
       },
       user.id,
     );

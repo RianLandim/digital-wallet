@@ -10,6 +10,7 @@ interface UserRequestProps {
   cpf: string;
   earning: number;
   earningDay: number;
+  birthday: Date;
 }
 
 export interface UserResponseProps {
@@ -21,7 +22,8 @@ export class CreateUser {
   constructor(private userRepository: UserRepository) {}
 
   async execute(request: UserRequestProps): Promise<UserResponseProps> {
-    const { username, earning, earningDay, name, password, cpf } = request;
+    const { username, earning, earningDay, name, password, cpf, birthday } =
+      request;
 
     const hashedPassword = hashSync(password, 16);
 
@@ -32,6 +34,7 @@ export class CreateUser {
       earningDay,
       name,
       cpf,
+      birthday,
     });
 
     await this.userRepository.create(user);

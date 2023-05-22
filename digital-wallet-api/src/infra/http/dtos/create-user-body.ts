@@ -25,4 +25,8 @@ export class CreateUserBody {
   @ApiProperty()
   @IsNotEmpty()
   earningDay: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  birthday: Date;
 }

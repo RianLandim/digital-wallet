@@ -10,6 +10,7 @@ export function makeUser(override: Override = {}) {
     password: 'teste123',
     username: 'teste@gmail.com',
     cpf: 'cpf-test',
+    birthday: new Date(),
     ...override,
   });
 }
