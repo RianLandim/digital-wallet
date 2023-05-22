@@ -9,6 +9,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Orcamento } from "../orcamento";
+import { Config } from "../configuracao";
+import { Cartao } from "../Cartao";
 
 
 
@@ -42,7 +44,7 @@ export function BottomNavigationBar() {
       />
       <Screen
         name="money"
-        component={Orcamento}
+        component={Home}
         options={{
           headerShadowVisible: false,
           headerShown: false,
@@ -60,7 +62,7 @@ export function BottomNavigationBar() {
       />
       <Screen
         name="relatorios"
-        component={Home}
+        component={Orcamento}
         options={{
           headerShadowVisible: false,
           headerShown: false,
@@ -90,7 +92,7 @@ export function BottomNavigationBar() {
       />
       <Screen
         name="settings"
-        component={Home}
+        component={Config}
         options={{
           headerShadowVisible: false,
           headerShown: false,
