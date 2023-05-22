@@ -3,6 +3,7 @@ import {  Home, Login, Welcome } from "../../pages";
 import { SignUpNavigationScreens, SignUpPage } from "../../pages/signUp";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavigationBar";
+import { Metas } from "../../pages/metas";
 
 export type StackRouteProps = {
   Login: undefined;
@@ -10,6 +11,7 @@ export type StackRouteProps = {
   Welcome: undefined;
   Home: undefined;
   BottomNavigationBar: undefined;
+  Metas: undefined;
 };
 
 export type StackScreenNavigation  = CompositeNavigationProp<
@@ -34,6 +36,8 @@ export function StackRoutes() {
       <Stack.Screen name="SignUp" component={SignUpPage} />
 
       <Stack.Screen name="BottomNavigationBar" component={BottomNavigationBar} />
+
+      <Stack.Screen name="Metas" component={Metas}/>
       
     </Stack.Navigator>
   );

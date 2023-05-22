@@ -4,8 +4,11 @@ import { Button } from "../../layout/components/Button";
 import { Card } from "../../layout/components/Card";
 import { CardSaldo } from "../../layout/components/CardSaldo";
 import { Menu } from "../../layout/components/Menu";
+import { useNavigation } from "@react-navigation/native";
+
 
 export function Home() {
+  const navigator = useNavigation();
   return (
     <>
      <Menu/>
@@ -42,7 +45,7 @@ export function Home() {
           <Text>Adicione metas para o ano </Text>
           <Divider bg="gray.400" />
           <Box width="75%" marginBottom="2">
-            <Button title="Visitar minhas metas" />
+            <Button title="Visitar minhas metas"  onPress={() => navigator.navigate("Metas" as never)} />
           </Box>
         </Card>
 
