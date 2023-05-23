@@ -37,7 +37,7 @@ export function Home() {
           <Divider bg="gray.400" />
 
           <Box width="75%"  marginBottom="2">
-            <Button title={"Adicionar Cartão"} />
+            <Button title={"Adicionar Cartão"} onPress={() => navigator.navigate("NewCartao" as never)} />
           </Box>
         </Card>
 

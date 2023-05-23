@@ -1,13 +1,16 @@
-import React, { Children } from "react";
 import { CardSaldo2 } from "../../layout/components/CardSaldo2";
 import { Menu } from "../../layout/components/Menu";
-import { Flex, Text, Button, Divider } from "native-base";
-import { Plus } from "phosphor-react-native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { Flex, Text, Button, Divider, Box} from "native-base";
+import { Plus, Trash, Bank } from "phosphor-react-native";
+import { NewMeta } from "../transactions/components/NemMetas";
+import React, { useState } from "react";
+
 
 
 
 export function Metas(){
+  const [modalVisible, setModalVisible] = useState(false);
+
     return <>
     <Menu/>
     <CardSaldo2 value={"1.000,00"} children={undefined}/>
@@ -19,7 +22,7 @@ export function Metas(){
           alignSelf="center"
           borderRadius={20}
           py={1.5}
-        >
+          >
           <Text fontSize={20} fontWeight={"bold"} textAlign={"center"}>
             Metas
           </Text>
@@ -30,28 +33,36 @@ export function Metas(){
             Nova Meta
           </Text>
 
-          <Button marginRight={38}>
+          <Button marginRight={38} onPress={() => setModalVisible(true)}>
             <Plus size={20} />
           </Button>
+          <NewMeta modalVisible={modalVisible} setModalVisible={setModalVisible} />
 
-          </Flex>
+        </Flex>
+          <Divider />
 
           
-          <Flex flexDirection={"row"} justifyContent={"space-between"}>
+          <Flex flexDirection={"row"} justifyContent={"space-between"} marginTop={"5%"} marginBottom={"5%"}>
             <Text marginLeft={38}>Viagem</Text>
             <Flex>
-              <Text>3.000</Text>
-              <Text>2.500</Text>
+              <Text color={"green.500"}>3.000</Text>
+              <Text color={"red.500"}>2.500</Text>
             </Flex>
-            <MaterialIcons name="Savings'" color={"black"}/>
-            
+
+            <Box marginLeft={12}> 
+            <Bank size={28} />
+            </Box>
+
+            <Box marginRight={38}>
+            <Trash size={25} color="red"/>
+            </Box>
+
+          </Flex>
+          <Divider />
 
           </Flex>
 
 
-
-          <Divider />
-        </Flex>
 
     </>
 }   

@@ -26,7 +26,7 @@ export function Transactions() {
     <>
       <Box
         height="150"
-        backgroundColor="primary"
+        backgroundColor="green.400"
         paddingTop="10"
         justifyContent="space-around"
       >
@@ -104,7 +104,7 @@ export function Transactions() {
       <Box position="absolute" bottom="4" right="5">
         <IconButton
           icon={<Plus size={30} color="#fff" />}
-          backgroundColor="primary"
+          backgroundColor="green.400"
           borderRadius="30"
           width="62"
           height="16"

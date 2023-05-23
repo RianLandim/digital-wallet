@@ -1,10 +1,14 @@
-import { NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
-import {  Home, Login, Welcome } from "../../pages";
+import {
+  NativeStackNavigationProp,
+  createNativeStackNavigator,
+} from "@react-navigation/native-stack";
+import { Home, Login, Welcome } from "../../pages";
 import { SignUpNavigationScreens, SignUpPage } from "../../pages/signUp";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavigationBar";
 import { Cartao } from "../../pages/Cartao";
 import { Metas } from "../../pages/metas";
+import { NewCartao } from "../../pages/transactions/components/NewCartao";
 
 export type StackRouteProps = {
   Login: undefined;
@@ -14,12 +18,13 @@ export type StackRouteProps = {
   BottomNavigationBar: undefined;
   Cartao: undefined;
   Metas: undefined;
+  NewCartao: undefined;
 };
 
-export type StackScreenNavigation  = CompositeNavigationProp<
-  NativeStackNavigationProp<StackRouteProps, 'SignUp'>,
+export type StackScreenNavigation = CompositeNavigationProp<
+  NativeStackNavigationProp<StackRouteProps, "SignUp">,
   NativeStackNavigationProp<SignUpNavigationScreens>
->
+>;
 
 export function StackRoutes() {
   const Stack = createNativeStackNavigator<StackRouteProps>();
@@ -37,11 +42,14 @@ export function StackRoutes() {
 
       <Stack.Screen name="SignUp" component={SignUpPage} />
 
-      <Stack.Screen name="BottomNavigationBar" component={BottomNavigationBar} />
+      <Stack.Screen
+        name="BottomNavigationBar"
+        component={BottomNavigationBar}
+      />
 
       <Stack.Screen name="Cartao" component={Cartao} />
-      <Stack.Screen name="Metas" component={Metas}/>
-      
+      <Stack.Screen name="Metas" component={Metas} />
+      <Stack.Screen name="NewCartao" component={NewCartao}/>
     </Stack.Navigator>
   );
 }
