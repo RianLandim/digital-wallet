@@ -1,28 +1,30 @@
 import { Goal } from '@application/entities/goal';
 import { GoalRepository } from '@application/repositories/goal-repository';
+import { Injectable } from '@nestjs/common';
 
-interface GoalRequestProps {
+export interface CreateGoalRequest {
   value: number;
   limitDate: Date;
   title: string;
   description: string;
 }
 
-interface GoalResponseProps {
+export interface CreateGoalResponse {
   goal: Goal;
 }
 
+@Injectable()
 export class CreateGoal {
   constructor(private goalRepository: GoalRepository) {}
 
-  async execute(request: GoalRequestProps): Promise<GoalResponseProps> {
-    const { description, limitDate, title, value } = request;
+  async execute(request: CreateGoalRequest): Promise<CreateGoalResponse> {
+    const { value, limitDate, title, description } = request;
 
     const goal = new Goal({
-      description,
+      value,
       limitDate,
       title,
-      value,
+      description,
     });
 
     await this.goalRepository.create(goal);

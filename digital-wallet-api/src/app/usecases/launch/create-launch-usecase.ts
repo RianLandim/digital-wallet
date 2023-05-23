@@ -2,13 +2,13 @@ import { Launch, LaunchType } from '@application/entities/launch';
 import { LaunchRepository } from '@application/repositories/launch-repository';
 import { Injectable } from '@nestjs/common';
 
-export interface CreateLaunchRequest {
+interface CreateLaunchRequest {
   value: string;
   createdAt: Date;
   type: LaunchType;
 }
 
-export interface CreateLaunchResponse {
+interface CreateLaunchResponse {
   launch: Launch;
 }
 
