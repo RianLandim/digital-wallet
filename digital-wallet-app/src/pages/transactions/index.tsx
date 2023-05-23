@@ -1,4 +1,11 @@
-import { Column, IconButton, Row, ScrollView, Text, Box } from "native-base";
+import {
+  Column,
+  IconButton,
+  Row,
+  ScrollView,
+  Text,
+  Box,
+} from "native-base";
 import {
   ArrowCircleDown,
   CaretLeft,
@@ -8,8 +15,13 @@ import {
 } from "phosphor-react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Transaction } from "./components/Transaction";
+import React, { useState } from "react";
+import NewTransaction from "./components/NewTransaction";
 
 export function Transactions() {
+  const [modalVisible, setModalVisible] = useState(false);
+
+
   return (
     <>
       <Box
@@ -86,6 +98,9 @@ export function Transactions() {
           <Transaction />
         </Column>
       </ScrollView>
+
+      <NewTransaction modalVisible={modalVisible} setModalVisible={setModalVisible} />
+
       <Box position="absolute" bottom="4" right="5">
         <IconButton
           icon={<Plus size={30} color="#fff" />}
@@ -93,6 +108,7 @@ export function Transactions() {
           borderRadius="30"
           width="62"
           height="16"
+          onPress={() => setModalVisible(true)}
         />
       </Box>
     </>
