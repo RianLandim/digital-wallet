@@ -1,5 +1,5 @@
 import { InMemoryUserRepository } from '@test/repositories/in-memory-user-repository';
-import { CreateUser } from './create-user';
+import { CreateUser } from './create-user-usecase';
 
 describe('create user usecase', () => {
   it('should be able to create an user', () => {
