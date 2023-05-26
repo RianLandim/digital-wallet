@@ -13,6 +13,8 @@ import { FindByUsername } from '@application/usecases/user/find-user-by-username
 import { CategoryController } from './controllers/category.controller';
 import { CreateCategory } from '@application/usecases/category/create-category-usecase';
 import { FindCategory } from '@application/usecases/category/find-category-usecase';
+import { CreateLaunch } from '@application/usecases/launch/create-launch-usecase';
+import { LaunchController } from './controllers/launch.controller';
 
 @Module({
   imports: [
@@ -26,6 +28,7 @@ import { FindCategory } from '@application/usecases/category/find-category-useca
     CreditCardController,
     AuthController,
     CategoryController,
+    LaunchController,
   ],
   providers: [
     Login,
@@ -37,6 +40,7 @@ import { FindCategory } from '@application/usecases/category/find-category-useca
     FindByUsername,
     CreateCategory,
     FindCategory,
+    CreateLaunch,
   ],
 })
 export class HttpModule {}
