@@ -16,18 +16,20 @@ enum UserProvider {
 }
 
 model User {
-  id         String        @id @default(uuid())
-  email      String        @unique
-  provider   UserProvider?
-  providerId String?
-  password   String
-  name       String
-  cpf        String
-  earning    Int?
-  earningDay Int?
-  birthday   DateTime?
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
+  id            String        @id @default(uuid())
+  email         String        @unique
+  provider      UserProvider?
+  providerId    String?
+  password      String
+  name          String
+  cpf           String
+  earning       Float?
+  earningDay    Int?
+  earningMontly Boolean       @default(false)
+  totalAmount   Float         @default(0)
+  birthday      DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 
   creditCard CreditCard[]
   launch     Launch[]
@@ -59,6 +61,7 @@ model Category {
   updatedAt DateTime @updatedAt
   User      User     @relation(fields: [userId], references: [id])
   userId    String
+  Goal      Goal[]
 }
 
 model Bank {
@@ -82,12 +85,15 @@ model Flag {
 }
 
 model Goal {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   value       Int
   limitDate   DateTime
+  completedAt DateTime?
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  String
   title       String
   description String
-  User        User     @relation(fields: [userId], references: [id])
+  User        User      @relation(fields: [userId], references: [id])
   userId      String
 
   createdAt DateTime @default(now())
