@@ -24,7 +24,7 @@ export class PrismaLaunchRepository implements LaunchRepository {
           });
 
           if (user.balance < 0) {
-            throw new Error(`${user.name} não possui dinheiro suficiente`);
+            throw new Error(`Você não possui dinheiro suficiente`);
           }
         } else {
           await tx.user.update({
