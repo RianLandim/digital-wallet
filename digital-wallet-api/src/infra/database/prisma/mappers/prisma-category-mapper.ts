@@ -17,9 +17,14 @@ export class PrismaCategoryMapper {
   }
 
   static toDomain(category: PrismaCategory): Category {
-    return new Category({
-      name: category.name,
-      userId: category.userId,
-    });
+    return new Category(
+      {
+        name: category.name,
+        userId: category.userId,
+        createdAt: category.createdAt,
+        updatedAt: category.updatedAt,
+      },
+      category.id,
+    );
   }
 }

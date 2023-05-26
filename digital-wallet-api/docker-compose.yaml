@@ -22,7 +22,7 @@ services:
     ports:
       - 3333:3333
     environment:
-      - DATABASE_URL=database
+      - DATABASE_URL=postgresql://docker:docker@database:5432/app?schema=public
     volumes: 
       - .:/usr/src/app
       - /usr/src/app/node_modules
@@ -48,4 +48,4 @@ networks:
 
 volumes:
   postgresql_data:
-    driver: local
+    driver: locals

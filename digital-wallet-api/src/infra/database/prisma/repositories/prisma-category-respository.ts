@@ -13,4 +13,29 @@ export class PrismaCategoryRepository implements CategoryRepository {
       data: raw,
     });
   }
+
+  async find(userId: string): Promise<Category[]> {
+    const rawCategory = await this.prisma.category.findMany({
+      where: { userId },
+    });
+
+    const category = rawCategory.map(PrismaCategoryMapper.toDomain);
+
+    return category;
+  }
+
+  async update(category: Category, id: string): Promise<Category> {
+    const raw = PrismaCategoryMapper.toPrisma(category);
+
+    const rawCategory = await this.prisma.category.update({
+      data: raw,
+      where: { id },
+    });
+
+    return PrismaCategoryMapper.toDomain(rawCategory);
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.prisma.category.delete({ where: { id } });
+  }
 }

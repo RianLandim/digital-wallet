@@ -10,6 +10,9 @@ import { JwtStrategy } from './auth/jwt-strategy';
 import { PrismaService } from '@infra/database/prisma/prisma.service';
 import { AuthController } from './controllers/auth.controller';
 import { FindByUsername } from '@application/usecases/user/find-user-by-username';
+import { CategoryController } from './controllers/category.controller';
+import { CreateCategory } from '@application/usecases/category/create-category-usecase';
+import { FindCategory } from '@application/usecases/category/find-category-usecase';
 
 @Module({
   imports: [
@@ -18,7 +21,12 @@ import { FindByUsername } from '@application/usecases/user/find-user-by-username
       signOptions: { expiresIn: '7d' },
     }),
   ],
-  controllers: [UserController, CreditCardController, AuthController],
+  controllers: [
+    UserController,
+    CreditCardController,
+    AuthController,
+    CategoryController,
+  ],
   providers: [
     Login,
     ValidateUser,
@@ -27,6 +35,8 @@ import { FindByUsername } from '@application/usecases/user/find-user-by-username
     JwtStrategy,
     PrismaService,
     FindByUsername,
+    CreateCategory,
+    FindCategory,
   ],
 })
 export class HttpModule {}
