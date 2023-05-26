@@ -5,8 +5,4 @@ export class CreateCategoryBody {
   @ApiProperty()
   @IsNotEmpty()
   name: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  userId: string;
 }
