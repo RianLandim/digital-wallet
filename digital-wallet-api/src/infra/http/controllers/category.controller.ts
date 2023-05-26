@@ -1,14 +1,14 @@
 import { CreateCategory } from '@application/usecases/category/create-category-usecase';
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { User } from '../auth/decorator/currente-user.decorator';
-import { CurrentUser } from '../auth/decorator/currente-user.decorator';
+import { User } from '../auth/decorator/current-user.decorator';
+import { CurrentUser } from '../auth/decorator/current-user.decorator';
 import { FindCategory } from '@application/usecases/category/find-category-usecase';
 import { CategoryViewModel } from '../view-models/category-view-model';
 import { CreateCategoryBody } from '../dtos/create-category-body';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Category')
+@ApiTags('Categoria')
 @UseGuards(JwtAuthGuard)
 @Controller('category')
 export class CategoryController {

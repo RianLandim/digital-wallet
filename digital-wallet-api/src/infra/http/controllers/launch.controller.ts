@@ -2,12 +2,12 @@ import { CreateLaunch } from '@application/usecases/launch/create-launch-usecase
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CurrentUser, User } from '../auth/decorator/currente-user.decorator';
+import { CurrentUser, User } from '../auth/decorator/current-user.decorator';
 import { CreateLaunchBody } from '../dtos/create-launch-body';
 import { LaunchViewModel } from '../view-models/launch-view-model';
 import { FindLaunch } from '@application/usecases/launch/find-launch-usecase';
 
-@ApiTags('Launch')
+@ApiTags('Lançamento')
 @UseGuards(JwtAuthGuard)
 @Controller('launch')
 export class LaunchController {

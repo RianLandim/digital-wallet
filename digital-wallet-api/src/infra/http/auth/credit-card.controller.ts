@@ -1,7 +1,7 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { CreateCreditCard } from '@application/usecases/credit-card/create-credit-card-usecase';
-import { CurrentUser, User } from './decorator/currente-user.decorator';
+import { CurrentUser, User } from './decorator/current-user.decorator';
 import { CreateCreditCardBody } from '../dtos/create-credit-card-body';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 

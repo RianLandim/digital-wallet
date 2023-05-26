@@ -1,6 +1,6 @@
 import { InMemoryUserRepository } from '@test/repositories/in-memory-user-repository';
 import { FindByUsername } from './find-user-by-username';
-import { CreateUser } from './create-user';
+import { CreateUser } from './create-user-usecase';
 import { makeUser } from '@test/factories/make-user-factory';
 
 describe('find user by username', () => {
