@@ -3,7 +3,7 @@ import { ValidateUser } from '@application/usecases/auth/vailidate-user-usecase'
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { UserController } from './controllers/user.controller';
-import { CreateUser } from '@application/usecases/user/create-user';
+import { CreateUser } from '@application/usecases/user/create-user-usecase';
 import { CreditCardController } from './auth/credit-card.controller';
 import { CreateCreditCard } from '@application/usecases/credit-card/create-credit-card-usecase';
 import { JwtStrategy } from './auth/jwt-strategy';

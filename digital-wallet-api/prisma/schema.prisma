@@ -17,7 +17,7 @@ enum UserProvider {
 
 enum LaunchType {
   CREDIT
-  DEBIT 
+  DEBIT
 }
 
 model User {
@@ -105,11 +105,6 @@ model Goal {
   updatedAt DateTime @updatedAt
 }
 
-enum LaunchType {
-  CREDIT
-  DEBIT
-}
-
 model Launch {
   id     String     @id @default(uuid())
   value  Float
@@ -119,30 +114,4 @@ model Launch {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model Launch {
-  id          String   @id @default(uuid())
-  value       String
-  createdAt   DateTime
-  type        LaunchType
-}
-
-model Goal {
-  id          String   @id @default(uuid())
-  value       Int
-  limitDate   DateTime
-  title       String
-  description String
-}
-
-model Flag {
-  id     String   @id @default(uuid())
-  name   String
-  image  String
-}
-
-model Category {
-  id     String   @id @default(uuid())
-  name   String
 }

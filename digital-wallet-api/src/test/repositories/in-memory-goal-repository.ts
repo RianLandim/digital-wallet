@@ -1,9 +1,5 @@
 import { Goal } from '@application/entities/goal';
-<<<<<<< HEAD
 import { GoalRepository } from '../../app/repositories/goal-repository';
-=======
-import { GoalRepository } from '@application/repositories/goal-repository';
->>>>>>> develop
 
 export class InMemoryGoalRepository implements GoalRepository {
   goal: Goal[] = [];
@@ -11,7 +7,6 @@ export class InMemoryGoalRepository implements GoalRepository {
   async create(goal: Goal) {
     this.goal.push(goal);
   }
-<<<<<<< HEAD
 
   async findMany(userId: string): Promise<Goal[]> {
     const goals = this.goal.filter((v) => v.userId === userId);
@@ -24,6 +19,4 @@ export class InMemoryGoalRepository implements GoalRepository {
 
     return this.goal[index];
   }
-=======
->>>>>>> develop
 }

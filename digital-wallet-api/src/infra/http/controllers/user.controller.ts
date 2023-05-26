@@ -1,4 +1,4 @@
-import { CreateUser } from '@application/usecases/user/create-user';
+import { CreateUser } from '@application/usecases/user/create-user-usecase';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUserBody } from '../dtos/create-user-body';
 import { ApiTags } from '@nestjs/swagger';
