@@ -15,10 +15,24 @@ describe('', () => {
 
     const password = 'password-test';
 
-    const { user } = await createUser.execute(makeUser({ password }));
+    const { user: rawUser } = await createUser.execute(makeUser({ password }));
 
-    expect(
-      login.execute({ password, username: user.username }),
-    ).resolves.not.toThrow();
+    const { user, accessToken } = await login.execute({
+      password,
+      username: rawUser.username,
+    });
+
+    expect(jwtService.verify(accessToken)).toEqual(
+      expect.objectContaining({
+        username: 'teste@gmail.com',
+        sub: rawUser.id,
+      }),
+    );
+    expect(user).toEqual(
+      expect.objectContaining({
+        username: 'teste@gmail.com',
+        cpf: 'cpf-test',
+      }),
+    );
   });
 });
