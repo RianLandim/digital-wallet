@@ -13,12 +13,12 @@ describe('', () => {
     const jwtService = new JwtService({ secret: 'test-key' });
     const login = new Login(validateUser, jwtService);
 
-    const password = 'password-test';
+    const userObject = makeUser({ password: 'password-test' });
 
-    const { user: rawUser } = await createUser.execute(makeUser({ password }));
+    const { user: rawUser } = await createUser.execute(userObject);
 
     const { user, accessToken } = await login.execute({
-      password,
+      password: userObject.password,
       username: rawUser.username,
     });
 
