@@ -26,7 +26,9 @@ export class PrismaLaunchRepository implements LaunchRepository {
           if (user.balance < 0) {
             throw new Error(`Você não possui dinheiro suficiente`);
           }
-        } else {
+        }
+
+        if (launch.type === 'CREDIT') {
           await tx.user.update({
             where: { id: launch.userId },
             data: {
@@ -40,5 +42,11 @@ export class PrismaLaunchRepository implements LaunchRepository {
     } catch (error) {
       throw new BadRequestException(error.message);
     }
+  }
+
+  async find(userId: string): Promise<Launch[]> {
+    const rawLaunch = await this.prisma.launch.findMany({ where: { userId } });
+
+    return rawLaunch.map(PrismaLaunchMapper.toDomain);
   }
 }
