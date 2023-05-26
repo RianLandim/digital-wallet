@@ -36,5 +36,5 @@ export class CreateUserBody {
 
   @ApiProperty()
   @IsOptional()
-  totalAmount: number;
+  balance: number;
 }

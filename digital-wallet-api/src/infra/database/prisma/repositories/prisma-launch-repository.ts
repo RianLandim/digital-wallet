@@ -20,17 +20,17 @@ export class PrismaLaunchRepository implements LaunchRepository {
         if (launch.type === 'DEBIT') {
           const user = await tx.user.update({
             where: { id: launch.userId },
-            data: { totalAmount: { decrement: launch.value } },
+            data: { balance: { decrement: launch.value } },
           });
 
-          if (user.totalAmount < 0) {
+          if (user.balance < 0) {
             throw new Error(`${user.name} não possui dinheiro suficiente`);
           }
         } else {
           await tx.user.update({
             where: { id: launch.userId },
             data: {
-              totalAmount: {
+              balance: {
                 increment: launch.value,
               },
             },

@@ -9,7 +9,7 @@ interface UserProps {
   earning: number;
   earningDay: number;
   earningMontly?: boolean;
-  totalAmount?: number;
+  balance?: number;
   birthday: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -29,7 +29,7 @@ export class User {
       createdAt: props.createdAt ?? new Date(),
       updatedAt: props.updatedAt ?? new Date(),
       earningMontly: props.earningMontly ?? false,
-      totalAmount: props.totalAmount ?? 0,
+      balance: props.balance ?? 0,
     };
   }
 
@@ -115,10 +115,10 @@ export class User {
     return this.props.earningMontly;
   }
 
-  set totalAmount(totalAmount: number) {
-    this.props.totalAmount = totalAmount;
+  set balance(balance: number) {
+    this.props.balance = balance;
   }
-  get totalAmount() {
-    return this.props.totalAmount;
+  get balance() {
+    return this.props.balance;
   }
 }

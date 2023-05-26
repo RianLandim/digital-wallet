@@ -12,7 +12,7 @@ interface UserRequestProps {
   earningDay: number;
   birthday: Date;
   earningMontly?: boolean;
-  totalAmount?: number;
+  balance?: number;
 }
 
 export interface UserResponseProps {
@@ -33,7 +33,7 @@ export class CreateUser {
       cpf,
       birthday,
       earningMontly,
-      totalAmount,
+      balance,
     } = request;
 
     const hashedPassword = hashSync(password, 16);
@@ -47,7 +47,7 @@ export class CreateUser {
       cpf,
       birthday,
       earningMontly,
-      totalAmount,
+      balance,
     });
 
     await this.userRepository.create(user);

@@ -9,7 +9,7 @@ export class UserViewModel {
       name: user.name,
       cpf: user.cpf,
       username: user.username,
-      totalAmount: user.totalAmount,
+      balance: user.balance,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };
