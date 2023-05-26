@@ -3,6 +3,7 @@ import { InMemoryUserRepository } from '@test/repositories/in-memory-user-reposi
 import { CreateUser } from '../user/create-user';
 import { Login } from './login-usecase';
 import { ValidateUser } from './vailidate-user-usecase';
+import { makeUser } from '@test/factories/make-user-factory';
 
 describe('', () => {
   it('should be able to make login', async () => {
@@ -14,14 +15,7 @@ describe('', () => {
 
     const password = 'password-test';
 
-    const { user } = await createUser.execute({
-      cpf: 'cpf-test',
-      earning: 1200,
-      earningDay: new Date().getDay(),
-      name: 'name-user',
-      password,
-      username: 'username-test',
-    });
+    const { user } = await createUser.execute(makeUser({ password }));
 
     expect(
       login.execute({ password, username: user.username }),

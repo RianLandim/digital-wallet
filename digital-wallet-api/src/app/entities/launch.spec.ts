@@ -13,7 +13,7 @@ describe('Launch entity', () => {
     expect(launch).toBeInstanceOf(Launch);
     expect(launch.id).toBeTruthy();
     expect(launch.createdAt).toBeInstanceOf(Date);
-    expect(launch.value).toEqual('10');
+    expect(launch.value).toEqual(10);
     expect(launch.type).toEqual(LaunchType.CREDIT);
   });
 
@@ -29,7 +29,7 @@ describe('Launch entity', () => {
     expect(launch).toBeInstanceOf(Launch);
     expect(launch.id).toBeTruthy();
     expect(launch.createdAt).toBeInstanceOf(Date);
-    expect(launch.value).toEqual('20');
+    expect(launch.value).toEqual(20);
     expect(launch.type).toEqual(LaunchType.DEBIT);
   });
 
@@ -40,11 +40,11 @@ describe('Launch entity', () => {
       userId: 'test-userId',
     });
 
-    expect(launch.value).toEqual('30');
+    expect(launch.value).toEqual(30);
 
     launch.value = 40;
 
-    expect(launch.value).toEqual('40');
+    expect(launch.value).toEqual(40);
   });
 
   it('should update createdAt property of a launch entity', () => {

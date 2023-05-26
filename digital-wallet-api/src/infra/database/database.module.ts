@@ -16,6 +16,6 @@ import { PrismaCategoryRepository } from './prisma/repositories/prisma-category-
     { provide: CreditCardRepository, useClass: PrismaCreditCardRepository },
     { provide: CategoryRepository, useClass: PrismaCategoryRepository },
   ],
-  exports: [UserRepository, CreditCardRepository],
+  exports: [UserRepository, CreditCardRepository, CategoryRepository],
 })
 export class DatabaseModule {}

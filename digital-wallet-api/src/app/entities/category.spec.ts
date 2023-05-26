@@ -6,6 +6,6 @@ describe('Category entity', () => {
 
     expect(category).toBeInstanceOf(Category);
     expect(category.id).toBeTruthy();
-    expect(category.name).toEqual('mercado');
+    expect(category.name).toEqual('test-name');
   });
 });

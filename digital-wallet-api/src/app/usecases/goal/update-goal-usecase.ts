@@ -3,6 +3,7 @@ import { GoalRepository } from '@application/repositories/goal-repository';
 import { Injectable } from '@nestjs/common';
 
 interface UpdateGoalRequest {
+  id: string;
   value: number;
   limitDate: Date;
   title: string;
@@ -19,15 +20,18 @@ export class UpdateGoal {
   constructor(private goalRepository: GoalRepository) {}
 
   async execute(request: UpdateGoalRequest): Promise<UpdateGoalResponse> {
-    const { description, limitDate, title, userId, value } = request;
+    const { description, limitDate, title, userId, value, id } = request;
 
-    const goal = new Goal({
-      description,
-      limitDate,
-      title,
-      userId,
-      value,
-    });
+    const goal = new Goal(
+      {
+        description,
+        limitDate,
+        title,
+        userId,
+        value,
+      },
+      id,
+    );
 
     await this.goalRepository.update(goal);
 

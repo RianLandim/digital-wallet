@@ -13,4 +13,19 @@ export class PrismaGoalRepository implements GoalRepository {
       data: raw,
     });
   }
+
+  async findMany(userId: string): Promise<Goal[]> {
+    const rawGoal = await this.prisma.goal.findMany({ where: { userId } });
+
+    return rawGoal.map(PrismaGoalMapper.toDomain);
+  }
+
+  async update(goal: Goal): Promise<Goal> {
+    const rawGoal = await this.prisma.goal.update({
+      data: goal,
+      where: { id: goal.id },
+    });
+
+    return PrismaGoalMapper.toDomain(rawGoal);
+  }
 }
