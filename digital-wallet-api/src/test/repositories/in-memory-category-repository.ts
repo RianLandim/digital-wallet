@@ -8,6 +8,7 @@ export class InMemoryCategoryRepository implements CategoryRepository {
     this.category.push(category);
   }
 
+<<<<<<< HEAD
   async find(userId: string): Promise<Category[]> {
     return this.category.filter((v) => v.userId === userId);
   }
@@ -22,5 +23,9 @@ export class InMemoryCategoryRepository implements CategoryRepository {
   async delete(id: string): Promise<void> {
     const index = this.category.findIndex((v) => v.id === id);
     this.category[index] = null;
+=======
+  async update(category: Category) {
+    this.category.push(category);
+>>>>>>> develop
   }
 }

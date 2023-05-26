@@ -1,6 +1,6 @@
 import { JwtService } from '@nestjs/jwt';
 import { InMemoryUserRepository } from '@test/repositories/in-memory-user-repository';
-import { CreateUser } from '../user/create-user';
+import { CreateUser } from '../user/create-user-usecase';
 import { Login } from './login-usecase';
 import { ValidateUser } from './vailidate-user-usecase';
 import { makeUser } from '@test/factories/make-user-factory';

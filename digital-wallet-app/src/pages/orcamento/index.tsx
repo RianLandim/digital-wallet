@@ -1,14 +1,15 @@
 
-import { CardSaldo } from "../../layout/components/CardSaldo";
+import { CardSaldo2 } from "../../layout/components/CardSaldo2";
 import { Menu } from "../../layout/components/Menu";
 import { Button, Divider, Flex, ScrollView, Text } from "native-base";
-import { Plus } from "phosphor-react-native";
+import { Plus,  } from "phosphor-react-native";
+
 
 export function Orcamento() {
   return (
     <>
       <Menu />
-      <CardSaldo value={"1.000,00"} children={undefined} />
+      <CardSaldo2 value={"1.000,00"} children={undefined} />
       <ScrollView>
         <Flex
           marginTop="10%"
@@ -34,8 +35,6 @@ export function Orcamento() {
           </Button>
 
           </Flex>
-
-
 
           <Divider />
         </Flex>

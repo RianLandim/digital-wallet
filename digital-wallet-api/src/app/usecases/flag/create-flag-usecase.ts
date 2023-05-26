@@ -1,5 +1,6 @@
 import { Flag } from '@application/entities/flag';
 import { FlagRepository } from '@application/repositories/flag-repository';
+import { Injectable } from '@nestjs/common';
 
 interface CreateFlagRequest {
   name: string;
@@ -9,6 +10,7 @@ interface CreateFlagResponse {
   flag: Flag;
 }
 
+@Injectable()
 export class CreateFlag {
   constructor(private flagRepository: FlagRepository) {}
 
@@ -22,6 +24,8 @@ export class CreateFlag {
 
     await this.flagRepository.create(flag);
 
-    return { flag };
+    return {
+      flag,
+    };
   }
 }
