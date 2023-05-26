@@ -8,6 +8,7 @@ export interface CreateGoalRequest {
   title: string;
   description: string;
   userId: string;
+  categoryId: string;
 }
 
 export interface CreateGoalResponse {
@@ -19,7 +20,8 @@ export class CreateGoal {
   constructor(private goalRepository: GoalRepository) {}
 
   async execute(request: CreateGoalRequest): Promise<CreateGoalResponse> {
-    const { value, limitDate, title, description, userId } = request;
+    const { value, limitDate, title, description, userId, categoryId } =
+      request;
 
     const goal = new Goal({
       value,
@@ -27,6 +29,7 @@ export class CreateGoal {
       title,
       description,
       userId,
+      categoryId,
     });
 
     await this.goalRepository.create(goal);

@@ -1,4 +1,3 @@
-import { hashSync } from 'bcrypt';
 import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/replace';
 
@@ -9,6 +8,8 @@ interface UserProps {
   cpf: string;
   earning: number;
   earningDay: number;
+  earningMontly?: boolean;
+  totalAmount?: number;
   birthday: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -27,6 +28,8 @@ export class User {
       ...props,
       createdAt: props.createdAt ?? new Date(),
       updatedAt: props.updatedAt ?? new Date(),
+      earningMontly: props.earningMontly ?? false,
+      totalAmount: props.totalAmount ?? 0,
     };
   }
 
@@ -103,5 +106,19 @@ export class User {
   }
   get updatedAt() {
     return this.props.updatedAt;
+  }
+
+  set earningMontly(earningMontly: boolean) {
+    this.props.earningMontly = earningMontly;
+  }
+  get earningMontly() {
+    return this.props.earningMontly;
+  }
+
+  set totalAmount(totalAmount: number) {
+    this.props.totalAmount = totalAmount;
+  }
+  get totalAmount() {
+    return this.props.totalAmount;
   }
 }

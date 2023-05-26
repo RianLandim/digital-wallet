@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateUserBody {
   @ApiProperty()
@@ -29,4 +29,12 @@ export class CreateUserBody {
   @ApiProperty()
   @IsNotEmpty()
   birthday: Date;
+
+  @ApiProperty()
+  @IsOptional()
+  earningMontly: boolean;
+
+  @ApiProperty()
+  @IsOptional()
+  totalAmount: number;
 }

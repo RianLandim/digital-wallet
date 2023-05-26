@@ -6,6 +6,7 @@ interface GoalProps {
   title: string;
   description: string;
   userId: string;
+  categoryId: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -84,5 +85,13 @@ export class Goal {
 
   get updatedAt() {
     return this.props.updatedAt;
+  }
+
+  set categoryId(categoryId: string) {
+    this.props.categoryId = categoryId;
+  }
+
+  get categoryId() {
+    return this.props.categoryId;
   }
 }

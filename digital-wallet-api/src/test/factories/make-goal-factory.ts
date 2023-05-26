@@ -10,6 +10,7 @@ export function makeGoal(override: Override = {}) {
       title: 'test-title',
       userId: 'test-userId',
       value: 1000,
+      categoryId: 'test-categoryId',
       ...override,
     },
     override?.id,

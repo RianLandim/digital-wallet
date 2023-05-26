@@ -9,6 +9,7 @@ interface UpdateGoalRequest {
   title: string;
   description: string;
   userId: string;
+  categoryId: string;
 }
 
 interface UpdateGoalResponse {
@@ -20,7 +21,8 @@ export class UpdateGoal {
   constructor(private goalRepository: GoalRepository) {}
 
   async execute(request: UpdateGoalRequest): Promise<UpdateGoalResponse> {
-    const { description, limitDate, title, userId, value, id } = request;
+    const { description, limitDate, title, userId, value, id, categoryId } =
+      request;
 
     const goal = new Goal(
       {
@@ -29,6 +31,7 @@ export class UpdateGoal {
         title,
         userId,
         value,
+        categoryId,
       },
       id,
     );
