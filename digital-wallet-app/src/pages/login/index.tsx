@@ -9,8 +9,32 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "../../layout/components/Button";
 import { ButtonSecondary } from "../../layout/components/ButtonSecondary";
+import axios from 'axios';
+import { api } from "../../services";
 
 export function Login() {
+
+  const baseUrl = 'http://192.168.143.13:5432';
+
+
+
+async function login(){
+  // axios.get(`${baseUrl}/user/teste@gmail.com/find`).then((response) => {
+  //   console.log(response.data);
+  // });
+
+  // await axios.post(`${baseUrl}/auth`, {
+  //   username: "teste@gmail.com",
+  //   password: "123456789",
+  // }).then((response) =>{
+  //   console.log(response.data);
+    navigator.navigate("BottomNavigationBar" as never)
+  // });
+
+}
+
+
+
   const navigator = useNavigation();
 
   const {
@@ -83,7 +107,7 @@ export function Login() {
             marginTop={10}
           >
 
-            <Button title="Entrar" onPress={() => navigator.navigate("BottomNavigationBar" as never)} />
+            <Button title="Entrar" onPress={login} />
           </VStack>
 
           <VStack flex={1} width="50%" justifyContent="space-evenly">
