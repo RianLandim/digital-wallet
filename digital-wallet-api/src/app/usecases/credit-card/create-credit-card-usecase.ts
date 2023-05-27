@@ -24,10 +24,10 @@ export class CreateCreditCard {
     const { bank, closedAt, expiratedAt, flag, ownerName, userId } = request;
 
     const creditCard = new CreditCard({
-      bank,
+      bankId: bank,
       closedAt,
       expiratedAt,
-      flag,
+      flagId: flag,
       ownerName,
       userId,
     });

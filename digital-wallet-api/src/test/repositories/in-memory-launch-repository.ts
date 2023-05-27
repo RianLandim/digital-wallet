@@ -7,4 +7,8 @@ export class InMemoryLaunchRepository implements LaunchRepository {
   async create(launch: Launch) {
     this.launch.push(launch);
   }
+
+  async find(userId: string): Promise<Launch[]> {
+    return this.launch.filter((v) => v.userId === userId);
+  }
 }

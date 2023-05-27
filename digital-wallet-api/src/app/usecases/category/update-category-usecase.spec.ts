@@ -10,6 +10,8 @@ describe('test update category usecase', () => {
       async () =>
         await updateCategory.execute({
           name: 'name-category',
+          userId: 'test-userId',
+          id: 'test-id',
         }),
     ).not.toThrow();
   });

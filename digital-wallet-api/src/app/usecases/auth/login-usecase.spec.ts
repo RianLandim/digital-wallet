@@ -3,6 +3,7 @@ import { InMemoryUserRepository } from '@test/repositories/in-memory-user-reposi
 import { CreateUser } from '../user/create-user-usecase';
 import { Login } from './login-usecase';
 import { ValidateUser } from './vailidate-user-usecase';
+import { makeUser } from '@test/factories/make-user-factory';
 
 describe('', () => {
   it('should be able to make login', async () => {
@@ -12,19 +13,26 @@ describe('', () => {
     const jwtService = new JwtService({ secret: 'test-key' });
     const login = new Login(validateUser, jwtService);
 
-    const password = 'password-test';
+    const userObject = makeUser({ password: 'password-test' });
 
-    const { user } = await createUser.execute({
-      cpf: 'cpf-test',
-      earning: 1200,
-      earningDay: new Date().getDay(),
-      name: 'name-user',
-      password,
-      username: 'username-test',
+    const { user: rawUser } = await createUser.execute(userObject);
+
+    const { user, accessToken } = await login.execute({
+      password: userObject.password,
+      username: rawUser.username,
     });
 
-    expect(
-      login.execute({ password, username: user.username }),
-    ).resolves.not.toThrow();
+    expect(jwtService.verify(accessToken)).toEqual(
+      expect.objectContaining({
+        username: 'teste@gmail.com',
+        sub: rawUser.id,
+      }),
+    );
+    expect(user).toEqual(
+      expect.objectContaining({
+        username: 'teste@gmail.com',
+        cpf: 'cpf-test',
+      }),
+    );
   });
 });

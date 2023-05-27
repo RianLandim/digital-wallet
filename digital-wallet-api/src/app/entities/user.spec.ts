@@ -9,6 +9,7 @@ describe('User Entity', () => {
       name: 'name-test',
       earningDay: new Date().getDay(),
       cpf: 'cpf-test',
+      birthday: new Date(),
     });
 
     expect(user).toBeInstanceOf(User);

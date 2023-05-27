@@ -3,7 +3,9 @@ import { CategoryRepository } from '@application/repositories/category-repositor
 import { Injectable } from '@nestjs/common';
 
 export interface UpdateCategoryRequest {
+  id: string;
   name: string;
+  userId: string;
 }
 
 export interface UpdateCategoryResponse {
@@ -17,11 +19,15 @@ export class UpdateCategory {
   async execute(
     request: UpdateCategoryRequest,
   ): Promise<UpdateCategoryResponse> {
-    const { name } = request;
+    const { name, userId, id } = request;
 
-    const category = new Category({
-      name,
-    });
+    const category = new Category(
+      {
+        name,
+        userId,
+      },
+      id,
+    );
 
     await this.categoryRepository.update(category);
 

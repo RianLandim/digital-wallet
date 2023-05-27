@@ -1,4 +1,3 @@
-import { hashSync } from 'bcrypt';
 import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/replace';
 
@@ -9,6 +8,9 @@ interface UserProps {
   cpf: string;
   earning: number;
   earningDay: number;
+  earningMontly?: boolean;
+  balance?: number;
+  birthday: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -19,13 +21,15 @@ export class User {
 
   constructor(
     props: Replace<UserProps, { createdAt?: Date; updatedAt?: Date }>,
+    id?: string,
   ) {
-    this._id = randomUUID();
+    this._id = id ?? randomUUID();
     this.props = {
       ...props,
-      password: hashSync(props.password, 16),
       createdAt: props.createdAt ?? new Date(),
       updatedAt: props.updatedAt ?? new Date(),
+      earningMontly: props.earningMontly ?? false,
+      balance: props.balance ?? 0,
     };
   }
 
@@ -81,6 +85,14 @@ export class User {
     return this.props.earningDay;
   }
 
+  set birthday(birthday: Date) {
+    this.props.birthday = birthday;
+  }
+
+  get birthday() {
+    return this.props.birthday;
+  }
+
   set createdAt(createdAt: Date) {
     this.props.createdAt = createdAt;
   }
@@ -94,5 +106,19 @@ export class User {
   }
   get updatedAt() {
     return this.props.updatedAt;
+  }
+
+  set earningMontly(earningMontly: boolean) {
+    this.props.earningMontly = earningMontly;
+  }
+  get earningMontly() {
+    return this.props.earningMontly;
+  }
+
+  set balance(balance: number) {
+    this.props.balance = balance;
+  }
+  get balance() {
+    return this.props.balance;
   }
 }
