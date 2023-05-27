@@ -6,7 +6,7 @@ import { Home, Login, Welcome } from "../../pages";
 import { SignUpNavigationScreens, SignUpPage } from "../../pages/signUp";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavigationBar";
-import { Cartao } from "../../pages/Cartao";
+import { Cartao } from "../../layout/components/Cartao";
 import { Metas } from "../../pages/metas";
 import { NewCartao } from "../../pages/transactions/components/NewCartao";
 

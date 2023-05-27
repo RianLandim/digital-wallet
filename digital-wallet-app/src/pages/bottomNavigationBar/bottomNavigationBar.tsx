@@ -11,7 +11,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Transactions } from "../transactions";
 import { Orcamento } from "../orcamento";
 import { Config } from "../configuracao";
-import { Cartao } from "../Cartao";
+import { Cartao } from "../../layout/components/Cartao";
 
 
 

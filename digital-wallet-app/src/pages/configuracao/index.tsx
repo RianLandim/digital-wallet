@@ -1,6 +1,6 @@
 import { Box, Text } from "native-base";
 import { ButtonConfig } from "../../layout/components/ButtonConfig";
-import { Cartao } from "../Cartao";
+import { Cartao } from "../../layout/components/Cartao";
 import { useNavigation } from "@react-navigation/native";
 
 
