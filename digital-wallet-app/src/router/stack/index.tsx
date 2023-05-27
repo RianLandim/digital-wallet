@@ -8,7 +8,7 @@ import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavigationBar";
 import { Cartao } from "../../layout/components/Cartao";
 import { Metas } from "../../pages/metas";
-import { NewCartao } from "../../pages/transactions/components/NewCartao";
+import { NewCartao } from "../../pages/configuracao/components/NewCartao";
 
 export type StackRouteProps = {
   Login: undefined;
