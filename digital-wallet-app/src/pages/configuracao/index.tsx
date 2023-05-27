@@ -1,6 +1,5 @@
 import { Box, Text } from "native-base";
 import { ButtonConfig } from "../../layout/components/ButtonConfig";
-import { Cartao } from "../../layout/components/Cartao";
 import { useNavigation } from "@react-navigation/native";
 
 
@@ -11,7 +10,7 @@ export function Config(){
       <Text marginTop={"10%"} fontSize={16} fontWeight={"bold"}>Configurações</Text>
     </Box>
 
-    <ButtonConfig title={"Cartões"} onPress={() =>  navigator.navigate("Cartao" as never)}/>
+    <ButtonConfig title={"Cartões"} onPress={() =>  navigator.navigate("Cartoes" as never)}/>
     <ButtonConfig title={"Editar Perfil"}/>
 
   </>

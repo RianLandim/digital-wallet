@@ -1,9 +1,10 @@
 import { Box, Divider, Flex, Text, Button, IconButton } from "native-base";
 import { CaretLeft, CreditCard, Plus } from "phosphor-react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Cartao } from "../components/Cartao";
 
 
-export function Cartao() {
+export function Cartoes() {
   const navigator = useNavigation();
 
   return (
@@ -37,13 +38,7 @@ export function Cartao() {
           Cartões cadastrados
         </Text>
 
-      <Divider marginTop={5} />
-      <Flex marginLeft={3} flexDirection={"row"} justifyContent={"space-between"} >
-        <CreditCard size={70} />
-        <Text marginTop={5} marginRight={"50%"}>Nubank</Text>
-        <Text marginTop={5} marginRight={3}>1234</Text>
-      </Flex>
-      <Divider />
+      <Cartao />
 
       <Box position="absolute" bottom="4" right="5">
         <IconButton
