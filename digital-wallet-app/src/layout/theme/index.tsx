@@ -21,19 +21,19 @@ export const theme = extendTheme({
   colors: {
     primary: '#15D706',
     secondary: '#1A78E5',
-    text: '#FFFFFF',
-    success: '#34D399',
-    alert: '#F87171',
-    caption: {
-      500: '#71717A',
-      400: '#A1A1AA',
-      300: '#D4D4D8'
-    },
-    shape: '#2A2634',
-    background: {
-      900: '#121214',
-      800: '#18181B'
-    }
+    // text: '#FFFFFF',
+    // success: '#34D399',
+    // alert: '#F87171',
+    // caption: {
+    //   500: '#71717A',
+    //   400: '#A1A1AA',
+    //   300: '#D4D4D8'
+    // },
+    // shape: '#2A2634',
+    // background: {
+    //   900: '#121214',
+    //   800: '#18181B'
+    // }
   },
 })
 

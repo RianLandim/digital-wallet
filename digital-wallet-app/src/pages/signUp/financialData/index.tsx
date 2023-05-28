@@ -1,24 +1,49 @@
 import { Box, FormControl, Input, Text, VStack } from "native-base";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useFormContext } from "react-hook-form";
 import {
   TouchableWithoutFeedback,
   Keyboard,
-  Image,
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
 import { Button } from "../../../layout/components/Button";
 import { ButtonSecondary } from "../../../layout/components/ButtonSecondary";
+import axios from "axios";
 
 export function FinancialData() {
   const navigator = useNavigation<StackScreenNavigation>();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { control, trigger } = useFormContext();
+
+  const baseUrl = "http://192.168.143.13:5432";
+
+  async function createUser() {
+    const result = await trigger(["username", "password"], {
+      shouldFocus: true,
+    });
+
+    await axios
+      .post(`${baseUrl}/user`, {
+        username: control._formValues.email,
+        password: control._formValues.password,
+        name: control._formValues.name,
+        cpf: control._formValues.cpf,
+        earning: parseInt(control._formValues.earning),
+        earningDay: parseInt(control._formValues.earningDay),
+        // birthday: "2023-05-27T16:36:41.464Z",
+        birthday: control._formValues.birthday,
+        earningMontly: false,
+        balance: 0,
+      })
+      .then((response) => {
+        console.log(response.data);
+        navigator.reset({
+          index: 0,
+          routes: [{ name: "BottomNavigationBar" as never }],
+        });
+      });
+  }
 
   return (
     <ScrollView>
@@ -37,7 +62,7 @@ export function FinancialData() {
             </Text>
             <Controller
               control={control}
-              name="name"
+              name="earning"
               defaultValue=""
               render={({ field: { onChange, onBlur, value } }) => (
                 <FormControl>
@@ -61,7 +86,7 @@ export function FinancialData() {
             <FormControl>
               <Controller
                 control={control}
-                name="name"
+                name="earningDay"
                 defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
@@ -95,7 +120,7 @@ export function FinancialData() {
             <VStack  width="50%">
               <Button
                 title="Próximo"
-                onPress={() => navigator.navigate("Welcome")}
+                onPress={createUser}
               />
             </VStack>
 
