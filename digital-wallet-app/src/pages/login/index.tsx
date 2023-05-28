@@ -13,35 +13,43 @@ import axios from "axios";
 import { api } from "../../services";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { Snackbar } from "react-native-paper";
 
 const createUserFormSchema = z.object({
-  username: z.string().nonempty({ message: "Email obrigatório" }),
+  username: z.string().nonempty({ message: "Informe o seu email" }),
   password: z
     .string()
-    .nonempty({ message: "Email obrigatório" })
-    .min(8, "A senha precisa de no mínimo 8 caracteres"),
+    .nonempty({ message: "Digite sua senha" })
+    .min(8, "A senha precisa no mínimo 8 caracteres")
 });
 
 export function Login() {
-  const baseUrl = "http://192.168.143.13:5432";
+  const [visible, setVisible] = useState(false);
+  const onDismissSnackBar = () => setVisible(false);
 
   async function login() {
     const result = await trigger(["username", "password"], {
       shouldFocus: true,
     });
 
-    await axios
-      .post(`${baseUrl}/auth`, {
-        username: control._formValues.username,
-        password: control._formValues.password,
-      })
-      .then((response) => {
-        console.log(response.data);
-        navigator.reset({
-          index: 0,
-          routes: [{ name: "BottomNavigationBar" as never }],
+    if (result) {
+      await api
+        .post(`/auth`, {
+          username: control._formValues.username,
+          password: control._formValues.password,
+        })
+        .then((response) => {
+          console.log(response.data);
+          navigator.reset({
+            index: 0,
+            routes: [{ name: "BottomNavigationBar" as never }],
+          });
+        })
+        .catch((errors) => {
+          setVisible(true);
         });
-      });
+    }
   }
 
   const navigator = useNavigation();
@@ -107,7 +115,7 @@ export function Login() {
                 field: { onChange, onBlur, value },
                 formState: { errors },
               }) => (
-                <FormControl marginTop={5}>
+                <FormControl marginTop={5} isInvalid={!!errors.password}>
                   <Input
                     secureTextEntry={true}
                     onBlur={onBlur}
@@ -150,6 +158,9 @@ export function Login() {
           </VStack>
         </Box>
       </TouchableWithoutFeedback>
+      <Snackbar visible={visible} onDismiss={onDismissSnackBar}>
+        Senha ou email incorretos
+      </Snackbar>
     </ScrollView>
   );
 }
