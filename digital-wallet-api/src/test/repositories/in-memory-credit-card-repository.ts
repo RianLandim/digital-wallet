@@ -7,4 +7,8 @@ export class InMemoryCreditCardRepository implements CreditCardRepository {
   async create(creditCard: CreditCard) {
     this.creditCard.push(creditCard);
   }
+
+  async find(userId: string): Promise<CreditCard[]> {
+    return this.creditCard.filter((v) => v.userId === userId);
+  }
 }

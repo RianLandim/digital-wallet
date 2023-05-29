@@ -1,6 +1,15 @@
 import { CreditCard } from '@application/entities/credit-card';
 import { Prisma, CreditCard as PrismaCreditCard } from '@prisma/client';
 
+type CreditCardToDomain = PrismaCreditCard & {
+  flag: {
+    name: string;
+  };
+  bank: {
+    name: string;
+  };
+};
+
 export class PrismaCreditCardMapper {
   static toPrisma(creditCard: CreditCard): Prisma.CreditCardCreateInput {
     const { id, ownerName, bankId, closedAt, expiratedAt, flagId, userId } =
@@ -24,13 +33,13 @@ export class PrismaCreditCardMapper {
     };
   }
 
-  static toDomain(creditCard: PrismaCreditCard): CreditCard {
+  static toDomain(creditCard: CreditCardToDomain): CreditCard {
     return new CreditCard(
       {
-        bankId: creditCard.bankId,
+        bankId: creditCard.bank.name,
         closedAt: creditCard.closedAt,
         expiratedAt: creditCard.expiratedAt,
-        flagId: creditCard.flagId,
+        flagId: creditCard.flag.name,
         ownerName: creditCard.ownerName,
         userId: creditCard.userId,
         createdAt: creditCard.createdAt,

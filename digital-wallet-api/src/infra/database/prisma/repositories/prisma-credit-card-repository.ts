@@ -15,4 +15,26 @@ export class PrismaCreditCardRepository implements CreditCardRepository {
       data: rawCreditCard,
     });
   }
+
+  async find(userId: string): Promise<CreditCard[]> {
+    const raw = await this.prisma.creditCard.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        bank: {
+          select: {
+            name: true,
+          },
+        },
+        flag: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+
+    return raw.map(PrismaCreditCardMapper.toDomain);
+  }
 }
