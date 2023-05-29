@@ -32,7 +32,7 @@ export function FinancialData() {
         earning: parseInt(control._formValues.earning),
         earningDay: parseInt(control._formValues.earningDay),
         // birthday: "2023-05-27T16:36:41.464Z",
-        birthday: control._formValues.birthday,
+        birthday: convertStringDate(control._formValues.birthday),
         earningMontly: false,
         balance: 0,
       })
@@ -43,6 +43,19 @@ export function FinancialData() {
           routes: [{ name: "BottomNavigationBar" as never }],
         });
       });
+  }
+
+  function convertStringDate(dateString: string){
+    // console.log(control._formValues.birthday)
+    // var dateString = control._formValues.birthday;
+    let array = dateString.split('/');
+    console.log(array)
+    dateString = array[2] + '-' + array[1] + '-'+ array[0]
+    console.log(dateString)
+    let dateString2 = `${dateString}T00:00:00`;
+    let date = new Date(dateString2);
+    console.log(date);
+    return date;
   }
 
   return (

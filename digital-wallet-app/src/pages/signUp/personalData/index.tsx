@@ -11,11 +11,13 @@ import { StackScreenNavigation } from "../../../router/stack";
 import { TextInputMask } from "react-native-masked-text";
 import { Button } from "../../../layout/components/Button";
 import { ButtonSecondary } from "../../../layout/components/ButtonSecondary";
+import { date } from "zod";
 
 export function PersonalData() {
   const navigator = useNavigation<StackScreenNavigation>();
 
   const { control, trigger } = useFormContext()
+
 
   async function nextPage() {
     const result = await trigger(['name', 'birthday', 'cpf'], { shouldFocus: true })

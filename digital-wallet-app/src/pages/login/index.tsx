@@ -9,7 +9,6 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "../../layout/components/Button";
 import { ButtonSecondary } from "../../layout/components/ButtonSecondary";
-import axios from "axios";
 import { api } from "../../services";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";

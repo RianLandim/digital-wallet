@@ -103,7 +103,7 @@ export function EmailPassword() {
                     onChangeText={(val) => onChange(val)}
                   />
                   <FormControl.ErrorMessage>
-                    {errors?.cPassword?.message}
+                    {errors?.cPassword?.ref}
                   </FormControl.ErrorMessage>
                 </FormControl>
               )}
