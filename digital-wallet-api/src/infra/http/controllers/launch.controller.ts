@@ -7,8 +7,8 @@ import { CreateLaunchBody } from '../dtos/create-launch-body';
 import { LaunchViewModel } from '../view-models/launch-view-model';
 import { FindLaunch } from '@application/usecases/launch/find-launch-usecase';
 
-@ApiTags('Lançamento')
 @UseGuards(JwtAuthGuard)
+@ApiTags('Lançamento')
 @Controller('launch')
 export class LaunchController {
   constructor(

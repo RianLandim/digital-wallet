@@ -5,8 +5,10 @@ import { CreateCreditCardBody } from '../dtos/create-credit-card-body';
 import { CurrentUser, User } from '../auth/decorator/current-user.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreditCardViewModel } from '../view-models/credit-card-view-model';
+import { ApiTags } from '@nestjs/swagger';
 
 @UseGuards(JwtAuthGuard)
+@ApiTags('Cartão de Credito')
 @Controller('credit-card')
 export class CreditCardController {
   constructor(

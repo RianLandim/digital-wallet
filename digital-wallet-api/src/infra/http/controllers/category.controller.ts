@@ -8,8 +8,8 @@ import { CategoryViewModel } from '../view-models/category-view-model';
 import { CreateCategoryBody } from '../dtos/create-category-body';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Categoria')
 @UseGuards(JwtAuthGuard)
+@ApiTags('Categoria')
 @Controller('category')
 export class CategoryController {
   constructor(

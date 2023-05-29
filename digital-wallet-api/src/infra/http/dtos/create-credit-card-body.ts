@@ -8,11 +8,11 @@ export class CreateCreditCardBody {
 
   @ApiProperty()
   @IsNotEmpty()
-  flag: string;
+  flagId: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  bank: string;
+  bankId: string;
 
   @ApiProperty()
   @IsNotEmpty()

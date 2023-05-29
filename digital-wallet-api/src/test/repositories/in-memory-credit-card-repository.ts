@@ -9,6 +9,12 @@ export class InMemoryCreditCardRepository implements CreditCardRepository {
   }
 
   async find(userId: string): Promise<CreditCard[]> {
-    return this.creditCard.filter((v) => v.userId === userId);
+    const creditCard = this.creditCard.filter((v) => v.userId === userId);
+
+    if (!creditCard.length) {
+      throw new Error('Nenhum cartão encontrado');
+    }
+
+    return creditCard;
   }
 }

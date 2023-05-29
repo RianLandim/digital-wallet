@@ -1,22 +1,18 @@
 import { InMemoryCreditCardRepository } from '@test/repositories/in-memory-credit-card-repository';
-import { randomUUID } from 'crypto';
 import { CreateCreditCard } from './create-credit-card-usecase';
+import { makeCreditCard } from '@test/factories/make-credit-card-factory';
 
 describe('test create credit card usecase', () => {
-  it('should be able to create an credit card', () => {
+  it('should be able to create an credit card', async () => {
     const inMemoryCreditCardRepository = new InMemoryCreditCardRepository();
     const createCreditCard = new CreateCreditCard(inMemoryCreditCardRepository);
 
-    expect(
-      async () =>
-        await createCreditCard.execute({
-          bank: 'bank-test',
-          closedAt: new Date(),
-          expiratedAt: new Date(),
-          flag: 'flag-test',
-          ownerName: 'ownerName-test',
-          userId: randomUUID(),
-        }),
-    ).not.toThrow();
+    const { creditCard } = await createCreditCard.execute(
+      makeCreditCard({ userId: 'test-userId' }),
+    );
+
+    expect(creditCard).toEqual(
+      expect.objectContaining({ userId: 'test-userId' }),
+    );
   });
 });
