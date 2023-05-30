@@ -12,7 +12,7 @@ interface UpdateGoalRequest {
   categoryId: string;
 }
 
-interface UpdateGoalResponse {
+export interface UpdateGoalResponse {
   goal: Goal;
 }
 

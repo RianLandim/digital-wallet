@@ -8,6 +8,8 @@ import { CategoryRepository } from '@application/repositories/category-repositor
 import { PrismaCategoryRepository } from './prisma/repositories/prisma-category-respository';
 import { LaunchRepository } from '@application/repositories/launch-repository';
 import { PrismaLaunchRepository } from './prisma/repositories/prisma-launch-repository';
+import { GoalRepository } from '@application/repositories/goal-repository';
+import { PrismaGoalRepository } from './prisma/repositories/prisma-goal-repository';
 
 @Global()
 @Module({
@@ -18,12 +20,14 @@ import { PrismaLaunchRepository } from './prisma/repositories/prisma-launch-repo
     { provide: CreditCardRepository, useClass: PrismaCreditCardRepository },
     { provide: CategoryRepository, useClass: PrismaCategoryRepository },
     { provide: LaunchRepository, useClass: PrismaLaunchRepository },
+    { provide: GoalRepository, useClass: PrismaGoalRepository },
   ],
   exports: [
     UserRepository,
     CreditCardRepository,
     CategoryRepository,
     LaunchRepository,
+    GoalRepository,
   ],
 })
 export class DatabaseModule {}
