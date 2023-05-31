@@ -10,7 +10,7 @@ import { Metas } from "../../pages/metas";
 import { NewCartao } from "../../pages/configuracao/components/NewCartao";
 import { Cartoes } from "../../pages/configuracao/cartoes";
 import { Ranking } from "../../pages/ranking";
-import { Relatorio } from "../../pages/relatoio";
+import { Relatorio } from "../../pages/relatorio";
 
 export type StackRouteProps = {
   Login: undefined;
@@ -22,6 +22,7 @@ export type StackRouteProps = {
   Metas: undefined;
   NewCartao: undefined;
   Ranking: undefined;
+  Relatorio: undefined;
 };
 
 export type StackScreenNavigation = CompositeNavigationProp<
