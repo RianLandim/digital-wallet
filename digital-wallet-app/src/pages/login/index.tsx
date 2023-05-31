@@ -28,27 +28,27 @@ export function Login() {
   const onDismissSnackBar = () => setVisible(false);
 
   async function login() {
-    const result = await trigger(["username", "password"], {
-      shouldFocus: true,
-    });
+    // const result = await trigger(["username", "password"], {
+    //   shouldFocus: true,
+    // });
 
-    if (result) {
-      await api
-        .post(`/auth`, {
-          username: control._formValues.username,
-          password: control._formValues.password,
-        })
-        .then((response) => {
-          console.log(response.data);
+    // if (result) {
+    //   await api
+    //     .post(`/auth`, {
+    //       username: control._formValues.username,
+    //       password: control._formValues.password,
+    //     })
+    //     .then((response) => {
+    //       console.log(response.data);
           navigator.reset({
             index: 0,
             routes: [{ name: "BottomNavigationBar" as never }],
           });
-        })
-        .catch((errors) => {
-          setVisible(true);
-        });
-    }
+    //     })
+    //     .catch((errors) => {
+    //       setVisible(true);
+    //     });
+    // }
   }
 
   const navigator = useNavigation();

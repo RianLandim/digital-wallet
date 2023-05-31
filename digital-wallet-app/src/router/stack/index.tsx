@@ -9,6 +9,8 @@ import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavig
 import { Metas } from "../../pages/metas";
 import { NewCartao } from "../../pages/configuracao/components/NewCartao";
 import { Cartoes } from "../../pages/configuracao/cartoes";
+import { Ranking } from "../../pages/ranking";
+import { Relatorio } from "../../pages/relatoio";
 
 export type StackRouteProps = {
   Login: undefined;
@@ -19,6 +21,7 @@ export type StackRouteProps = {
   Cartoes: undefined;
   Metas: undefined;
   NewCartao: undefined;
+  Ranking: undefined;
 };
 
 export type StackScreenNavigation = CompositeNavigationProp<
@@ -50,6 +53,8 @@ export function StackRoutes() {
       <Stack.Screen name="Cartoes" component={Cartoes} />
       <Stack.Screen name="Metas" component={Metas} />
       <Stack.Screen name="NewCartao" component={NewCartao}/>
+      <Stack.Screen name="Ranking" component={Ranking}/>
+      <Stack.Screen name="Relatorio" component={Relatorio}/>
     </Stack.Navigator>
   );
 }
