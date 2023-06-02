@@ -68,7 +68,7 @@ export function Home() {
             <Select.Item label="Opção 3" value="opcao-um" />
           </Select>
           <Box width="75%" marginBottom="2">
-            <Button title={"Gerar relatorio"} onPress={()=> navigator.navigate("Relatorio")}/>
+            <Button title={"Gerar relatorio"} onPress={()=> navigator.navigate("Relatorio" as never)}/>
           </Box>
         </Card>
       </ScrollView>

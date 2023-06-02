@@ -75,29 +75,60 @@ export function Relatorio() {
           Gastos por categoria
         </Text>
         <Divider bgColor={"#B3B3B3"} width={"90%"} marginTop={"10"} />
-        <Row justifyContent={"space-between"} alignItems={"center"} width={"90%"}>
-          <Text marginTop={"3"}>1º Alimentação</Text>
-          <Text fontSize="18" fontWeight="semibold" color="#EF1111" marginTop={2}>
-          R$ 50,00
-        </Text>
-        </Row>
-        <Divider bgColor={"#B3B3B3"} width={"90%"} marginTop={"3"} />
-        <Row justifyContent={"space-between"} alignItems={"center"} width={"90%"}>
-          <Text marginTop={"3"}>2º Eletronica</Text>
-          <Text fontSize="18" fontWeight="semibold" color="#EF1111" marginTop={2}>
-          R$ 50,00
-        </Text>
-        </Row>
-        <Divider bgColor={"#B3B3B3"} width={"90%"} marginTop={"3"} />
+
+        <Box>
+          <Row
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            width={"90%"}
+          >
+            <Text marginTop={"3"}>1º Alimentação</Text>
+            <Text
+              fontSize="18"
+              fontWeight="semibold"
+              color="#EF1111"
+              marginTop={2}
+            >
+              R$ 50,00
+            </Text>
+          </Row>
+          <Divider bgColor={"#B3B3B3"} width={"90%"} marginTop={"3"} />
+        </Box>
         
-        <Row justifyContent={"space-between"} alignItems={"center"} width={"90%"}>
-          <Text marginTop={"3"}>3º Jogos </Text>
-          <Text fontSize="18" fontWeight="semibold" color="#EF1111" marginTop={2}>
-          R$ 50,00
-        </Text>
+        <Row
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          width={"90%"}
+        >
+          <Text marginTop={"3"}>2º Eletronica</Text>
+          <Text
+            fontSize="18"
+            fontWeight="semibold"
+            color="#EF1111"
+            marginTop={2}
+          >
+            R$ 50,00
+          </Text>
         </Row>
         <Divider bgColor={"#B3B3B3"} width={"90%"} marginTop={"3"} />
-       <Button title={"Exportar relatorio"} width={"70%"} marginTop={50}/>
+
+        <Row
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          width={"90%"}
+        >
+          <Text marginTop={"3"}>3º Jogos </Text>
+          <Text
+            fontSize="18"
+            fontWeight="semibold"
+            color="#EF1111"
+            marginTop={2}
+          >
+            R$ 50,00
+          </Text>
+        </Row>
+        <Divider bgColor={"#B3B3B3"} width={"90%"} marginTop={"3"} />
+        <Button title={"Exportar relatorio"} width={"70%"} marginTop={50} />
       </Box>
     </>
   );
