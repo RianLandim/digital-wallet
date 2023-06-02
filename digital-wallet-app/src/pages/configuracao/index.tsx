@@ -12,6 +12,8 @@ export function Config(): JSX.Element{
 
     <ButtonConfig title={"Cartões"} onPress={() =>  navigator.navigate("Cartao" as never)}/>
     <ButtonConfig title={"EditarPerfil"} onPress={() => navigator.navigate("EditarPerfil" as never)}/>
+    <ButtonConfig title={"Cartões"} onPress={() =>  navigator.navigate("Cartoes" as never)}/>
+    <ButtonConfig title={"Editar Perfil"}/>
 
   </>
 }

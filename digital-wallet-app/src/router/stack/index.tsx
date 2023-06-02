@@ -6,11 +6,11 @@ import { Home, Login, Welcome } from "../../pages";
 import { SignUpNavigationScreens, SignUpPage } from "../../pages/signUp";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavigationBar";
-import { Cartao } from "../../pages/Cartao";
 import { Metas } from "../../pages/metas";
-import { NewCartao } from "../../pages/transactions/components/NewCartao";
-import { NewOrcamento } from "../../pages/transactions/components/NewOrcamento";
 import { EditarPerfil } from "../../pages/EditarPerfil";
+import { Cartoes } from "../../pages/configuracao/cartoes";
+import { NewCartao } from "../../pages/configuracao/components/NewCartao";
+
 
 export type StackRouteProps = {
   Login: undefined;
@@ -18,7 +18,7 @@ export type StackRouteProps = {
   Welcome: undefined;
   Home: undefined;
   BottomNavigationBar: undefined;
-  Cartao: undefined;
+  Cartoes: undefined;
   Metas: undefined;
   NewCartao: undefined;
   EditarPerfil: undefined;
@@ -50,7 +50,7 @@ export function StackRoutes() {
         component={BottomNavigationBar}
       />
 
-      <Stack.Screen name="Cartao" component={Cartao} />
+      <Stack.Screen name="Cartoes" component={Cartoes} />
       <Stack.Screen name="Metas" component={Metas} />
       <Stack.Screen name="NewCartao" component={NewCartao}/>
       <Stack.Screen name="EditarPerfil" component={EditarPerfil}/>

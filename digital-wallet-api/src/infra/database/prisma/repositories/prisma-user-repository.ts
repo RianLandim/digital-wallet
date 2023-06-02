@@ -16,11 +16,15 @@ export class PrismaUserRepository implements UserRepository {
     });
   }
 
-  async get(): Promise<User[]> {
+  async find(): Promise<User[]> {
     throw new Error('Method not yet implemented');
   }
 
-  async getByUsername(username: string): Promise<User> {
-    throw new Error('Method not yet implemented');
+  async findByUsername(username: string): Promise<User> {
+    const raw = await this.prisma.user.findUnique({
+      where: { email: username },
+    });
+
+    return PrismaUserMapper.toDomain(raw);
   }
 }

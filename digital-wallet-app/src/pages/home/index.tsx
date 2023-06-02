@@ -52,7 +52,7 @@ export function Home() {
         <Card title={"Ranking"}>
           <Text></Text>
           <Box width="75%" marginBottom="2">
-            <Button title={"Acessar ranking"} />
+            <Button title={"Acessar ranking"} onPress={() => navigator.navigate("Ranking" as never)}/>
           </Box>
         </Card>
 
@@ -68,7 +68,7 @@ export function Home() {
             <Select.Item label="Opção 3" value="opcao-um" />
           </Select>
           <Box width="75%" marginBottom="2">
-            <Button title={"Gerar relatorio"} />
+            <Button title={"Gerar relatorio"} onPress={()=> navigator.navigate("Relatorio")}/>
           </Box>
         </Card>
       </ScrollView>

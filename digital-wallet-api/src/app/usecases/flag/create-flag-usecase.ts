@@ -22,7 +22,7 @@ export class CreateFlag {
       image,
     });
 
-    this.flagRepository.create(flag);
+    await this.flagRepository.create(flag);
 
     return {
       flag,

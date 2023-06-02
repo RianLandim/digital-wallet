@@ -1,6 +1,6 @@
 import { User } from '@application/entities/user';
 import { UserRepository } from '@application/repositories/user-repository';
-import { UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { compareSync } from 'bcrypt';
 
 interface ValidateUserRequestProps {
@@ -11,6 +11,7 @@ interface ValidateUserResponseProps {
   user: User;
 }
 
+@Injectable()
 export class ValidateUser {
   constructor(private userRepository: UserRepository) {}
 
@@ -19,16 +20,16 @@ export class ValidateUser {
   ): Promise<ValidateUserResponseProps> {
     const { password, username } = request;
 
-    const user = await this.userRepository.getByUsername(username);
+    const user = await this.userRepository.findByUsername(username);
 
     if (!user) {
-      throw new UnauthorizedException('Usuario ou senha incorretos');
+      throw new UnauthorizedException('Usuário ou senha incorretos');
     }
 
     const isPasswordCorrect = compareSync(password, user.password);
 
     if (!isPasswordCorrect) {
-      throw new UnauthorizedException('Usuario ou senha incorretos');
+      throw new UnauthorizedException('Usuário ou senha incorretos');
     }
 
     return {

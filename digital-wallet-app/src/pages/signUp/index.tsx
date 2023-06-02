@@ -29,6 +29,7 @@ export type SignUpNavigationScreens = {
   emailPassword: undefined;
   monthlyEarning: undefined;
   dayPayment: undefined;
+  financialData: undefined;
 }
 
 export type CreateUserFormData = z.infer<typeof createUserSchema>

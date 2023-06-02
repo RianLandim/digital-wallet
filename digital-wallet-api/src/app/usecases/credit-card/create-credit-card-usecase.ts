@@ -4,8 +4,8 @@ import { Injectable } from '@nestjs/common';
 
 export interface CreateCreditCardRequest {
   ownerName: string;
-  flag: string;
-  bank: string;
+  flagId: string;
+  bankId: string;
   closedAt: Date;
   expiratedAt: Date;
   userId: string;
@@ -21,13 +21,14 @@ export class CreateCreditCard {
   async execute(
     request: CreateCreditCardRequest,
   ): Promise<CreateCreditCardResponse> {
-    const { bank, closedAt, expiratedAt, flag, ownerName, userId } = request;
+    const { bankId, closedAt, expiratedAt, flagId, ownerName, userId } =
+      request;
 
     const creditCard = new CreditCard({
-      bank,
+      bankId,
       closedAt,
       expiratedAt,
-      flag,
+      flagId,
       ownerName,
       userId,
     });

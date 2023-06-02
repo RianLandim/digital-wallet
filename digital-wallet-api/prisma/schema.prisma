@@ -17,59 +17,101 @@ enum UserProvider {
 
 enum LaunchType {
   CREDIT
-  DEBIT 
+  DEBIT
 }
 
 model User {
-  id         String        @id @default(uuid())
-  email      String        @unique
-  provider   UserProvider? @default(GOOGLE)
-  providerId String?
-  password   String
-  name       String
-  cpf        String
-  earning    Int?
-  earningDay Int?
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  CreditCard CreditCard[]
+  id            String        @id @default(uuid())
+  email         String        @unique
+  provider      UserProvider?
+  providerId    String?
+  password      String
+  name          String
+  cpf           String
+  earning       Float?
+  earningDay    Int?
+  earningMontly Boolean       @default(false)
+  balance       Float         @default(0)
+  birthday      DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  creditCard CreditCard[]
+  launch     Launch[]
+  goal       Goal[]
+  category   Category[]
 }
 
 model CreditCard {
   id          String   @id @default(uuid())
   ownerName   String
-  flag        String
-  bank        String
   expiratedAt DateTime
   closedAt    DateTime
   user        User     @relation(fields: [userId], references: [id])
   userId      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
+  flag        Flag     @relation(fields: [flagId], references: [id])
+  flagId      String
+  bank        Bank     @relation(fields: [bankId], references: [id])
+  bankId      String
 
-model Launch {
-  id          String   @id @default(uuid())
-  value       String
-  createdAt   DateTime
-  type        LaunchType
-}
-
-model Goal {
-  id          String   @id @default(uuid())
-  value       Int
-  limitDate   DateTime
-  title       String
-  description String
-}
-
-model Flag {
-  id     String   @id @default(uuid())
-  name   String
-  image  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Category {
-  id     String   @id @default(uuid())
-  name   String
+  id   String @id @default(uuid())
+  name String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User     @relation(fields: [userId], references: [id])
+  userId    String
+  Goal      Goal[]
+}
+
+model Bank {
+  id    String @id @default(uuid())
+  name  String
+  image String
+
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  CreditCard CreditCard[]
+}
+
+model Flag {
+  id    String @id @default(uuid())
+  name  String
+  image String
+
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  CreditCard CreditCard[]
+}
+
+model Goal {
+  id          String    @id @default(uuid())
+  value       Int
+  limitDate   DateTime
+  completedAt DateTime?
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  title       String
+  description String
+  User        User      @relation(fields: [userId], references: [id])
+  userId      String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Launch {
+  id     String     @id @default(uuid())
+  value  Float
+  type   LaunchType
+  user   User       @relation(fields: [userId], references: [id])
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

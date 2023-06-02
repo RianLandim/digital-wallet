@@ -34,7 +34,6 @@ export function Transactions() {
           <Text color="#000" fontSize="20" fontWeight="bold">
             Transações
           </Text>
-          <DotsThreeVertical size={32} weight="bold" />
         </Row>
         <Row justifyContent="center" alignItems="center">
           <IconButton icon={<CaretLeft size={28} color="#000" />} />
@@ -105,7 +104,7 @@ export function Transactions() {
         <IconButton
           icon={<Plus size={30} color="#fff" />}
           backgroundColor="green.400"
-          borderRadius="30"
+          borderRadius="50"
           width="62"
           height="16"
           onPress={() => setModalVisible(true)}

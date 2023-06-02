@@ -9,15 +9,58 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "../../layout/components/Button";
 import { ButtonSecondary } from "../../layout/components/ButtonSecondary";
+import { api } from "../../services";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { Snackbar } from "react-native-paper";
+
+const createUserFormSchema = z.object({
+  username: z.string().nonempty({ message: "Informe o seu email" }),
+  password: z
+    .string()
+    .nonempty({ message: "Digite sua senha" })
+    .min(8, "A senha precisa no mínimo 8 caracteres")
+});
 
 export function Login() {
+  const [visible, setVisible] = useState(false);
+  const onDismissSnackBar = () => setVisible(false);
+
+  async function login() {
+    // const result = await trigger(["username", "password"], {
+    //   shouldFocus: true,
+    // });
+
+    // if (result) {
+    //   await api
+    //     .post(`/auth`, {
+    //       username: control._formValues.username,
+    //       password: control._formValues.password,
+    //     })
+    //     .then((response) => {
+    //       console.log(response.data);
+          navigator.reset({
+            index: 0,
+            routes: [{ name: "BottomNavigationBar" as never }],
+          });
+    //     })
+    //     .catch((errors) => {
+    //       setVisible(true);
+    //     });
+    // }
+  }
+
   const navigator = useNavigation();
 
   const {
     control,
     handleSubmit,
+    trigger,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: zodResolver(createUserFormSchema),
+  });
 
   return (
     <ScrollView>
@@ -41,12 +84,15 @@ export function Login() {
           </Box>
 
           <VStack flex={1} width="80%" marginTop={10}>
-            <FormControl>
-              <Controller
-                control={control}
-                name="Username"
-                defaultValue=""
-                render={({ field: { onChange, onBlur, value } }) => (
+            <Controller
+              control={control}
+              name="username"
+              defaultValue=""
+              render={({
+                field: { onChange, onBlur, value },
+                formState: { errors },
+              }) => (
+                <FormControl isInvalid={!!errors.username}>
                   <Input
                     placeholder="Email"
                     fontSize="md"
@@ -54,15 +100,21 @@ export function Login() {
                     value={value}
                     onChangeText={(val) => onChange(val)}
                   />
-                )}
-              />
-            </FormControl>
-            <FormControl marginTop={5}>
-              <Controller
-                control={control}
-                name="Password"
-                defaultValue=""
-                render={({ field: { onChange, onBlur, value } }) => (
+                  <FormControl.ErrorMessage>
+                    {errors?.username?.message}
+                  </FormControl.ErrorMessage>
+                </FormControl>
+              )}
+            />
+            <Controller
+              control={control}
+              name="password"
+              defaultValue=""
+              render={({
+                field: { onChange, onBlur, value },
+                formState: { errors },
+              }) => (
+                <FormControl marginTop={5} isInvalid={!!errors.password}>
                   <Input
                     secureTextEntry={true}
                     onBlur={onBlur}
@@ -71,9 +123,12 @@ export function Login() {
                     placeholder="Senha"
                     onChangeText={(val) => onChange(val)}
                   />
-                )}
-              />
-            </FormControl>
+                  <FormControl.ErrorMessage>
+                    {errors?.password?.message}
+                  </FormControl.ErrorMessage>
+                </FormControl>
+              )}
+            />
           </VStack>
 
           <VStack
@@ -82,8 +137,7 @@ export function Login() {
             justifyContent="space-evenly"
             marginTop={10}
           >
-
-            <Button title="Entrar" onPress={() => navigator.navigate("BottomNavigationBar" as never)} />
+            <Button title="Entrar" onPress={login} />
           </VStack>
 
           <VStack flex={1} width="50%" justifyContent="space-evenly">
@@ -96,10 +150,16 @@ export function Login() {
             justifyContent="space-evenly"
             marginTop="20%"
           >
-            <ButtonSecondary title="Cadastrar"  onPress={() => navigator.navigate("SignUp" as never)} />
+            <ButtonSecondary
+              title="Cadastrar"
+              onPress={() => navigator.navigate("SignUp" as never)}
+            />
           </VStack>
         </Box>
       </TouchableWithoutFeedback>
+      <Snackbar visible={visible} onDismiss={onDismissSnackBar}>
+        Senha ou email incorretos
+      </Snackbar>
     </ScrollView>
   );
 }

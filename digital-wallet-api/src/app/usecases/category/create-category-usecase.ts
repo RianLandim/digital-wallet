@@ -3,30 +3,32 @@ import { CategoryRepository } from '@application/repositories/category-repositor
 import { Injectable } from '@nestjs/common';
 
 export interface CreateCategoryRequest {
-    name: string;
+  name: string;
+  userId: string;
 }
 
 export interface CreateCategoryResponse {
-    category: Category;
+  category: Category;
 }
 
 @Injectable()
 export class CreateCategory {
-    constructor(private categoryRepository: CategoryRepository) {}
+  constructor(private categoryRepository: CategoryRepository) {}
 
-    async execute(
-        request: CreateCategoryRequest,
-    ): Promise<CreateCategoryResponse> {
-        const { name } = request;
+  async execute(
+    request: CreateCategoryRequest,
+  ): Promise<CreateCategoryResponse> {
+    const { name, userId } = request;
 
-        const category = new Category({
-            name,
-        });
+    const category = new Category({
+      name,
+      userId,
+    });
 
-        await this.categoryRepository.create(category);
+    await this.categoryRepository.create(category);
 
-        return {
-            category,
-        };
-    }
+    return {
+      category,
+    };
+  }
 }

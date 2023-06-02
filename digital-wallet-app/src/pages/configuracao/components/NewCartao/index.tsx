@@ -1,7 +1,7 @@
 import { Box, Text, Flex } from "native-base";
 import { CaretLeft, Camera } from "phosphor-react-native";
 import {  FormControl, Input } from "native-base";
-import { Button } from "../../../layout/components/Button";
+import { Button } from "../../../../layout/components/Button";
 
 export function NewCartao() {
   return (
