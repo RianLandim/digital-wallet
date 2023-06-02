@@ -9,6 +9,8 @@ import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavig
 import { Cartao } from "../../pages/Cartao";
 import { Metas } from "../../pages/metas";
 import { NewCartao } from "../../pages/transactions/components/NewCartao";
+import { NewOrcamento } from "../../pages/transactions/components/NewOrcamento";
+import { EditarPerfil } from "../../pages/EditarPerfil";
 
 export type StackRouteProps = {
   Login: undefined;
@@ -19,6 +21,7 @@ export type StackRouteProps = {
   Cartao: undefined;
   Metas: undefined;
   NewCartao: undefined;
+  EditarPerfil: undefined;
 };
 
 export type StackScreenNavigation = CompositeNavigationProp<
@@ -50,6 +53,8 @@ export function StackRoutes() {
       <Stack.Screen name="Cartao" component={Cartao} />
       <Stack.Screen name="Metas" component={Metas} />
       <Stack.Screen name="NewCartao" component={NewCartao}/>
+      <Stack.Screen name="EditarPerfil" component={EditarPerfil}/>
+      
     </Stack.Navigator>
   );
 }

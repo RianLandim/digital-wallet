@@ -3,9 +3,14 @@ import { CardSaldo2 } from "../../layout/components/CardSaldo2";
 import { Menu } from "../../layout/components/Menu";
 import { Button, Divider, Flex, ScrollView, Text } from "native-base";
 import { Plus,  } from "phosphor-react-native";
+import React, {useState} from "react";
+import { NewOrcamento } from "../transactions/components/NewOrcamento";
 
 
 export function Orcamento() {
+
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <>
       <Menu />
@@ -30,9 +35,10 @@ export function Orcamento() {
             Novo orçamento
           </Text>
 
-          <Button marginRight={38}>
+          <Button marginRight={38} onPress={() => setModalVisible(true)}>
             <Plus size={20} />
           </Button>
+          <NewOrcamento modalVisible={modalVisible} setModalVisible={setModalVisible}/>
 
           </Flex>
 
