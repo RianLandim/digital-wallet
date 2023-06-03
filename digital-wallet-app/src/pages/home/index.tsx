@@ -3,7 +3,7 @@ import { ArrowUp, ArrowDown } from "phosphor-react-native";
 import { Button } from "../../layout/components/Button";
 import { Card } from "../../layout/components/Card";
 import { CardSaldo } from "../../layout/components/CardSaldo";
-import { Menu } from "../../layout/components/Menu";
+import { Menu } from "./components/Menu";
 import { useNavigation } from "@react-navigation/native";
 
 

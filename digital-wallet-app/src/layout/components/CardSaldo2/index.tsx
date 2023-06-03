@@ -10,7 +10,7 @@ interface PropsCardSaldo{
 
 export function CardSaldo2({value, children}: PropsCardSaldo){
     return <>
-        <Flex marginTop="3%"
+        <Flex marginTop="20"
       backgroundColor="gray.200"
       width="90%"
       height="100"

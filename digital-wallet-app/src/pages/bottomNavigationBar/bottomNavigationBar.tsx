@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
 // Screens
-import { Home } from "../home";
+import { Home } from "../Home";
 
 // Icons
 import { Ionicons } from "@expo/vector-icons";

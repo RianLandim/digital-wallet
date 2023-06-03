@@ -1,5 +1,5 @@
 import { CardSaldo2 } from "../../layout/components/CardSaldo2";
-import { Menu } from "../../layout/components/Menu";
+import { Menu } from "../Home/components/Menu";
 import { Flex, Text, Button, Divider, Box} from "native-base";
 import { Plus, Trash, Bank } from "phosphor-react-native";
 import { NewMeta } from "./components/NewMetas";
