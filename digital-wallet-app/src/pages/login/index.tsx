@@ -20,35 +20,35 @@ const createUserFormSchema = z.object({
   password: z
     .string()
     .nonempty({ message: "Digite sua senha" })
-    .min(8, "A senha precisa no mínimo 8 caracteres")
+    .min(8, "A senha precisa no mínimo 8 caracteres"),
 });
 
 export function Login() {
   const [visible, setVisible] = useState(false);
   const onDismissSnackBar = () => setVisible(false);
 
-  async function login() {
-    // const result = await trigger(["username", "password"], {
-    //   shouldFocus: true,
-    // });
+  async function singIn() {
+    const result = await trigger(["username", "password"], {
+      shouldFocus: true,
+    });
 
-    // if (result) {
-    //   await api
-    //     .post(`/auth`, {
-    //       username: control._formValues.username,
-    //       password: control._formValues.password,
-    //     })
-    //     .then((response) => {
-    //       console.log(response.data);
+    if (result) {
+      await api
+        .post(`/auth`, {
+          username: control._formValues.username,
+          password: control._formValues.password,
+        })
+        .then((response) => {
+          console.log(response.data);
           navigator.reset({
             index: 0,
             routes: [{ name: "BottomNavigationBar" as never }],
           });
-    //     })
-    //     .catch((errors) => {
-    //       setVisible(true);
-    //     });
-    // }
+        })
+        .catch((errors) => {
+          setVisible(true);
+        });
+    }
   }
 
   const navigator = useNavigation();
@@ -137,7 +137,7 @@ export function Login() {
             justifyContent="space-evenly"
             marginTop={10}
           >
-            <Button title="Entrar" onPress={login} />
+            <Button title="Entrar" onPress={singIn} />
           </VStack>
 
           <VStack flex={1} width="50%" justifyContent="space-evenly">
@@ -158,7 +158,7 @@ export function Login() {
         </Box>
       </TouchableWithoutFeedback>
       <Snackbar visible={visible} onDismiss={onDismissSnackBar}>
-        Senha ou email incorretos
+        Senha ou email incorreto
       </Snackbar>
     </ScrollView>
   );
