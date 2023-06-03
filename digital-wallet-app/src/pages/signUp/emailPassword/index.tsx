@@ -71,9 +71,11 @@ export function EmailPassword() {
               control={control}
               name="password"
               defaultValue=""
-              render={({ field: { onChange, onBlur, value }, formState: { errors }, }) => (
+              render={({
+                field: { onChange, onBlur, value },
+                formState: { errors },
+              }) => (
                 <FormControl marginTop={5} isInvalid={!!errors.password}>
-
                   <Input
                     onBlur={onBlur}
                     value={value}
@@ -92,7 +94,10 @@ export function EmailPassword() {
               control={control}
               name="cPassword"
               defaultValue=""
-              render={({ field: { onChange, onBlur, value }, formState: {errors} }) => (
+              render={({
+                field: { onChange, onBlur, value },
+                formState: { errors },
+              }) => (
                 <FormControl marginTop={5} isInvalid={!!errors.cPassword}>
                   <Input
                     onBlur={onBlur}
@@ -117,45 +122,18 @@ export function EmailPassword() {
             width="80%"
             justifyContent="space-between"
           >
-            {/* <Button
-              borderRadius="50"
-              backgroundColor="transparent"
-              width="45%"
-              alignItems="center"
-              textAlign="center"
-              borderColor="primary"
-              borderWidth="1"
-              height="12"
-            >
-              <Text
-                fontWeight="600"
-                fontSize="20"
-                color="#000"
-                onPress={() => navigator.navigate("monthlyEarning")}
-              >
-                Voltar
-              </Text>
-            </Button> */}
             <VStack width="50%">
-
-              <ButtonSecondary title="Voltar" borderColor="black" marginRight="5%"
-                borderWidth="1" />
+              <ButtonSecondary
+                title="Voltar"
+                borderColor="black"
+                marginRight="5%"
+                onPress={() => navigator.goBack()}
+                borderWidth="1"
+              />
             </VStack>
 
-            {/* <Button borderRadius="50" backgroundColor="primary" width="45%" height="12">
-              <Text
-                fontWeight="black"
-                fontSize="20"
-                color="#fff"
-                onPress={() => navigator.navigate("monthlyEarning")}
-              >
-                Proximo
-              </Text>
-            </Button> */}
-
-            <VStack width="50%" >
+            <VStack width="50%">
               <Button title="Próximo" onPress={nextPage} />
-
             </VStack>
           </VStack>
         </Box>

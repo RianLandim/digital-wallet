@@ -12,7 +12,6 @@ import { Button } from "../../../layout/components/Button";
 export function Welcome() {
   const navigator = useNavigation<StackScreenNavigation>();
 
-
   return (
     <ScrollView>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -30,7 +29,7 @@ export function Welcome() {
 
           <Box alignItems={"center"} marginTop={"15%"} width="80%">
             <Text fontSize={"3xl"} fontWeight={700} textAlign={"center"}>
-              Olá Fulano, Bem vindo(a) ao Carteira digital
+              Olá, Seja Bem vindo(a) ao Carteira digital
             </Text>
           </Box>
 
@@ -39,12 +38,16 @@ export function Welcome() {
             width="80%"
             justifyContent="space-evenly"
             marginTop={10}
-          > 
-
-            <Button title="Iniciar"  onPress={() => navigator.navigate("BottomNavigationBar" as never)}/>
-
-           
-           
+          >
+            <Button
+              title="Iniciar"
+              onPress={() =>
+                navigator.reset({
+                  index: 0,
+                  routes: [{ name: "BottomNavigationBar" as never }],
+                })
+              }
+            />
           </VStack>
         </Box>
       </TouchableWithoutFeedback>

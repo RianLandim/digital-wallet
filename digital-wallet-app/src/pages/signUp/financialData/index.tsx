@@ -10,6 +10,9 @@ import { StackScreenNavigation } from "../../../router/stack";
 import { Button } from "../../../layout/components/Button";
 import { ButtonSecondary } from "../../../layout/components/ButtonSecondary";
 import axios from "axios";
+import { parse } from "react-native-svg";
+import { Snackbar } from "react-native-paper";
+import { useState } from "react";
 
 export function FinancialData() {
   const navigator = useNavigation<StackScreenNavigation>();
@@ -17,6 +20,9 @@ export function FinancialData() {
   const { control, trigger } = useFormContext();
 
   const baseUrl = "http://192.168.143.13:5432";
+
+  const [visible, setVisible] = useState(false);
+  const onDismissSnackBar = () => setVisible(false);
 
   async function createUser() {
     const result = await trigger(["username", "password"], {
@@ -29,9 +35,8 @@ export function FinancialData() {
         password: control._formValues.password,
         name: control._formValues.name,
         cpf: control._formValues.cpf,
-        earning: parseInt(control._formValues.earning),
+        earning: parseFloat(control._formValues.earning),
         earningDay: parseInt(control._formValues.earningDay),
-        // birthday: "2023-05-27T16:36:41.464Z",
         birthday: convertStringDate(control._formValues.birthday),
         earningMontly: false,
         balance: 0,
@@ -40,14 +45,14 @@ export function FinancialData() {
         console.log(response.data);
         navigator.reset({
           index: 0,
-          routes: [{ name: "BottomNavigationBar" as never }],
+          routes: [{ name: "Welcome" as never }],
         });
-      });
+      }).catch((err) => {
+        setVisible(true);
+      })
   }
 
   function convertStringDate(dateString: string){
-    // console.log(control._formValues.birthday)
-    // var dateString = control._formValues.birthday;
     let array = dateString.split('/');
     console.log(array)
     dateString = array[2] + '-' + array[1] + '-'+ array[0]
@@ -123,6 +128,7 @@ export function FinancialData() {
           >
             <VStack width="50%">
               <ButtonSecondary
+              onPress={() => navigator.goBack()}
                 title="Voltar"
                 borderColor="black"
                 marginRight="5%"
@@ -140,6 +146,9 @@ export function FinancialData() {
           </VStack>
         </Box>
       </TouchableWithoutFeedback>
+      <Snackbar visible={visible} onDismiss={onDismissSnackBar}>
+        Erro ao tentar realizar cadastro
+      </Snackbar>
     </ScrollView>
   );
 }

@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useForm, FormProvider, FieldPath } from 'react-hook-form'
-import { PersonalData } from './personalData'
+import { PersonalData } from './PersonalData'
 import * as z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
-import { EmailPassword } from './emailPassword'
-import { FinancialData } from './financialData'
+import { EmailPassword } from './EmailPassword'
+import { FinancialData } from './FinancialData'
 
 const createUserSchema = z.object({
   name: z.string({ required_error: 'Nome obrigatório' }),
