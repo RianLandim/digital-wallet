@@ -10,6 +10,7 @@ import { Metas } from "../../pages/metas";
 import { EditarPerfil } from "../../pages/EditarPerfil";
 import { Cartoes } from "../../pages/configuracao/cartoes";
 import { NewCartao } from "../../pages/configuracao/components/NewCartao";
+import { Relatorio } from "../../pages/relatorio";
 
 
 export type StackRouteProps = {
@@ -22,6 +23,8 @@ export type StackRouteProps = {
   Metas: undefined;
   NewCartao: undefined;
   EditarPerfil: undefined;
+  Relatorio: undefined;
+ 
 };
 
 export type StackScreenNavigation = CompositeNavigationProp<
@@ -54,6 +57,7 @@ export function StackRoutes() {
       <Stack.Screen name="Metas" component={Metas} />
       <Stack.Screen name="NewCartao" component={NewCartao}/>
       <Stack.Screen name="EditarPerfil" component={EditarPerfil}/>
+      <Stack.Screen name="Relatorio" component={Relatorio}/>
       
     </Stack.Navigator>
   );
