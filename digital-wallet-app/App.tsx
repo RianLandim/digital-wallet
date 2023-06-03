@@ -2,14 +2,13 @@ import { NativeBaseProvider } from "native-base";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Routes from "./src/router";
 import { theme } from "./src/layout/theme";
-import { 
+import {
   useFonts,
   Inter_400Regular,
   Inter_600SemiBold,
-  Inter_700Bold, 
-  Inter_900Black
+  Inter_700Bold,
+  Inter_900Black,
 } from "@expo-google-fonts/inter";
-
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -18,11 +17,11 @@ export default function App() {
     Inter_400Regular,
     Inter_600SemiBold,
     Inter_700Bold,
-    Inter_900Black
-  })
+    Inter_900Black,
+  });
 
-  if(!fontsLoaded) {
-    return null
+  if (!fontsLoaded) {
+    return null;
   }
 
   return (

@@ -14,8 +14,13 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Snackbar } from "react-native-paper";
+import { useMutation } from "@tanstack/react-query";
+import type { StackScreenNavigation } from "../../router/stack";
+import { useAuth } from "../../context/auth.context";
+import Toast from "react-native-toast-message";
+import { AxiosError } from "axios";
 
-const createUserFormSchema = z.object({
+const loginFormSchema = z.object({
   username: z.string().nonempty({ message: "Informe o seu email" }),
   password: z
     .string()
@@ -23,44 +28,34 @@ const createUserFormSchema = z.object({
     .min(8, "A senha precisa no mínimo 8 caracteres"),
 });
 
+type LoginFormSchema = z.infer<typeof loginFormSchema>;
+
 export function Login() {
   const [visible, setVisible] = useState(false);
+
+  const navigator = useNavigation<StackScreenNavigation>();
+  const { setStorageUser } = useAuth();
+
   const onDismissSnackBar = () => setVisible(false);
 
-  async function singIn() {
-    const result = await trigger(["username", "password"], {
-      shouldFocus: true,
-    });
-
-    if (result) {
-      await api
-        .post(`/auth`, {
-          username: control._formValues.username,
-          password: control._formValues.password,
-        })
-        .then((response) => {
-          console.log(response.data);
-          navigator.reset({
-            index: 0,
-            routes: [{ name: "BottomNavigationBar" as never }],
-          });
-        })
-        .catch((errors) => {
-          setVisible(true);
-        });
-    }
-  }
-
-  const navigator = useNavigation();
-
-  const {
-    control,
-    handleSubmit,
-    trigger,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(createUserFormSchema),
+  const { control, handleSubmit, setError } = useForm<LoginFormSchema>({
+    resolver: zodResolver(loginFormSchema),
   });
+
+  const { mutate, status } = useMutation({
+    mutationKey: ["login"],
+    mutationFn: (data: LoginFormSchema) => api.post("/auth", data),
+    onSuccess: ({ data }) => {
+      setStorageUser(data);
+    },
+    onError: (error: AxiosError<{ message: string }>) => {
+      Toast.show({ type: "error", text1: error.response?.data.message });
+      setError("username", { type: "server" });
+      setError("password", { type: "server" });
+    },
+  });
+
+  const submitLogin = (data: LoginFormSchema) => mutate(data);
 
   return (
     <ScrollView>
@@ -137,7 +132,11 @@ export function Login() {
             justifyContent="space-evenly"
             marginTop={10}
           >
-            <Button title="Entrar" onPress={singIn} />
+            <Button
+              isLoading={status === "loading"}
+              title="Entrar"
+              onPress={handleSubmit(submitLogin)}
+            />
           </VStack>
 
           <VStack flex={1} width="50%" justifyContent="space-evenly">
