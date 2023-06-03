@@ -12,6 +12,7 @@ export function Menu() {
         flexDirection="row"
         justifyContent="space-between"
         marginBottom="5"
+        marginTop="10"
       >
         {/* <Image
           source={require("../../../../assets/logo.png")}
@@ -24,19 +25,14 @@ export function Menu() {
           }}
         /> */}
         <Column>
-          <Text
-            fontWeight="semibold"
-            fontSize="20"
-            marginLeft="5"
-            marginTop="22%"
-          >
+          <Text fontWeight="semibold" fontSize="20" marginLeft="5">
             Olá, {user.name}
           </Text>
           <Text fontWeight="medium" fontSize="18" marginLeft="5">
             Vamos organizar?
           </Text>
         </Column>
-        <Box marginRight={3} marginTop="10%">
+        <Box marginRight={3}>
           {/* <UserCircle size={60} /> */}
           <Image
             source={require("../../../../../assets/avatar.png")}

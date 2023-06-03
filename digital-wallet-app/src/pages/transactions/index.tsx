@@ -21,7 +21,6 @@ import NewTransaction from "./components/NewTransaction";
 export function Transactions() {
   const [modalVisible, setModalVisible] = useState(false);
 
-
   return (
     <>
       <Box
@@ -78,7 +77,7 @@ export function Transactions() {
             alignItems="center"
             justifyContent="center"
           >
-            <ArrowCircleDown size={32} />
+            <ArrowCircleDown size={32} color="#EF1111" />
             <Column marginLeft="2">
               <Text fontSize="16" fontWeight="semibold">
                 Despesas
@@ -94,7 +93,7 @@ export function Transactions() {
           <Text marginY="6" marginX="4" fontSize="22" fontWeight="medium">
             Hoje
           </Text>
-          <Transaction />
+          <Transaction name="Internet" value={200} type="debit"/>
         </Column>
       </ScrollView>
 

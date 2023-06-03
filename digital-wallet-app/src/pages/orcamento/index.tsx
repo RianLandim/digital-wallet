@@ -4,7 +4,7 @@ import { Menu } from "../Home/components/Menu";
 import { Button, Divider, Flex, ScrollView, Text } from "native-base";
 import { Plus,  } from "phosphor-react-native";
 import React, {useState} from "react";
-import { NewOrcamento } from "../transactions/components/NewOrcamento";
+import { NewOrcamento } from "./NewOrcamento";
 
 
 export function Orcamento() {
