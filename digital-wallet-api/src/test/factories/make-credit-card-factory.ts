@@ -6,10 +6,11 @@ type Override = Partial<CreditCard>;
 export function makeCreditCard(override: Override = {}) {
   return new CreditCard(
     {
-      bankId: 'bank-test',
+      bank: 'bank-test',
+      digits: 4546,
       closedAt: new Date(),
       expiratedAt: new Date(),
-      flagId: 'flag-test',
+      flag: 'flag-test',
       ownerName: 'ownerName-test',
       userId: randomUUID(),
       ...override,

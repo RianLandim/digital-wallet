@@ -17,4 +17,8 @@ export class InMemoryUserRepository implements UserRepository {
 
     return this.user[index];
   }
+
+  async findBalance(userId: any): Promise<any> {
+    throw new Error('Not Implemented yet!');
+  }
 }

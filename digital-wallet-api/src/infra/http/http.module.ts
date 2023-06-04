@@ -16,6 +16,7 @@ import { FindCategory } from '@application/usecases/category/find-category-useca
 import { CreateLaunch } from '@application/usecases/launch/create-launch-usecase';
 import { LaunchController } from './controllers/launch.controller';
 import { FindLaunch } from '@application/usecases/launch/find-launch-usecase';
+import { FindUserBalance } from '@application/usecases/user/find-user-balance';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { FindLaunch } from '@application/usecases/launch/find-launch-usecase';
     FindCategory,
     CreateLaunch,
     FindLaunch,
+    FindUserBalance,
   ],
 })
 export class HttpModule {}

@@ -27,4 +27,29 @@ export class PrismaUserRepository implements UserRepository {
 
     return PrismaUserMapper.toDomain(raw);
   }
+
+  async findBalance(userId: string) {
+    const raw = await this.prisma.user.findUnique({
+      where: { id: userId },
+      include: { launch: true },
+    });
+
+    const credit = raw.launch
+      .filter((v) => v.type === 'CREDIT')
+      .reduce((acc, val) => {
+        return acc + val.value;
+      }, 0);
+
+    const debit = raw.launch
+      .filter((v) => v.type === 'DEBIT')
+      .reduce((acc, val) => {
+        return acc + val.value;
+      }, 0);
+
+    return {
+      balance: raw.balance,
+      credit,
+      debit,
+    };
+  }
 }

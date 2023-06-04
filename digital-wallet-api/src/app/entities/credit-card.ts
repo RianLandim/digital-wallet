@@ -4,8 +4,9 @@ import { Replace } from 'src/helpers/replace';
 interface CreditCardProps {
   ownerName: string;
   expiratedAt: Date;
-  bankId: string;
-  flagId: string;
+  bank: string;
+  flag: string;
+  digits: number;
   closedAt: Date;
   userId: string;
   createdAt: Date;
@@ -64,19 +65,27 @@ export class CreditCard {
     return this.props.userId;
   }
 
-  set bankId(bankId: string) {
-    this.props.bankId = bankId;
+  set bank(bank: string) {
+    this.props.bank = bank;
   }
 
-  get bankId() {
-    return this.props.bankId;
+  get bank() {
+    return this.props.bank;
   }
 
-  set flagId(flagId: string) {
-    this.props.flagId = flagId;
+  set flag(flag: string) {
+    this.props.flag = flag;
   }
 
-  get flagId() {
-    return this.props.flagId;
+  get flag() {
+    return this.props.flag;
+  }
+
+  set digits(digits: number) {
+    this.props.digits = digits;
+  }
+
+  get digits() {
+    return this.props.digits;
   }
 }
