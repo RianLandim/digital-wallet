@@ -16,9 +16,9 @@ export function Cartoes() {
         width={"100%"}
         height={"10%"}
       >
-        <Box marginTop={"10%"}>
+        <Button marginTop={"10%"} onPress={() => navigator.goBack()}>
           <CaretLeft size={30} />
-        </Box>
+        </Button>
         <Text
           marginTop={"10%"}
           fontSize={16}

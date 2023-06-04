@@ -1,6 +1,6 @@
-import { IButtonProps, Button, Image, Icon } from "native-base";
+import { IButtonProps, Button, Image, Text, Row } from "native-base";
 import { ReactDOM } from "react";
-import { Text } from "react-native";
+
 
 
 interface PropsConfig extends IButtonProps {
@@ -12,9 +12,11 @@ export function ButtonConfig({title, _icon, variant = "solid", ...props}: PropsC
   <Button
   variant={variant}
   {...props}
-  bgColor={"gray.200"} marginTop={8} width={"85%"} marginLeft={"7.5%"}>
-      <Text>{title}</Text>
-      
+  bgColor={"gray.200"} marginTop={8} width={"85%"} marginLeft={"7.5%"} justifyContent="flex-start">
+      <Row  width="70%" alignItems="center" marginLeft={5}>
+      {_icon}
+      <Text marginLeft={5}>{title}</Text>
+    </Row>
   </Button>
 
   

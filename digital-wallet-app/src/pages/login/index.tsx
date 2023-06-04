@@ -135,7 +135,8 @@ export function Login() {
             <Button
               isLoading={status === "loading"}
               title="Entrar"
-              onPress={handleSubmit(submitLogin)}
+              //onPress={handleSubmit(submitLogin)}
+              onPress={() => navigator.navigate("BottomNavigationBar" as never)}
             />
           </VStack>
 
