@@ -6,6 +6,8 @@ import { CurrentUser, User } from '../auth/decorator/current-user.decorator';
 import { CreateLaunchBody } from '../dtos/create-launch-body';
 import { LaunchViewModel } from '../view-models/launch-view-model';
 import { FindLaunch } from '@application/usecases/launch/find-launch-usecase';
+import { FindMonthBalance } from '@application/usecases/launch/find-month-balance-usecase';
+import { FindMonthBalanceBody } from '../dtos/find-month-balance-body';
 
 @UseGuards(JwtAuthGuard)
 @ApiTags('Lançamento')
@@ -14,6 +16,7 @@ export class LaunchController {
   constructor(
     private createLaunch: CreateLaunch,
     private findLaunch: FindLaunch,
+    private findLaunchBalance: FindMonthBalance,
   ) {}
 
   @Post()
@@ -31,5 +34,18 @@ export class LaunchController {
     const { launch } = await this.findLaunch.execute({ userId: user.id });
 
     return launch.map(LaunchViewModel.toHttp);
+  }
+
+  @Post('month')
+  async findMonthBalance(
+    @Body() request: FindMonthBalanceBody,
+    @User() user: CurrentUser,
+  ) {
+    const { launch } = await this.findLaunchBalance.execute({
+      ...request,
+      userId: user.id,
+    });
+
+    return launch;
   }
 }

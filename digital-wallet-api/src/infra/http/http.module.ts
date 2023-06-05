@@ -22,6 +22,7 @@ import { GoalController } from './controllers/goal.controller';
 import { CreateGoal } from '@application/usecases/goal/create-goal-usecase';
 import { FindGoal } from '@application/usecases/goal/find-goal-usecase';
 import { UpdateGoal } from '@application/usecases/goal/update-goal-usecase';
+import { FindMonthBalance } from '@application/usecases/launch/find-month-balance-usecase';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { UpdateGoal } from '@application/usecases/goal/update-goal-usecase';
     CreateGoal,
     FindGoal,
     UpdateGoal,
+    FindMonthBalance,
   ],
 })
 export class HttpModule {}

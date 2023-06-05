@@ -11,4 +11,12 @@ export class InMemoryLaunchRepository implements LaunchRepository {
   async find(userId: string): Promise<Launch[]> {
     return this.launch.filter((v) => v.userId === userId);
   }
+
+  async findMonthBalance(
+    userId: string,
+    current: boolean,
+    day?: Date,
+  ): Promise<Launch[]> {
+    throw new Error('method not implemented');
+  }
 }

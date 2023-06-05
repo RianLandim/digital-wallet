@@ -49,4 +49,42 @@ export class PrismaLaunchRepository implements LaunchRepository {
 
     return rawLaunch.map(PrismaLaunchMapper.toDomain);
   }
+
+  async findMonthBalance(
+    userId: string,
+    current: boolean,
+    day?: Date,
+  ): Promise<Launch[]> {
+    if (current) {
+      const date = new Date();
+      const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+      const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      const rawLaunch = await this.prisma.launch.findMany({
+        where: {
+          userId,
+          createdAt: {
+            gte: firstDay,
+            lt: lastDay,
+          },
+        },
+      });
+
+      return rawLaunch.map(PrismaLaunchMapper.toDomain);
+    } else {
+      const date = new Date();
+      const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+      const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      const rawLaunch = await this.prisma.launch.findMany({
+        where: {
+          userId,
+          createdAt: {
+            gte: firstDay,
+            lt: lastDay,
+          },
+        },
+      });
+
+      return rawLaunch.map(PrismaLaunchMapper.toDomain);
+    }
+  }
 }
