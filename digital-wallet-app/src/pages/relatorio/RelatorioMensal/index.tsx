@@ -6,9 +6,19 @@ import TotalTickets from "../components/totalTickets";
 import ItemList from "../components/itemList";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { dateFormat } from "../../../utils/functions/format";
+import { useQuery } from "@tanstack/react-query";
+import { BalanceResponseProps } from "../../home";
+import { api } from "../../../services";
 
 export function RelatorioMensal() {
   const navigator = useNavigation();
+
+  const { data: userBalance } = useQuery({
+    queryKey: ["user-balance-info"],
+    queryFn: () =>
+      api.get<BalanceResponseProps>("user/balance").then(({ data }) => data),
+  });
 
   return (
     <>
@@ -31,7 +41,7 @@ export function RelatorioMensal() {
           fontWeight={"bold"}
           marginRight={"30%"}
         >
-          Relátorio Mensal
+          Relatório Mensal
         </Text>
       </Flex>
 
@@ -41,12 +51,12 @@ export function RelatorioMensal() {
         fontWeight={"bold"}
         textAlign={"center"}
       >
-        Maio 2023
+        {dateFormat(new Date())}
       </Text>
 
-      <TotalTickets value={80} />
+      <TotalTickets value={userBalance?.credit ?? 0} />
 
-      <TotalExpenses value={20} />
+      <TotalExpenses value={userBalance?.debit ?? 0} />
 
       <Box>
         <Text

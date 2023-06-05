@@ -2,7 +2,7 @@ import {
   NativeStackNavigationProp,
   createNativeStackNavigator,
 } from "@react-navigation/native-stack";
-import { Home, Login, Welcome } from "../../pages";
+import { Login, Welcome } from "../../pages";
 import { SignUpNavigationScreens, SignUpPage } from "../../pages/signUp";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavigationBar";
@@ -10,9 +10,9 @@ import { Metas } from "../../pages/metas";
 import { EditarPerfil } from "../../pages/Settings/EditarPerfil";
 import { Cartoes } from "../../pages/Settings/Cartoes";
 import { NewCartao } from "../../pages/Settings/components/NewCartao";
-import { RelatorioMensal } from "../../pages/Relatorio/RelatorioMensal";
-import { RelatorioAnual } from "../../pages/Relatorio/RelatorioAnual";
-import { RelatorioSemestral } from "../../pages/Relatorio/RelatorioSemestral";
+import { RelatorioMensal } from "../../pages/relatorio/RelatorioMensal";
+import { RelatorioAnual } from "../../pages/relatorio/RelatorioAnual";
+import { RelatorioSemestral } from "../../pages/relatorio/RelatorioSemestral";
 
 export type StackRouteProps = {
   Login: undefined;

@@ -21,27 +21,28 @@ export function Home() {
 
   const { data: userBalance, status } = useQuery({
     queryKey: ["user-balance-info"],
-    queryFn: () => api.get<BalanceResponseProps>("user/balance"),
+    queryFn: () =>
+      api.get<BalanceResponseProps>("user/balance").then(({ data }) => data),
   });
 
   return (
     <>
       <Menu />
 
-      <CardSaldo value={userBalance?.data.balance.toFixed(2) ?? "0.00"}>
+      <CardSaldo value={userBalance?.balance.toFixed(2) ?? "0.00"}>
         <Flex flexDirection={"row"} justifyContent={"space-between"}>
           <Box>
             <ArrowUp size={30} color="#34D399" />
           </Box>
           <Box width={"45%"}>
             <Text>Receitas</Text>
-            <Text>R$ {userBalance?.data.credit.toFixed(2)}</Text>
+            <Text>R$ {userBalance?.credit.toFixed(2)}</Text>
           </Box>
 
           <ArrowDown size={30} color="#F87171" />
           <Box>
             <Text>Despesas</Text>
-            <Text>R$ {userBalance?.data.debit.toFixed(2)}</Text>
+            <Text>R$ {userBalance?.debit.toFixed(2)}</Text>
           </Box>
         </Flex>
       </CardSaldo>
@@ -84,9 +85,21 @@ export function Home() {
             placeholder="Selecione um Período"
             width={299}
           >
-            <Select.Item label="Relátorio Anual" value="opcao-um"  onPress={() => navigator.navigate('RelatorioAnual')}/>
-            <Select.Item label="Relatório Semestral" value="opcao-um" onPress={() => navigator.navigate('RelatorioSemestral')}  />
-            <Select.Item label="Relatório Mensal" value="opcao-um"  onPress={() => navigator.navigate('RelatorioMensal')} />
+            <Select.Item
+              label="Relátorio Anual"
+              value="opcao-um"
+              onPress={() => navigator.navigate("RelatorioAnual")}
+            />
+            <Select.Item
+              label="Relatório Semestral"
+              value="opcao-um"
+              onPress={() => navigator.navigate("RelatorioSemestral")}
+            />
+            <Select.Item
+              label="Relatório Mensal"
+              value="opcao-um"
+              onPress={() => navigator.navigate("RelatorioMensal")}
+            />
           </Select>
           <Box width="75%" marginBottom="2">
             <Button
