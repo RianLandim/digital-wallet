@@ -7,7 +7,7 @@ import ItemList from "../components/itemList";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export function RelatorioMensal() {
+export function RelatorioSemestral() {
   const navigator = useNavigation();
 
   return (
@@ -31,7 +31,7 @@ export function RelatorioMensal() {
           fontWeight={"bold"}
           marginRight={"30%"}
         >
-          Relátorio Mensal
+          Relátorio Semestral
         </Text>
       </Flex>
 
@@ -41,7 +41,7 @@ export function RelatorioMensal() {
         fontWeight={"bold"}
         textAlign={"center"}
       >
-        Maio 2023
+        2022.1
       </Text>
 
       <TotalTickets value={80} />
@@ -60,6 +60,20 @@ export function RelatorioMensal() {
         </Text>
 
         <ItemList position={1} value={50} title={"Eletronica"} />
+      </Box>
+
+      <Box>
+        <Text
+          marginTop={"10%"}
+          fontSize={18}
+          fontWeight={"500"}
+          textAlign={"center"}
+          marginBottom="10"
+        >
+          Gastos por meses
+        </Text>
+
+        <ItemList position={1} value={50} title={"Fevereiro"} />
 
         <Box width="100%" alignItems={"center"}>
           <Button

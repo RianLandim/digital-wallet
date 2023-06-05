@@ -84,9 +84,9 @@ export function Home() {
             placeholder="Selecione um Período"
             width={299}
           >
-            <Select.Item label="Opção 1" value="opcao-um" />
-            <Select.Item label="Opção 2" value="opcao-um" />
-            <Select.Item label="Opção 3" value="opcao-um" />
+            <Select.Item label="Relátorio Anual" value="opcao-um"  onPress={() => navigator.navigate('RelatorioAnual')}/>
+            <Select.Item label="Relatório Semestral" value="opcao-um" onPress={() => navigator.navigate('RelatorioSemestral')}  />
+            <Select.Item label="Relatório Mensal" value="opcao-um"  onPress={() => navigator.navigate('RelatorioMensal')} />
           </Select>
           <Box width="75%" marginBottom="2">
             <Button
@@ -95,6 +95,7 @@ export function Home() {
             />
           </Box>
         </Card>
+        <Box height={10}></Box>
       </ScrollView>
     </>
   );
