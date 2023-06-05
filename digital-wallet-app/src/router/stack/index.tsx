@@ -7,9 +7,9 @@ import { SignUpNavigationScreens, SignUpPage } from "../../pages/signUp";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomNavigationBar } from "../../pages/bottomNavigationBar/bottomNavigationBar";
 import { Metas } from "../../pages/metas";
-import { EditarPerfil } from "../../pages/EditarPerfil";
-import { Cartoes } from "../../pages/configuracao/cartoes";
-import { NewCartao } from "../../pages/configuracao/components/NewCartao";
+import { EditarPerfil } from "../../pages/Settings/EditarPerfil";
+import { Cartoes } from "../../pages/Settings/Cartoes";
+import { NewCartao } from "../../pages/Settings/components/NewCartao";
 import { Relatorio } from "../../pages/relatorio";
 
 export type StackRouteProps = {

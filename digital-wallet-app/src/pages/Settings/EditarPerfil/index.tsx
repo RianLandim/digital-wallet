@@ -1,9 +1,14 @@
 import { Box, Text, Flex } from "native-base";
 import { CaretLeft, Camera } from "phosphor-react-native";
 import {  FormControl, Input } from "native-base";
-import { Button } from "../../layout/components/Button";
+import { Button } from "../../../layout/components/Button";
+import { useNavigation } from "@react-navigation/native";
+import { Touchable, TouchableHighlight, TouchableWithoutFeedback } from "react-native";
 
 export function EditarPerfil(){
+
+  const navigator = useNavigation();
+
     return (
       <>
         <Flex
@@ -13,9 +18,9 @@ export function EditarPerfil(){
           width={"100%"}
           height={"10%"}
         >
-          <Box marginTop={"10%"}>
+          <TouchableHighlight style={{marginTop: "10%"}} onPress={() => navigator.goBack()}>
             <CaretLeft size={30} />
-          </Box>
+          </TouchableHighlight>
           <Text
             marginTop={"10%"}
             fontSize={16}

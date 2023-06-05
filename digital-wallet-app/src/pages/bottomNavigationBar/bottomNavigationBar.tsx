@@ -10,7 +10,7 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Transactions } from "../transactions";
 import { Orcamento } from "../orcamento";
-import { Config } from "../configuracao";
+import { Settings } from "../Settings";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -83,7 +83,7 @@ export function BottomNavigationBar() {
       />
       <Screen
         name="settings"
-        component={Config}
+        component={Settings}
         options={{
           headerShadowVisible: false,
           headerShown: false,
