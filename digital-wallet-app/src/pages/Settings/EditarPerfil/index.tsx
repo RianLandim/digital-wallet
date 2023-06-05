@@ -3,7 +3,7 @@ import { CaretLeft, Camera } from "phosphor-react-native";
 import {  FormControl, Input } from "native-base";
 import { Button } from "../../../layout/components/Button";
 import { useNavigation } from "@react-navigation/native";
-import { Touchable, TouchableHighlight, TouchableWithoutFeedback } from "react-native";
+import { Touchable, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 
 export function EditarPerfil(){
 
@@ -18,9 +18,9 @@ export function EditarPerfil(){
           width={"100%"}
           height={"10%"}
         >
-          <TouchableHighlight style={{marginTop: "10%"}} onPress={() => navigator.goBack()}>
+          <TouchableOpacity style={{marginTop: "10%"}} onPress={() => navigator.goBack()}>
             <CaretLeft size={30} />
-          </TouchableHighlight>
+          </TouchableOpacity>
           <Text
             marginTop={"10%"}
             fontSize={16}
@@ -30,7 +30,6 @@ export function EditarPerfil(){
             Editar Perfil
           </Text>
         </Flex>
-  
       
         <Box display={"flex"} alignItems={"center"} marginTop={22} marginBottom={22}>
         <Camera size={80} />

@@ -1,7 +1,13 @@
 import { Row, Text } from "native-base";
 import { ArrowCircleDown } from "phosphor-react-native";
 
-export function TotalExpenses(){
+
+interface TotalExpensesProps{
+  value: number;
+}
+
+
+export function TotalExpenses(props: TotalExpensesProps){
     return (
         <Row
         backgroundColor={"gray.200"}
@@ -21,7 +27,7 @@ export function TotalExpenses(){
           </Text>
         </Row>
         <Text fontSize="18" fontWeight="semibold" color="#EF1111">
-          R$ 50,00
+          R$ {props.value},00
         </Text>
       </Row>
     );
