@@ -12,7 +12,6 @@ export class PrismaGoalMapper {
       userId,
       createdAt,
       updatedAt,
-      categoryId,
     } = goal;
 
     return {
@@ -26,11 +25,6 @@ export class PrismaGoalMapper {
         },
       },
       value,
-      category: {
-        connect: {
-          id: categoryId,
-        },
-      },
       createdAt,
       updatedAt,
     };

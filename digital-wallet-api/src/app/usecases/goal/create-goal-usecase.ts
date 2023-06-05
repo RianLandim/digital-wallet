@@ -4,11 +4,11 @@ import { Injectable } from '@nestjs/common';
 
 export interface CreateGoalRequest {
   value: number;
-  limitDate: Date;
+  limitDate?: Date;
   title: string;
   description: string;
   userId: string;
-  categoryId: string;
+  categoryId?: string;
 }
 
 export interface CreateGoalResponse {

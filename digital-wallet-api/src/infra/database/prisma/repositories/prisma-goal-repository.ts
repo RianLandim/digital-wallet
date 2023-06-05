@@ -2,7 +2,9 @@ import { Goal } from '@application/entities/goal';
 import { GoalRepository } from '@application/repositories/goal-repository';
 import { PrismaService } from '../prisma.service';
 import { PrismaGoalMapper } from '../mappers/prisma-goal-mapper';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class PrismaGoalRepository implements GoalRepository {
   constructor(private prisma: PrismaService) {}
 

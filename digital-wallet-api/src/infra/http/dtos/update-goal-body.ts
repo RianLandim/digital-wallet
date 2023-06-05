@@ -25,4 +25,8 @@ export class UpdateGoalBody {
   @ApiProperty()
   @IsOptional()
   categoryId: string;
+
+  @ApiProperty()
+  @IsOptional()
+  balance: number;
 }

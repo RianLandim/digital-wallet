@@ -18,6 +18,10 @@ import { FindLaunch } from '@application/usecases/launch/find-launch-usecase';
 import { FindUserBalance } from '@application/usecases/user/find-user-balance';
 import { CreditCardController } from './controllers/credit-card.controller';
 import { FindCreditCard } from '@application/usecases/credit-card/find-credit-card-usecase';
+import { GoalController } from './controllers/goal.controller';
+import { CreateGoal } from '@application/usecases/goal/create-goal-usecase';
+import { FindGoal } from '@application/usecases/goal/find-goal-usecase';
+import { UpdateGoal } from '@application/usecases/goal/update-goal-usecase';
 
 @Module({
   imports: [
@@ -32,6 +36,7 @@ import { FindCreditCard } from '@application/usecases/credit-card/find-credit-ca
     AuthController,
     CategoryController,
     LaunchController,
+    GoalController,
   ],
   providers: [
     Login,
@@ -47,6 +52,9 @@ import { FindCreditCard } from '@application/usecases/credit-card/find-credit-ca
     FindLaunch,
     FindUserBalance,
     FindCreditCard,
+    CreateGoal,
+    FindGoal,
+    UpdateGoal,
   ],
 })
 export class HttpModule {}

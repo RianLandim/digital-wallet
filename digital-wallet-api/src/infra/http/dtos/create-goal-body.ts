@@ -7,8 +7,7 @@ export class CreateGoalBody {
   value: number;
 
   @ApiProperty()
-  @IsNotEmpty()
-  limitDate: Date;
+  limitDate?: Date;
 
   @ApiProperty()
   @IsNotEmpty()
@@ -19,10 +18,5 @@ export class CreateGoalBody {
   description: string;
 
   @ApiProperty()
-  @IsNotEmpty()
-  userId: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  categoryId: string;
+  categoryId?: string;
 }
