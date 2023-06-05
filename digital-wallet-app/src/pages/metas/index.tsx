@@ -4,14 +4,32 @@ import { Flex, Text, Button, Divider, Box } from "native-base";
 import { Plus, Trash, Bank } from "phosphor-react-native";
 import { NewMeta } from "./components/NewMetas";
 import React, { useState } from "react";
+import { useQueries, useQuery } from "@tanstack/react-query";
+import { api } from "../../services";
+import type { GoalProps } from "../../utils/interfaces";
+import { BalanceResponseProps } from "../home";
 
 export function Metas() {
   const [modalVisible, setModalVisible] = useState(false);
 
+  const { data: goals, refetch } = useQuery({
+    queryKey: ["find-goals"],
+    queryFn: () => api.get<GoalProps[]>("goal").then(({ data }) => data),
+  });
+
+  const { data: userBalance } = useQuery({
+    queryKey: ["user-balance-info", 1],
+    queryFn: () =>
+      api.get<BalanceResponseProps>("user/balance").then(({ data }) => data),
+  });
+
   return (
     <>
       <Menu />
-      <CardSaldo2 value={"1.000,00"} children={undefined} />
+      <CardSaldo2
+        value={userBalance?.balance.toFixed(2) ?? ""}
+        children={undefined}
+      />
       <Flex
         marginTop="10%"
         backgroundColor="gray.200"
@@ -36,30 +54,33 @@ export function Metas() {
           <NewMeta
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
+            refetch={refetch}
           />
         </Flex>
         <Divider />
 
-        <Flex
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-          marginTop={"5%"}
-          marginBottom={"5%"}
-        >
-          <Text marginLeft={38}>Viagem</Text>
-          <Flex>
-            <Text color={"green.500"}>3.000</Text>
-            <Text color={"red.500"}>2.500</Text>
+        {goals?.map((goal) => (
+          <Flex
+            flexDirection={"row"}
+            justifyContent={"space-between"}
+            marginTop={"5%"}
+            marginBottom={"5%"}
+          >
+            <Text marginLeft={38}>{goal.title}</Text>
+            <Flex>
+              <Text color={"green.500"}>{goal.value}</Text>
+              <Text color={"red.500"}>{goal.value}</Text>
+            </Flex>
+
+            <Box marginLeft={12}>
+              <Bank size={28} />
+            </Box>
+
+            <Box marginRight={38}>
+              <Trash size={25} color="red" />
+            </Box>
           </Flex>
-
-          <Box marginLeft={12}>
-            <Bank size={28} />
-          </Box>
-
-          <Box marginRight={38}>
-            <Trash size={25} color="red" />
-          </Box>
-        </Flex>
+        ))}
         <Divider />
       </Flex>
     </>

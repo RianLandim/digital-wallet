@@ -10,7 +10,7 @@ import { StackScreenNavigation } from "../../router/stack";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../../services";
 
-type BalanceResponseProps = {
+export type BalanceResponseProps = {
   balance: number;
   credit: number;
   debit: number;

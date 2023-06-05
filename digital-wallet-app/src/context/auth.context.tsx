@@ -48,6 +48,7 @@ export default function AuthContextProvider({ children }: ProviderProps) {
         setSigned(true);
         const token = await AsyncStorage.getItem("@token");
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        navigator.navigate("BottomNavigationBar");
       }
     }
 
