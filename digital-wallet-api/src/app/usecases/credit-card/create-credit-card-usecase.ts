@@ -6,9 +6,9 @@ export interface CreateCreditCardRequest {
   ownerName: string;
   flag: string;
   bank: string;
-  closedAt: Date;
-  digits: number;
-  expiratedAt: Date;
+  closedAt: string;
+  digits: string;
+  expiratedAt: string;
   userId: string;
 }
 export interface CreateCreditCardResponse {
@@ -27,12 +27,12 @@ export class CreateCreditCard {
 
     const creditCard = new CreditCard({
       bank,
-      closedAt,
-      expiratedAt,
+      closedAt: Number(closedAt),
+      expiratedAt: Number(expiratedAt),
       flag,
       ownerName,
       userId,
-      digits,
+      digits: Number(digits),
     });
 
     await this.creditCardRepository.create(creditCard);

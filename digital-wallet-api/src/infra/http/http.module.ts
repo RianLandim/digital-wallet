@@ -4,7 +4,6 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { UserController } from './controllers/user.controller';
 import { CreateUser } from '@application/usecases/user/create-user-usecase';
-import { CreditCardController } from './auth/credit-card.controller';
 import { CreateCreditCard } from '@application/usecases/credit-card/create-credit-card-usecase';
 import { JwtStrategy } from './auth/jwt-strategy';
 import { PrismaService } from '@infra/database/prisma/prisma.service';
@@ -17,6 +16,8 @@ import { CreateLaunch } from '@application/usecases/launch/create-launch-usecase
 import { LaunchController } from './controllers/launch.controller';
 import { FindLaunch } from '@application/usecases/launch/find-launch-usecase';
 import { FindUserBalance } from '@application/usecases/user/find-user-balance';
+import { CreditCardController } from './controllers/credit-card.controller';
+import { FindCreditCard } from '@application/usecases/credit-card/find-credit-card-usecase';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { FindUserBalance } from '@application/usecases/user/find-user-balance';
     CreateLaunch,
     FindLaunch,
     FindUserBalance,
+    FindCreditCard,
   ],
 })
 export class HttpModule {}

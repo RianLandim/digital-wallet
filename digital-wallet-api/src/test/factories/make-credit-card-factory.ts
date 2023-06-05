@@ -8,8 +8,8 @@ export function makeCreditCard(override: Override = {}) {
     {
       bank: 'bank-test',
       digits: 4546,
-      closedAt: new Date(),
-      expiratedAt: new Date(),
+      closedAt: 7,
+      expiratedAt: 14,
       flag: 'flag-test',
       ownerName: 'ownerName-test',
       userId: randomUUID(),

@@ -3,11 +3,11 @@ import { Replace } from 'src/helpers/replace';
 
 interface CreditCardProps {
   ownerName: string;
-  expiratedAt: Date;
+  expiratedAt: number;
   bank: string;
   flag: string;
   digits: number;
-  closedAt: Date;
+  closedAt: number;
   userId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -41,7 +41,7 @@ export class CreditCard {
     return this.props.ownerName;
   }
 
-  set expiratedAt(expiratedAt: Date) {
+  set expiratedAt(expiratedAt: number) {
     this.props.expiratedAt = expiratedAt;
   }
 
@@ -49,7 +49,7 @@ export class CreditCard {
     return this.props.expiratedAt;
   }
 
-  set closedAt(closedAt: Date) {
+  set closedAt(closedAt: number) {
     this.props.closedAt = closedAt;
   }
 

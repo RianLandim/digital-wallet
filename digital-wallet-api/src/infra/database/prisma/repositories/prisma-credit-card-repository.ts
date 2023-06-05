@@ -21,18 +21,6 @@ export class PrismaCreditCardRepository implements CreditCardRepository {
       where: {
         userId,
       },
-      include: {
-        bank: {
-          select: {
-            name: true,
-          },
-        },
-        flag: {
-          select: {
-            name: true,
-          },
-        },
-      },
     });
 
     return raw.map(PrismaCreditCardMapper.toDomain);

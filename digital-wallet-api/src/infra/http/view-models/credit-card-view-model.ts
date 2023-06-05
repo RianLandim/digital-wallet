@@ -5,9 +5,11 @@ export class CreditCardViewModel {
     return {
       id: creditCard.id,
       ownerName: creditCard.ownerName,
-      flag: creditCard.flagId,
-      bank: creditCard.bankId,
+      flag: creditCard.flag,
+      bank: creditCard.bank,
+      digits: creditCard.digits,
       expiratedAt: creditCard.expiratedAt,
+      closedAt: creditCard.closedAt,
     };
   }
 }

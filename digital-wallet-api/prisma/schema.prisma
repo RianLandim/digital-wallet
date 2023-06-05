@@ -43,11 +43,11 @@ model User {
 }
 
 model CreditCard {
-  id          String   @id @default(uuid())
+  id          String @id @default(uuid())
   ownerName   String
-  expiratedAt DateTime
-  closedAt    DateTime
-  user        User     @relation(fields: [userId], references: [id])
+  expiratedAt Int
+  closedAt    Int
+  user        User   @relation(fields: [userId], references: [id])
   userId      String
   flag        String
   bank        String

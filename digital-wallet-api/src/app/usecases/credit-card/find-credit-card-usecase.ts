@@ -16,7 +16,7 @@ export class FindCreditCard {
   async execute(request: FindCreditCardRequest) {
     const creditCard = await this.creditCardRepository.find(request.userId);
 
-    if (!creditCard) {
+    if (!creditCard.length) {
       throw new NotFoundException('Nenhum cartão cadastro');
     }
 
