@@ -47,7 +47,7 @@ export function Home() {
       </CardSaldo>
 
       <ScrollView>
-        <Card title={"Contas"}>
+        <Card title={"Cartões"}>
           <Text>Cadastre seu cartão</Text>
           <Divider bg="gray.400" />
 

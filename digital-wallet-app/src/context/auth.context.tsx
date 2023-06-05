@@ -63,7 +63,7 @@ export default function AuthContextProvider({ children }: ProviderProps) {
 
     if (data.user && data.accessToken) {
       setSigned(true);
-      navigator.navigate("Home");
+      navigator.navigate("BottomNavigationBar");
     }
   }
 

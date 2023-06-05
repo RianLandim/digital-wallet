@@ -16,7 +16,6 @@ export type StackRouteProps = {
   Login: undefined;
   SignUp: undefined;
   Welcome: undefined;
-  Home: undefined;
   BottomNavigationBar: undefined;
   Cartoes: undefined;
   Metas: undefined;
@@ -39,8 +38,6 @@ export function StackRoutes() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Login" component={Login} />
-
-      <Stack.Screen name="Home" component={Home} />
 
       <Stack.Screen name="Welcome" component={Welcome} />
 

@@ -37,7 +37,7 @@ export function NewCartao() {
         type: "success",
         text1: "Cartão Cadastrado",
       });
-      navigate.navigate("Home");
+      navigate.navigate("BottomNavigationBar");
     },
     onError: (error: AxiosError<{ message: string }>) => {
       Toast.show({
@@ -51,7 +51,7 @@ export function NewCartao() {
     resolver: zodResolver(creditCardSchema),
   });
 
-  const submit = (data: CreditCardProps) => mutate({ ...data });
+  const submit = (data: CreditCardProps) => mutate(data);
 
   return (
     <>

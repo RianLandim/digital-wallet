@@ -2,10 +2,18 @@ import { Box, Divider, Flex, Text, Button, IconButton } from "native-base";
 import { CaretLeft, CreditCard, Plus } from "phosphor-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Cartao } from "../components/Cartao";
-
+import { useQuery } from "@tanstack/react-query";
+import { api } from "../../../services";
+import type { CreditCard as CreditCardProps } from "../../../utils/interfaces";
 
 export function Cartoes() {
   const navigator = useNavigation();
+
+  const { data: creditCards } = useQuery({
+    queryKey: ["find-credit-cards"],
+    queryFn: () =>
+      api.get<CreditCardProps[]>("credit-card").then(({ data }) => data),
+  });
 
   return (
     <>
@@ -25,20 +33,17 @@ export function Cartoes() {
           fontWeight={"bold"}
           marginRight={"40%"}
         >
-          Cartões
+          Cartões cadastrados
         </Text>
       </Flex>
 
-        <Text
-          textAlign={"center"}
-          fontWeight={"bold"}
-          fontSize={20}
-          marginTop={5}
-        >
-          Cartões cadastrados
-        </Text>
-
-      <Cartao />
+      {creditCards?.map((creditCard) => (
+        <Cartao
+          key={creditCard.id}
+          bank={creditCard.bank}
+          digits={creditCard.digits}
+        />
+      ))}
 
       <Box position="absolute" bottom="4" right="5">
         <IconButton
@@ -47,7 +52,7 @@ export function Cartoes() {
           borderRadius="30"
           width="62"
           height="16"
-          onPress={() =>  navigator.navigate("NewCartao" as never)}
+          onPress={() => navigator.navigate("NewCartao" as never)}
         />
       </Box>
     </>
