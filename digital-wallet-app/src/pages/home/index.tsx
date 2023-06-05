@@ -91,7 +91,7 @@ export function Home() {
           <Box width="75%" marginBottom="2">
             <Button
               title={"Gerar relatório"}
-              onPress={() => navigator.navigate("Relatorio")}
+              onPress={() => navigator.navigate("RelatorioMensal")}
             />
           </Box>
         </Card>
