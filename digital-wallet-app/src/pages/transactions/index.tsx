@@ -1,25 +1,37 @@
-import {
-  Column,
-  IconButton,
-  Row,
-  ScrollView,
-  Text,
-  Box,
-} from "native-base";
+import { Column, IconButton, Row, Text, Box, View } from "native-base";
 import {
   ArrowCircleDown,
   CaretLeft,
   CaretRight,
-  DotsThreeVertical,
   Plus,
 } from "phosphor-react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Transaction } from "./components/Transaction";
 import React, { useState } from "react";
 import NewTransaction from "./components/NewTransaction";
+import { dateMonthFormat } from "../../utils/functions/format";
+import { BalanceResponseProps } from "../home";
+import { api } from "../../services";
+import { useQuery } from "@tanstack/react-query";
+import { currencyFormat } from "../../utils/functions/format";
+import { LaunchProps } from "../../utils/interfaces/launch";
+import { SectionList } from "react-native";
 
 export function Transactions() {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const { data: userBalance } = useQuery({
+    queryKey: ["user-balance-info"],
+    queryFn: () =>
+      api.get<BalanceResponseProps>("user/balance").then(({ data }) => data),
+    refetchOnMount: true,
+  });
+
+  const { data: userLaunchs } = useQuery({
+    queryKey: ["user-launch"],
+    queryFn: () => api.get<LaunchProps[]>("launch").then(({ data }) => data),
+    refetchOnMount: true,
+  });
 
   return (
     <>
@@ -34,16 +46,16 @@ export function Transactions() {
             Transações
           </Text>
         </Row>
-        <Row justifyContent="center" alignItems="center">
+        {/* <Row justifyContent="center" alignItems="center">
           <IconButton icon={<CaretLeft size={28} color="#000" />} />
           <Text fontSize="18" fontWeight="semibold" marginX="4">
-            Maio
+            {dateMonthFormat(new Date())}
           </Text>
           <IconButton icon={<CaretRight size={28} color="#000" />} />
-        </Row>
+        </Row> */}
       </Box>
 
-      <ScrollView>
+      <View>
         <Row
           justifyContent="space-between"
           marginTop="5"
@@ -64,7 +76,7 @@ export function Transactions() {
                 Saldo atual
               </Text>
               <Text fontSize="18" fontWeight="semibold" color="#5AE468">
-                R$ 200,00
+                {currencyFormat(userBalance?.balance ?? 0)}
               </Text>
             </Column>
           </Row>
@@ -83,21 +95,37 @@ export function Transactions() {
                 Despesas
               </Text>
               <Text fontSize="18" fontWeight="semibold" color="alert">
-                R$ 200,00
+                {currencyFormat(userBalance?.debit ?? 0)}
               </Text>
             </Column>
           </Row>
         </Row>
 
         <Column>
-          <Text marginY="6" marginX="4" fontSize="22" fontWeight="medium">
-            Hoje
-          </Text>
-          <Transaction name="Internet" value={200} type="debit"/>
+          <SectionList
+            sections={userLaunchs ?? []}
+            renderSectionHeader={({ section: { title } }) => (
+              <Text marginY="6" marginX="4" fontSize="22" fontWeight="medium">
+                {title}
+              </Text>
+            )}
+            renderItem={({ item: launch }) => (
+              <Transaction
+                key={launch.id}
+                name="Internet"
+                transactionAt={launch.createdAt}
+                value={launch.value}
+                type={launch.type}
+              />
+            )}
+          />
         </Column>
-      </ScrollView>
+      </View>
 
-      <NewTransaction modalVisible={modalVisible} setModalVisible={setModalVisible} />
+      <NewTransaction
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
 
       <Box position="absolute" bottom="4" right="5">
         <IconButton

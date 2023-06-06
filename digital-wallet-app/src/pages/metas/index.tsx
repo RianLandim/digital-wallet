@@ -61,6 +61,7 @@ export function Metas() {
 
         {goals?.map((goal) => (
           <Flex
+            key={goal.id}
             flexDirection={"row"}
             justifyContent={"space-between"}
             marginTop={"5%"}

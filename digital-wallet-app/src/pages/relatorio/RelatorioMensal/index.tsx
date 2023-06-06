@@ -6,7 +6,7 @@ import TotalTickets from "../components/totalTickets";
 import ItemList from "../components/itemList";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { dateFormat } from "../../../utils/functions/format";
+import { dateMonthFormat } from "../../../utils/functions/format";
 import { useQuery } from "@tanstack/react-query";
 import { BalanceResponseProps } from "../../home";
 import { api } from "../../../services";
@@ -51,7 +51,7 @@ export function RelatorioMensal() {
         fontWeight={"bold"}
         textAlign={"center"}
       >
-        {dateFormat(new Date())}
+        {dateMonthFormat(new Date())}
       </Text>
 
       <TotalTickets value={userBalance?.credit ?? 0} />
@@ -69,11 +69,11 @@ export function RelatorioMensal() {
           Gastos por categoria
         </Text>
 
-        <ItemList position={1} value={50} title={"Eletronica"} />
+        <ItemList position={1} value={50} title={"Eletrónica"} />
 
         <Box width="100%" alignItems={"center"}>
           <Button
-            title={"Exportar relatorio"}
+            title={"Exportar relatório"}
             width={"70%"}
             marginTop={50}
             textAlign={"center"}

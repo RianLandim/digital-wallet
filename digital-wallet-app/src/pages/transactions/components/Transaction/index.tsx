@@ -1,28 +1,51 @@
-import { Box, Column, Row, Text } from "native-base"
-import { ArrowCircleDown } from "phosphor-react-native";
+import { Box, Column, Row, Text } from "native-base";
+import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react-native";
+import {
+  currencyFormat,
+  dateFullFormat,
+} from "../../../../utils/functions/format";
+import { LaunchTypeEnum } from "../../../../utils/interfaces/launch";
 
-interface TransactionProps{
-    name: string;
-    value: number;
-    type: string;
+interface TransactionProps {
+  name: string;
+  value: number;
+  type: string;
+  transactionAt: Date;
 }
 
 export function Transaction(props: TransactionProps) {
+  const teste = false;
 
-    let teste = false;
+  return (
+    <Row
+      justifyContent="space-between"
+      width="90%"
+      marginLeft="5"
+      alignItems="center"
+    >
+      <Row>
+        {props.type == LaunchTypeEnum.CREDIT ? (
+          <ArrowCircleUp size={38} color={"#59E367"} />
+        ) : (
+          <ArrowCircleDown size={38} color={"#EF1111"} />
+        )}
 
-    return (
-        <Row  justifyContent="space-between" width="90%" marginLeft="5" alignItems="center">
-            <Row>
-                <ArrowCircleDown size={38} color={props.type == "credit" ? "#59E367" : "#EF1111"  } />
-                <Column marginLeft="3">
-                    <Text fontSize="18" fontWeight="semibold">{props.name}</Text>
-                    <Text color="#A7A5A5">Cetegoria</Text>
-                </Column>
-                
-            </Row>
-            <Text color={teste ? "success" : "alert" } fontSize="18" fontWeight="semibold">R$ {props.value},00</Text>
-        </Row>
-
-    );
+        <Column marginLeft="3">
+          <Text fontSize="18" fontWeight="semibold">
+            {props.name}
+          </Text>
+          <Text color="#A7A5A5">
+            {dateFullFormat(new Date(props.transactionAt))}
+          </Text>
+        </Column>
+      </Row>
+      <Text
+        color={teste ? "success" : "alert"}
+        fontSize="18"
+        fontWeight="semibold"
+      >
+        {currencyFormat(props.value)}
+      </Text>
+    </Row>
+  );
 }

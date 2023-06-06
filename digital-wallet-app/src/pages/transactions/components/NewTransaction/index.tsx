@@ -53,15 +53,13 @@ export default function NewTransaction({
       isOpen={modalVisible}
       onClose={() => setModalVisible(false)}
       avoidKeyboard
-      justifyContent="center"
-      bottom="4"
-      size="lg"
+      justifyContent="space-around"
     >
       <Modal.Content>
         <Modal.CloseButton />
         <Modal.Header>Nova transação</Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body flex={1} justifyContent="space-around">
           <VStack>
             <Controller
               control={control}
@@ -131,12 +129,13 @@ export default function NewTransaction({
               )}
             />
           </VStack>
+          <VStack flexDirection={"row"} justifyContent={"space-between"}>
+            <Checkbox value="one" isChecked={true}>
+              Entrada
+            </Checkbox>
 
-          <Checkbox value="one" isChecked={true}>
-            Entrada
-          </Checkbox>
-
-          <Checkbox value="two">Saída</Checkbox>
+            <Checkbox value="two">Saída</Checkbox>
+          </VStack>
         </Modal.Body>
 
         <Modal.Footer justifyContent="center">
