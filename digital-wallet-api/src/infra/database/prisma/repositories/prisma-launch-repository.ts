@@ -67,6 +67,7 @@ export class PrismaLaunchRepository implements LaunchRepository {
             lt: lastDay,
           },
         },
+        orderBy: { createdAt: 'desc' },
       });
 
       return rawLaunch.map(PrismaLaunchMapper.toDomain);
@@ -82,6 +83,7 @@ export class PrismaLaunchRepository implements LaunchRepository {
             lt: lastDay,
           },
         },
+        orderBy: { createdAt: 'desc' },
       });
 
       return rawLaunch.map(PrismaLaunchMapper.toDomain);

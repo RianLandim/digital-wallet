@@ -33,7 +33,7 @@ export class LaunchController {
   async findAll(@User() user: CurrentUser) {
     const { launch } = await this.findLaunch.execute({ userId: user.id });
 
-    return launch.map(LaunchViewModel.toHttp);
+    return launch;
   }
 
   @Post('month')
