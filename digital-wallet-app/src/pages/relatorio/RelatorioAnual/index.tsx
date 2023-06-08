@@ -1,4 +1,4 @@
-import { Text, Box, Flex } from "native-base";
+import { Text, Box, Flex, ScrollView } from "native-base";
 import { CaretLeft } from "phosphor-react-native";
 import { Button } from "../../../layout/components/Button";
 import { TotalExpenses } from "../components/totalExpenses";
@@ -35,47 +35,59 @@ export function RelatorioAnual() {
         </Text>
       </Flex>
 
-      <Text
-        marginTop={"10%"}
-        fontSize={20}
-        fontWeight={"bold"}
-        textAlign={"center"}
-      >
-        2022
-      </Text>
-
-      <TotalTickets value={80} />
-
-      <TotalExpenses value={20} />
-
-      <Box>
+      <ScrollView>
         <Text
-          marginTop={"10%"}
-          fontSize={18}
-          fontWeight={"500"}
+          marginTop="6"
+          fontSize={22}
+          fontWeight={"bold"}
           textAlign={"center"}
-          marginBottom="10"
         >
-          Gastos por categoria
+          2022
         </Text>
 
-        <ItemList position={1} value={50} title={"Eletronica"} />
-      </Box>
+        <TotalTickets value={80} />
 
-      <Box>
-        <Text
-          marginTop={"10%"}
-          fontSize={18}
-          fontWeight={"500"}
-          textAlign={"center"}
-          marginBottom="10"
+        <TotalExpenses value={20} />
+
+        <Box>
+          <Text
+            marginTop="16"
+            fontSize={20}
+            fontWeight="semibold"
+            textAlign={"center"}
+            marginBottom="10"
+          >
+            Gastos por categoria
+          </Text>
+
+          <ItemList position={1} value={1000} title={"Eletronica"} />
+          <ItemList position={2} value={500} title={"Alimentação"} />
+          <ItemList position={3} value={200} title={"Despesa Fixas"} />
+          <ItemList position={4} value={500} title={"Lazer"} />
+        </Box>
+
+        <Box>
+          <Text
+            marginTop="16"
+            fontSize={20}
+            fontWeight="semibold"
+            textAlign={"center"}
+            marginBottom="10"
+          >
+            Gastos por meses
+          </Text>
+
+          <ItemList position={1} value={50} title={"Fevereiro"} />
+          <ItemList position={2} value={50} title={"Março"} />
+          <ItemList position={3} value={50} title={"Janeiro"} />
+        </Box>
+
+        <Box
+          width="100%"
+          marginBottom="20"
+          marginTop="10%"
+          alignItems={"center"}
         >
-          Gastos por meses
-        </Text>
-
-        <ItemList position={1} value={50} title={"Fevereiro"} />
-
-        <Box width="100%" alignItems={"center"}>
           <Button
             title={"Exportar relatorio"}
             width={"70%"}
@@ -83,7 +95,7 @@ export function RelatorioAnual() {
             textAlign={"center"}
           />
         </Box>
-      </Box>
+      </ScrollView>
     </>
   );
 }
