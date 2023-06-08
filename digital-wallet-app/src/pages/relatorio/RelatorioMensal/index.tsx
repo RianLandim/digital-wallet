@@ -1,4 +1,4 @@
-import { Text, Box, Flex } from "native-base";
+import { Text, Box, Flex, ScrollView } from "native-base";
 import { CaretLeft } from "phosphor-react-native";
 import { Button } from "../../../layout/components/Button";
 import { TotalExpenses } from "../components/totalExpenses";
@@ -45,31 +45,33 @@ export function RelatorioMensal() {
         </Text>
       </Flex>
 
-      <Text
-        marginTop={"10%"}
-        fontSize={20}
-        fontWeight={"bold"}
-        textAlign={"center"}
-      >
-        {dateMonthFormat(new Date())}
-      </Text>
-
-      <TotalTickets value={userBalance?.credit ?? 0} />
-
-      <TotalExpenses value={userBalance?.debit ?? 0} />
-
-      <Box>
+      <ScrollView>
         <Text
           marginTop={"10%"}
-          fontSize={18}
-          fontWeight={"500"}
+          fontSize={20}
+          fontWeight={"bold"}
           textAlign={"center"}
-          marginBottom="10"
         >
-          Gastos por categoria
+          {dateMonthFormat(new Date())}
         </Text>
 
-        <ItemList position={1} value={50} title={"Eletrónica"} />
+        <TotalTickets value={userBalance?.credit ?? 0} />
+
+        <TotalExpenses value={userBalance?.debit ?? 0} />
+
+        <Box>
+          <Text
+            marginTop={"10%"}
+            fontSize={18}
+            fontWeight={"500"}
+            textAlign={"center"}
+            marginBottom="10"
+          >
+            Gastos por categoria
+          </Text>
+
+          <ItemList position={1} value={50} title={"Eletrónica"} />
+        </Box>
 
         <Box width="100%" alignItems={"center"}>
           <Button
@@ -79,7 +81,7 @@ export function RelatorioMensal() {
             textAlign={"center"}
           />
         </Box>
-      </Box>
+      </ScrollView>
     </>
   );
 }
