@@ -100,6 +100,7 @@ export function NewCartao() {
             <FormControl isInvalid={!!errors.digits}>
               <Input
                 placeholder="4 últimos dígitos"
+                fontSize="14"
                 onChangeText={(val) => onChange(val)}
                 value={value}
               />
@@ -116,6 +117,7 @@ export function NewCartao() {
             <FormControl isInvalid={!!errors.ownerName}>
               <Input
                 placeholder="Nome do Cartão"
+                fontSize="14"
                 onChangeText={(val) => onChange(val)}
                 value={value}
               />
@@ -132,6 +134,7 @@ export function NewCartao() {
             <FormControl isInvalid={!!errors.bank}>
               <Input
                 placeholder="Banco"
+                fontSize="14"
                 onChangeText={(val) => onChange(val)}
                 value={value}
               />
@@ -149,6 +152,7 @@ export function NewCartao() {
               <Input
                 placeholder="Dia de Vencimento da fatura"
                 onChangeText={(val) => onChange(val)}
+                fontSize="14"
                 value={value}
               />
               <FormControl.ErrorMessage>
@@ -164,6 +168,7 @@ export function NewCartao() {
             <FormControl isInvalid={!!errors.flag}>
               <Input
                 placeholder="Dia de fechamento da fatura"
+                fontSize="14"
                 onChangeText={(val) => onChange(val)}
                 value={value}
               />
@@ -180,6 +185,7 @@ export function NewCartao() {
             <FormControl isInvalid={!!errors.flag}>
               <Input
                 placeholder="Bandeira"
+                fontSize="14"
                 onChangeText={(val) => onChange(val)}
                 value={value}
               />

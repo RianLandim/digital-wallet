@@ -36,13 +36,13 @@ export function Transactions() {
   return (
     <>
       <Box
-        height="150"
+        height="120"
         backgroundColor="green.400"
         paddingTop="10"
         justifyContent="space-around"
       >
         <Row justifyContent="space-between" alignItems="center" marginX="5">
-          <Text color="#000" fontSize="20" fontWeight="bold">
+          <Text color="#000" fontSize="22" fontWeight="bold">
             Transações
           </Text>
         </Row>

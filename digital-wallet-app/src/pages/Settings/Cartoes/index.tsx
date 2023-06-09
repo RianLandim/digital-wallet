@@ -22,14 +22,15 @@ export function Cartoes() {
         flexDirection={"row"}
         justifyContent={"space-between"}
         width={"100%"}
-        height={"10%"}
+        height={"12%"}
+        alignItems="center"
+        paddingTop="8"
       >
-        <Button marginTop={"10%"} onPress={() => navigator.goBack()}>
+        <Button onPress={() => navigator.goBack()}>
           <CaretLeft size={30} />
         </Button>
         <Text
-          marginTop={"10%"}
-          fontSize={16}
+          fontSize={20}
           fontWeight={"bold"}
           marginRight={"40%"}
         >

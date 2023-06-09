@@ -3,7 +3,7 @@ import { CaretLeft, Camera } from "phosphor-react-native";
 import {  FormControl, Input } from "native-base";
 import { Button } from "../../../layout/components/Button";
 import { useNavigation } from "@react-navigation/native";
-import { Touchable, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import { Touchable, TouchableHighlight, TouchableOpacity,Image, TouchableWithoutFeedback } from "react-native";
 
 export function EditarPerfil(){
 
@@ -32,12 +32,21 @@ export function EditarPerfil(){
         </Flex>
       
         <Box display={"flex"} alignItems={"center"} marginTop={22} marginBottom={22}>
-        <Camera size={80} />
+        <Image
+            source={require("../../../../assets/avatar.png")}
+            style={{
+              marginTop: 5,
+              marginLeft: 10,
+              width: 80,
+              height: 80,
+              resizeMode: "stretch",
+            }}
+          />
         </Box>
   
         <Flex width={"80%"} marginLeft={"10%"}>
-          <Input marginBottom={"10%"} placeholder="Nome" />
-          <Input marginBottom={"10%"} placeholder="CPF" />
+          <Input marginBottom={"10%"} placeholder="Nome" fontSize="16" />
+          <Input marginBottom={"10%"} placeholder="CPF"  fontSize="16"/>
           <Input marginBottom={"10%"} placeholder="Data de Nascimento" />
           <Input marginBottom={"10%"} placeholder="Email" />
           <Input marginBottom={"10%"} placeholder="Senha atual" />

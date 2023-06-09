@@ -74,7 +74,7 @@ export function Home() {
         <Card title={"Ranking"}>
           <Text></Text>
           <Box width="75%" marginBottom="2">
-            <Button title={"Acessar ranking"} onPress={() => {}} />
+            <Button title={"Acessar ranking"} onPress={() => navigator.navigate('Ranking')} />
           </Box>
         </Card>
 
