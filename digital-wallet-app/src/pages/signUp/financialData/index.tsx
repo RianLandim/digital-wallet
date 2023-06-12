@@ -9,17 +9,18 @@ import { useNavigation } from "@react-navigation/native";
 import { StackScreenNavigation } from "../../../router/stack";
 import { Button } from "../../../layout/components/Button";
 import { ButtonSecondary } from "../../../layout/components/ButtonSecondary";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { parse } from "react-native-svg";
 import { Snackbar } from "react-native-paper";
 import { useState } from "react";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 export function FinancialData() {
   const navigator = useNavigation<StackScreenNavigation>();
 
-  const { control, trigger } = useFormContext();
+  const { control, trigger, handleSubmit } = useFormContext();
 
-  const baseUrl = "http://192.168.143.13:5432";
+  const baseUrl = "http://192.168.31.125:3333";
 
   const [visible, setVisible] = useState(false);
   const onDismissSnackBar = () => setVisible(false);
@@ -28,6 +29,18 @@ export function FinancialData() {
     const result = await trigger(["username", "password"], {
       shouldFocus: true,
     });
+
+    console.log({
+      username: control._formValues.email,
+      password: control._formValues.password,
+      name: control._formValues.name,
+      cpf: control._formValues.cpf,
+      earning: parseFloat(control._formValues.earning),
+      earningDay: parseInt(control._formValues.earningDay),
+      birthday: convertStringDate(control._formValues.birthday),
+      earningMontly: false,
+      balance: 0,
+    })
 
     await axios
       .post(`${baseUrl}/user`, {
@@ -47,8 +60,11 @@ export function FinancialData() {
           index: 0,
           routes: [{ name: "Welcome" as never }],
         });
-      }).catch((err) => {
-        setVisible(true);
+      }).catch((err: AxiosError<{ message?: string }>) => {
+        Toast.show({
+          type: 'error',
+          text1: err.response?.data.message ?? 'Ocorreu um erro ao cadastrar'
+        })
       })
   }
 

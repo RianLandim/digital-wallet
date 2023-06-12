@@ -44,7 +44,7 @@ export function Welcome() {
               onPress={() =>
                 navigator.reset({
                   index: 0,
-                  routes: [{ name: "BottomNavigationBar" as never }],
+                  routes: [{ name: "Login" as never }],
                 })
               }
             />

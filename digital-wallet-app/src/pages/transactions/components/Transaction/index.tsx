@@ -14,7 +14,6 @@ interface TransactionProps {
 }
 
 export function Transaction(props: TransactionProps) {
-  const teste = false;
 
   return (
     <Row
@@ -40,7 +39,7 @@ export function Transaction(props: TransactionProps) {
         </Column>
       </Row>
       <Text
-        color={teste ? "success" : "alert"}
+        color={"success"}
         fontSize="18"
         fontWeight="semibold"
       >

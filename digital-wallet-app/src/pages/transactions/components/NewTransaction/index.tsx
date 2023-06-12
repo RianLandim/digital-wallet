@@ -13,40 +13,56 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "../../../../layout/components/Button";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "../../../../services";
+import { Replace } from "../../../../utils/helpers/replace";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
+import { AxiosError } from "axios";
 
 type Props = {
   modalVisible: boolean;
   setModalVisible: Function;
+  refetch: Function;
 };
 
-const createUserFormSchema = z.object({
-  title: z.string().nonempty({ message: "Escreva o título" }),
-  value: z.string().nonempty({ message: "Informe o valor" }),
+const createLaunchFormSchema = z.object({
+  title: z.string(),
+  value: z.string(),
+  category: z.enum(["Fixas", "Lazer", "Contas", "Boleto", "Entretenimento"]),
+  type: z.enum(["CREDIT", "DEBIT"]),
 });
+
+export type LaunchFormProps = z.infer<typeof createLaunchFormSchema>;
 
 export default function NewTransaction({
   modalVisible,
   setModalVisible,
+  refetch,
 }: Props) {
   const [service, setService] = useState("");
 
-  async function saveTransaction() {
-    const result = await trigger(["title", "value"], {
-      shouldFocus: true,
-    });
-    if (result) {
-      console.log(control._formValues.title);
-    }
-  }
-
-  const {
-    control,
-    handleSubmit,
-    trigger,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(createUserFormSchema),
+  const { control, handleSubmit } = useForm<LaunchFormProps>({
+    resolver: zodResolver(createLaunchFormSchema),
   });
+
+  const { mutate } = useMutation({
+    mutationKey: ["create-launch"],
+    mutationFn: (data: Replace<LaunchFormProps, { value: number }>) =>
+      api.post("launch", data),
+    onSuccess: () => {
+      setModalVisible(false);
+      refetch();
+    },
+    onError: (error: AxiosError<{ message?: string }>) => {
+      Toast.show({ type: "error", text1: error.response?.data.message });
+    },
+  });
+
+  const submit = (data: LaunchFormProps) =>
+    mutate({
+      ...data,
+      value: parseFloat(data.value),
+    });
 
   return (
     <Modal
@@ -64,7 +80,6 @@ export default function NewTransaction({
             <Controller
               control={control}
               name="title"
-              defaultValue=""
               render={({
                 field: { onChange, onBlur, value },
                 formState: { errors },
@@ -86,23 +101,33 @@ export default function NewTransaction({
             />
           </VStack>
 
-          <FormControl.Label>Selecione a categoria</FormControl.Label>
-
-          <Select
-            selectedValue={service}
-            minWidth="200"
-            accessibilityLabel="Categoria"
-            placeholder="Categoria"
-            _selectedItem={{
-              bg: "teal.600",
-              endIcon: <CheckIcon size="5" />,
-            }}
-            mt={1}
-            onValueChange={(itemValue) => setService(itemValue)}
-          >
-            <Select.Item label="Fixas" value="ux" />
-            <Select.Item label="lazer" value="web" />
-          </Select>
+          <Controller
+            control={control}
+            name="category"
+            render={({ formState: { errors }, field: { value, onChange } }) => (
+              <FormControl isInvalid={!!errors.category}>
+                <FormControl.Label>Selecione a categoria</FormControl.Label>
+                <Select
+                  selectedValue={value}
+                  minWidth="200"
+                  accessibilityLabel="Categoria"
+                  placeholder="Categoria"
+                  _selectedItem={{
+                    bg: "teal.600",
+                    endIcon: <CheckIcon size="5" />,
+                  }}
+                  mt={1}
+                  onValueChange={onChange}
+                >
+                  {createLaunchFormSchema.shape.category.options.map((item) => (
+                    <Select.Item label={item} value={item}>
+                      {item}
+                    </Select.Item>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+          />
 
           <VStack>
             <Controller
@@ -120,7 +145,8 @@ export default function NewTransaction({
                     onBlur={onBlur}
                     fontSize="md"
                     placeholder="Valor"
-                    onChangeText={(val) => onChange(val)}
+                    onChangeText={onChange}
+                    keyboardType="numeric"
                   />
                   <FormControl.ErrorMessage>
                     {errors?.value?.message}
@@ -129,18 +155,43 @@ export default function NewTransaction({
               )}
             />
           </VStack>
-          <VStack flexDirection={"row"} justifyContent={"space-between"}>
-            <Checkbox value="one" isChecked={true}>
-              Entrada
-            </Checkbox>
-
-            <Checkbox value="two">Saída</Checkbox>
+          <VStack>
+            <Controller
+              name="type"
+              control={control}
+              render={({
+                field: { onChange, value },
+                formState: { errors },
+              }) => (
+                <FormControl isInvalid={!!errors.type}>
+                  <FormControl.Label>Selecione o tipo</FormControl.Label>
+                  <Select
+                    selectedValue={value}
+                    minWidth="200"
+                    accessibilityLabel="Categoria"
+                    placeholder="Tipo"
+                    _selectedItem={{
+                      bg: "teal.600",
+                      endIcon: <CheckIcon size="5" />,
+                    }}
+                    mt={1}
+                    onValueChange={onChange}
+                  >
+                    {createLaunchFormSchema.shape.type.options.map((item) => (
+                      <Select.Item label={item} value={item}>
+                        {item}
+                      </Select.Item>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
           </VStack>
         </Modal.Body>
 
         <Modal.Footer justifyContent="center">
           <Box width="50%">
-            <Button title={"Salvar"} onPress={saveTransaction} />
+            <Button title={"Salvar"} onPress={handleSubmit(submit)} />
           </Box>
         </Modal.Footer>
       </Modal.Content>

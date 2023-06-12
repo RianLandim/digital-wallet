@@ -15,7 +15,7 @@ import { api } from "../../services";
 import { useQuery } from "@tanstack/react-query";
 import { currencyFormat } from "../../utils/functions/format";
 import { LaunchProps } from "../../utils/interfaces/launch";
-import { SectionList } from "react-native";
+import { Dimensions, SafeAreaView, SectionList } from "react-native";
 
 export function Transactions() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,14 +27,17 @@ export function Transactions() {
     refetchOnMount: true,
   });
 
-  const { data: userLaunchs } = useQuery({
+  const {
+    data: userLaunchs,
+    refetch,
+    fetchStatus,
+  } = useQuery({
     queryKey: ["user-launch"],
     queryFn: () => api.get<LaunchProps[]>("launch").then(({ data }) => data),
-    refetchOnMount: true,
   });
 
   return (
-    <>
+    <SafeAreaView style={{ flex: 1 }}>
       <Box
         height="120"
         backgroundColor="green.400"
@@ -55,7 +58,7 @@ export function Transactions() {
         </Row> */}
       </Box>
 
-      <View>
+      <View flex={1}>
         <Row
           justifyContent="space-between"
           marginTop="5"
@@ -101,8 +104,10 @@ export function Transactions() {
           </Row>
         </Row>
 
-        <Column>
+        <Column flex={1} height={Dimensions.get("window").height}>
           <SectionList
+            onRefresh={() => refetch()}
+            refreshing={fetchStatus === "fetching"}
             sections={userLaunchs ?? []}
             renderSectionHeader={({ section: { title } }) => (
               <Text marginY="6" marginX="4" fontSize="22" fontWeight="medium">
@@ -112,7 +117,7 @@ export function Transactions() {
             renderItem={({ item: launch }) => (
               <Transaction
                 key={launch.id}
-                name="Internet"
+                name={launch.title}
                 transactionAt={launch.createdAt}
                 value={launch.value}
                 type={launch.type}
@@ -125,6 +130,7 @@ export function Transactions() {
       <NewTransaction
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        refetch={refetch}
       />
 
       <Box position="absolute" bottom="4" right="5">
@@ -137,6 +143,6 @@ export function Transactions() {
           onPress={() => setModalVisible(true)}
         />
       </Box>
-    </>
+    </SafeAreaView>
   );
 }

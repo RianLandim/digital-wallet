@@ -8,6 +8,7 @@ export type LaunchProps = {
   data: {
     id: string;
     value: number;
+    title: string;
     type: LaunchTypeEnum;
     createdAt: Date;
     updatedAt: Date;

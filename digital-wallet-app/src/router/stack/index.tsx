@@ -10,10 +10,10 @@ import { Metas } from "../../pages/metas";
 import { EditarPerfil } from "../../pages/Settings/EditarPerfil";
 import { Cartoes } from "../../pages/Settings/Cartoes";
 import { NewCartao } from "../../pages/Settings/components/NewCartao";
-import { RelatorioMensal } from "../../pages/Relatorio/RelatorioMensal";
-import { RelatorioAnual } from "../../pages/Relatorio/RelatorioAnual";
-import { RelatorioSemestral } from "../../pages/Relatorio/RelatorioSemestral";
 import { Ranking } from "../../pages/ranking";
+import { RelatorioMensal } from "../../pages/relatorio/RelatorioMensal";
+import { RelatorioAnual } from "../../pages/relatorio/RelatorioAnual";
+import { RelatorioSemestral } from "../../pages/relatorio/RelatorioSemestral";
 
 export type StackRouteProps = {
   Login: undefined;

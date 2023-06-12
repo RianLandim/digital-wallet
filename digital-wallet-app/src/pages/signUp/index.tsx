@@ -47,21 +47,6 @@ export function SignUpPage() {
     resolver: zodResolver(createUserSchema),
   });
 
-  function createUserSubmit(data: CreateUserFormData) {
-    console.log(data);
-  }
-
-  async function handleNext(
-    fields: FieldPath<CreateUserFormData> | FieldPath<CreateUserFormData>[],
-    callback: Function
-  ) {
-    const result = await methods.trigger(fields, { shouldFocus: true });
-
-    if (result) {
-      callback();
-    }
-  }
-
   return (
     <FormProvider {...methods}>
       <Stack.Navigator
@@ -70,7 +55,7 @@ export function SignUpPage() {
       >
         <Stack.Screen name="personalData" component={PersonalData} />
         <Stack.Screen name="emailPassword" component={EmailPassword} />
-        <Stack.Screen name="financialData" component={FinancialData} />
+        <Stack.Screen name="financialData" component={FinancialData}/>
       </Stack.Navigator>
     </FormProvider>
   );
