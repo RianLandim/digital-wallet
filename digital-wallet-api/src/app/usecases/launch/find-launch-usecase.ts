@@ -36,9 +36,8 @@ export class FindLaunch {
 
     const launch = chain(launchViewModel)
       .groupBy((a) => intl.format(a.createdAt))
-      .map((v, k) => ({ title: k, data: v.sort().reverse() }))
+      .map((v, k) => ({ title: k, data: v.sort() }))
       .sort()
-      .reverse()
       .value();
 
     return {

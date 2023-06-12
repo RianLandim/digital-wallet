@@ -9,6 +9,10 @@ export class CreateLaunchBody {
 
   @ApiProperty()
   @IsNotEmpty()
+  title: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   @IsEnum(LaunchType)
   type: LaunchType;
 }

@@ -9,6 +9,7 @@ export function makeLaunch(override: Override = {}) {
       value: 1000,
       type: LaunchType.CREDIT,
       createdAt: new Date(),
+      title: 'title-test',
       ...override,
     },
     override?.id,

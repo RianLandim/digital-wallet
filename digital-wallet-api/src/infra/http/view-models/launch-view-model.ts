@@ -5,6 +5,7 @@ export class LaunchViewModel {
     return {
       id: launch.id,
       value: launch.value,
+      title: launch.title,
       type: launch.type,
       createdAt: launch.createdAt,
       updatedAt: launch.updatedAt,

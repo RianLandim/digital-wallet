@@ -9,6 +9,7 @@ export enum LaunchType {
 interface LaunchProps {
   value: number;
   type: LaunchType;
+  title: string;
   userId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -48,6 +49,14 @@ export class Launch {
 
   get type() {
     return this.props.type;
+  }
+
+  set title(title: string) {
+    this.props.title = title;
+  }
+
+  get title() {
+    return this.props.title;
   }
 
   set userId(userId: string) {

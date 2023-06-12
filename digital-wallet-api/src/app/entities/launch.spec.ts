@@ -6,6 +6,7 @@ describe('Launch entity', () => {
       value: 10,
       type: LaunchType.CREDIT,
       userId: 'test-userId',
+      title: 'title',
     };
 
     const launch = new Launch(props);
@@ -22,6 +23,7 @@ describe('Launch entity', () => {
       value: 20,
       type: LaunchType.DEBIT,
       userId: 'test-userId',
+      title: 'title',
     };
 
     const launch = new Launch(props);
@@ -38,6 +40,7 @@ describe('Launch entity', () => {
       value: 30,
       type: LaunchType.CREDIT,
       userId: 'test-userId',
+      title: 'title',
     });
 
     expect(launch.value).toEqual(30);
@@ -52,6 +55,7 @@ describe('Launch entity', () => {
       value: 50,
       type: LaunchType.DEBIT,
       userId: 'test-userId',
+      title: 'title',
     });
 
     expect(launch.createdAt).toBeInstanceOf(Date);
@@ -67,6 +71,7 @@ describe('Launch entity', () => {
       value: 60,
       type: LaunchType.CREDIT,
       userId: 'test-userId',
+      title: 'title',
     });
 
     expect(launch.type).toEqual(LaunchType.CREDIT);

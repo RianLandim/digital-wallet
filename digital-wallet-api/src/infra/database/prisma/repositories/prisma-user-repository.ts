@@ -1,6 +1,6 @@
 import { User } from '@application/entities/user';
 import { UserRepository } from '@application/repositories/user-repository';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaUserMapper } from '../mappers/prisma-user-mapper';
 import { PrismaService } from '../prisma.service';
 
@@ -10,6 +10,14 @@ export class PrismaUserRepository implements UserRepository {
 
   async create(user: User): Promise<void> {
     const raw = PrismaUserMapper.toPrisma(user);
+
+    const alreadyUser = await this.prisma.user.findUnique({
+      where: { email: user.username },
+    });
+
+    if (alreadyUser) {
+      throw new BadRequestException('Email já cadastrado');
+    }
 
     await this.prisma.user.create({
       data: raw,
