@@ -10,6 +10,7 @@ import { dateMonthFormat } from "../../../utils/functions/format";
 import { useQuery } from "@tanstack/react-query";
 import { BalanceResponseProps } from "../../home";
 import { api } from "../../../services";
+import { LaunchPropsChart } from "../../../utils/interfaces/launch";
 
 export function RelatorioMensal() {
   const navigator = useNavigation();
@@ -19,6 +20,14 @@ export function RelatorioMensal() {
     queryFn: () =>
       api.get<BalanceResponseProps>("user/balance").then(({ data }) => data),
   });
+
+  const {
+    data: userLaunchs,
+  } = useQuery({
+    queryKey: ["user-launch"],
+    queryFn: () => api.get<LaunchPropsChart[]>("launch/false").then(({ data }) => data),
+  });
+
 
   return (
     <>
@@ -69,8 +78,7 @@ export function RelatorioMensal() {
           >
             Gastos por categoria
           </Text>
-
-          <ItemList position={1} value={50} title={"Eletrónica"} />
+            {userLaunchs?.map((item, index) => <ItemList position={index + 1} value={item.data} title={item.title} />)}
         </Box>
 
         <Box width="100%" alignItems={"center"}>
