@@ -7,6 +7,7 @@ export class LaunchViewModel {
       value: launch.value,
       title: launch.title,
       type: launch.type,
+      category: launch.category,
       createdAt: launch.createdAt,
       updatedAt: launch.updatedAt,
     };

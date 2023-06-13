@@ -104,12 +104,13 @@ model Goal {
 }
 
 model Launch {
-  id     String     @id @default(uuid())
-  value  Float
-  title  String?
-  type   LaunchType
-  user   User       @relation(fields: [userId], references: [id])
-  userId String
+  id       String     @id @default(uuid())
+  value    Float
+  title    String?
+  type     LaunchType
+  user     User       @relation(fields: [userId], references: [id])
+  userId   String
+  category String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

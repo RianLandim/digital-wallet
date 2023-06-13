@@ -7,6 +7,7 @@ export interface CreateLaunchRequest {
   type: LaunchType;
   userId: string;
   title: string;
+  category: string;
 }
 
 export interface CreateLaunchResponse {
@@ -18,13 +19,14 @@ export class CreateLaunch {
   constructor(private launchRepository: LaunchRepository) {}
 
   async execute(request: CreateLaunchRequest): Promise<CreateLaunchResponse> {
-    const { value, type, userId, title } = request;
+    const { value, type, userId, title, category } = request;
 
     const launch = new Launch({
       title,
       value,
       type,
       userId,
+      category,
     });
 
     await this.launchRepository.create(launch);

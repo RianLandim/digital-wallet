@@ -10,6 +10,7 @@ interface LaunchProps {
   value: number;
   type: LaunchType;
   title: string;
+  category: string;
   userId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -57,6 +58,14 @@ export class Launch {
 
   get title() {
     return this.props.title;
+  }
+
+  set category(category: string) {
+    this.props.category = category;
+  }
+
+  get category() {
+    return this.props.category;
   }
 
   set userId(userId: string) {

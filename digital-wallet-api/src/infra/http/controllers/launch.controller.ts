@@ -1,5 +1,13 @@
 import { CreateLaunch } from '@application/usecases/launch/create-launch-usecase';
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseBoolPipe,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser, User } from '../auth/decorator/current-user.decorator';
@@ -29,9 +37,15 @@ export class LaunchController {
     return LaunchViewModel.toHttp(launch);
   }
 
-  @Get()
-  async findAll(@User() user: CurrentUser) {
-    const { launch } = await this.findLaunch.execute({ userId: user.id });
+  @Get(':formatted')
+  async findAll(
+    @User() user: CurrentUser,
+    @Param('formatted', ParseBoolPipe) formatted: boolean,
+  ) {
+    const { launch } = await this.findLaunch.execute({
+      userId: user.id,
+      formatted,
+    });
 
     return launch;
   }

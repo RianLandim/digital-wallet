@@ -3,13 +3,15 @@ import { Prisma, Launch as PrismaLaunch } from '@prisma/client';
 
 export class PrismaLaunchMapper {
   static toPrisma(launch: Launch): Prisma.LaunchCreateInput {
-    const { id, type, value, userId, createdAt, updatedAt, title } = launch;
+    const { id, type, value, userId, createdAt, updatedAt, title, category } =
+      launch;
 
     return {
       id,
       type,
       value,
       title,
+      category,
       user: {
         connect: {
           id: userId,
@@ -27,6 +29,7 @@ export class PrismaLaunchMapper {
         title: launch.title,
         userId: launch.userId,
         value: launch.value,
+        category: launch.category,
         createdAt: launch.createdAt,
         updatedAt: launch.updatedAt,
       },
