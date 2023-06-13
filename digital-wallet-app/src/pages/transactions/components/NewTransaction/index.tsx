@@ -47,7 +47,7 @@ export default function NewTransaction({
 }: Props) {
   const [service, setService] = useState("");
 
-  const { control, handleSubmit } = useForm<LaunchFormProps>({
+  const { control, handleSubmit, reset } = useForm<LaunchFormProps>({
     resolver: zodResolver(createLaunchFormSchema),
   });
 
@@ -58,6 +58,7 @@ export default function NewTransaction({
     onSuccess: () => {
       setModalVisible(false);
       refetch();
+      reset();
     },
     onError: (error: AxiosError<{ message?: string }>) => {
       Toast.show({ type: "error", text1: error.response?.data.message });

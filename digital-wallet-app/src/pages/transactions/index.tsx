@@ -15,16 +15,17 @@ import { api } from "../../services";
 import { useQuery } from "@tanstack/react-query";
 import { currencyFormat } from "../../utils/functions/format";
 import { LaunchProps } from "../../utils/interfaces/launch";
-import { Dimensions, SafeAreaView, SectionList } from "react-native";
+import { SafeAreaView, SectionList } from "react-native";
 
 export function Transactions() {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const { data: userBalance } = useQuery({
+  const { data: userBalance, refetch: refecthBalance } = useQuery({
     queryKey: ["user-balance-info"],
     queryFn: () =>
       api.get<BalanceResponseProps>("user/balance").then(({ data }) => data),
-    refetchOnMount: true,
+    refetchOnMount: 'always',
+    refetchOnWindowFocus: 'always'
   });
 
   const {
@@ -34,6 +35,7 @@ export function Transactions() {
   } = useQuery({
     queryKey: ["user-launch"],
     queryFn: () => api.get<LaunchProps[]>("launch").then(({ data }) => data),
+    onSuccess: () => refecthBalance()
   });
 
   return (

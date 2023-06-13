@@ -8,15 +8,20 @@ import {
   Select,
 } from "native-base";
 import { useState } from "react";
+import { categoryEnum } from "../../../utils/enums/category";
+import { z } from "zod";
 
 type Props = {
   modalVisible: boolean;
   setModalVisible: Function;
 };
 
+const budgetFormSchema = z.object({
+  category: categoryEnum,
+  period: z.string()
+})
+
 export function NewOrcamento({ modalVisible, setModalVisible }: Props) {
-  const [service, setService] = useState("");
-  const [groupValues, setGroupValues] = useState([]);
 
   return (
     <>
@@ -34,7 +39,6 @@ export function NewOrcamento({ modalVisible, setModalVisible }: Props) {
 
           <Modal.Body>
             <Select
-              selectedValue={service}
               minWidth="200"
               accessibilityLabel="Categoria"
               placeholder="Selecione a categoria"
@@ -43,10 +47,12 @@ export function NewOrcamento({ modalVisible, setModalVisible }: Props) {
                 endIcon: <CheckIcon size="5" />,
               }}
               mt={1}
-              onValueChange={(itemValue) => setService(itemValue)}
             >
-              <Select.Item label="Fixas" value="ux" />
-              <Select.Item label="lazer" value="web" />
+              {
+                budgetFormSchema.shape.category.options.map((item) => (
+                  <Select.Item key={item} label={item} value={item} />
+                ))
+              }
             </Select>
 
             <FormControl mt="3">

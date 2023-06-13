@@ -1,10 +1,11 @@
 import { Flex } from "native-base";
 import { Text } from "native-base";
 import { ReactNode } from "react";
+import { currencyFormat } from "../../../utils/functions/format";
 
 
 interface PropsCardSaldo{
-    value: String;
+    value: number;
     children: ReactNode;
   }
 
@@ -19,7 +20,7 @@ export function CardSaldo2({value, children}: PropsCardSaldo){
       borderRadius={20}
       py={1.5}>
         <Text fontWeight={"bold"} fontSize={"25"}>Saldo</Text>
-        <Text fontWeight={"bold"} fontSize={"25"} color={"green.600"}>R$ {value}</Text>
+        <Text fontWeight={"bold"} fontSize={"25"} color={"green.600"}>{currencyFormat(value)}</Text>
         {children}
       </Flex>
   

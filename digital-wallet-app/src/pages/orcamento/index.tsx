@@ -1,19 +1,29 @@
 
 import { CardSaldo2 } from "../../layout/components/CardSaldo2";
-import { Menu } from "../Home/components/Menu";
 import { Button, Divider, Flex, ScrollView, Text } from "native-base";
 import { Plus,  } from "phosphor-react-native";
 import React, {useState} from "react";
 import { NewOrcamento } from "./NewOrcamento";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "../../services";
+import { BalanceResponseProps } from "../home";
 
 
 export function Orcamento() {
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  const { data: userBalance, refetch: refecthBalance } = useQuery({
+    queryKey: ["user-balance-info"],
+    queryFn: () =>
+      api.get<BalanceResponseProps>("user/balance").then(({ data }) => data),
+    refetchOnMount: 'always',
+    refetchOnWindowFocus: 'always'
+  });
+
   return (
     <>
-      <CardSaldo2 value={"1.000,00"} children={undefined} />
+      <CardSaldo2 value={userBalance?.balance ?? 0} children={undefined} />
       <ScrollView>
         <Flex
           marginTop="10%"
