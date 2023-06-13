@@ -18,6 +18,13 @@ export function dateFullFormat(date: Date) {
   }).format(date);
 }
 
+export function dateLaunchFormat(date: Date) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: '2-digit',
+    month: '2-digit'
+  }).format(date)
+}
+
 export function currencyFormat(currency: number) {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",

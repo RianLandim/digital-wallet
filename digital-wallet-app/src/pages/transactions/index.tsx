@@ -9,7 +9,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Transaction } from "./components/Transaction";
 import React, { useState } from "react";
 import NewTransaction from "./components/NewTransaction";
-import { dateMonthFormat } from "../../utils/functions/format";
+import { dateLaunchFormat, dateMonthFormat } from "../../utils/functions/format";
 import { BalanceResponseProps } from "../home";
 import { api } from "../../services";
 import { useQuery } from "@tanstack/react-query";
@@ -111,7 +111,7 @@ export function Transactions() {
             sections={userLaunchs ?? []}
             renderSectionHeader={({ section: { title } }) => (
               <Text marginY="6" marginX="4" fontSize="22" fontWeight="medium">
-                {title}
+                {dateLaunchFormat(new Date(title))}
               </Text>
             )}
             renderItem={({ item: launch }) => (
