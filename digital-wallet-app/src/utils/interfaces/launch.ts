@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { categoryEnum } from "../enums/category";
+
 export enum LaunchTypeEnum {
   CREDIT = "CREDIT",
   DEBIT = "DEBIT",
@@ -14,3 +17,8 @@ export type LaunchProps = {
     updatedAt: Date;
   }[];
 };
+
+export type LaunchPropsChart = {
+ title: z.infer<typeof categoryEnum>;
+ data: string
+}

@@ -34,7 +34,7 @@ export function Transactions() {
     fetchStatus,
   } = useQuery({
     queryKey: ["user-launch"],
-    queryFn: () => api.get<LaunchProps[]>("launch").then(({ data }) => data),
+    queryFn: () => api.get<LaunchProps[]>("launch/true").then(({ data }) => data),
     onSuccess: () => refecthBalance()
   });
 

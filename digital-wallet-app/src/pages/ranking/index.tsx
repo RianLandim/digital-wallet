@@ -5,77 +5,37 @@ import {
   IconButton,
   ScrollView,
   Column,
-  TextArea,
 } from "native-base";
 import { CaretLeft, CaretRight } from "phosphor-react-native";
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { Dimensions, TouchableOpacity } from "react-native";
 import { VictoryPie } from "victory-native";
 import { StackScreenNavigation } from "../../router/stack";
 import { useNavigation } from "@react-navigation/native";
+import { useQuery } from "@tanstack/react-query";
+import { LaunchPropsChart } from "../../utils/interfaces/launch";
+import { api } from "../../services";
 
 export function Ranking() {
   const navigator = useNavigation<StackScreenNavigation>();
 
-  const expenses = [
-    {
-      id: "1",
-      label: "Internet",
-      value: 99,
-      color: "#975FFF",
-      percent: "14%",
-    },
-    {
-      id: "2",
-      label: "Carro",
-      value: 550.25,
-      color: "#FF8555",
-      percent: "79%",
-    },
-    {
-      id: "3",
-      label: "Livro",
-      value: 45,
-      color: "#55C5FE",
-      percent: "6%",
-    },
-    {
-      id: "4",
-      label: "Pizza",
-      value: 60,
-      color: "#55C5FE",
-      percent: "5%",
-    },
-    {
-      id: "5",
-      label: "Teste",
-      value: 120,
-      color: "#975FFF",
-      percent: "14%",
-    },
-    {
-      id: "6",
-      label: "Alimentação",
-      value: 120,
-      color: "#975FFF",
-      percent: "14%",
-    },
-  ];
+  const {
+    data: userLaunchs,
+  } = useQuery({
+    queryKey: ["user-launch"],
+    queryFn: () => api.get<LaunchPropsChart[]>("launch/false").then(({ data }) => data),
+  });
 
-  const colors = [
-    "#00008B",
-    "#FF0000",
-    "#04cc77",
-    "#00aeef",
-    "#505353",
-    "#e28e25",
-    "#8B008B",
-    "#0072bc",
-    "#DC143C",
-    "#000000",
-    "#4d0000",
-    "#ff00ff",
-  ];
+
+  const colors = {
+    Lazer: "#00008B",
+    'Salário': "#FF0000",
+    Boletos: "#04cc77",
+    Contas:"#00aeef",
+    Fixas: "#505353",
+    Entretenimento: "#e28e25"
+  } as const 
+  
 
   let date = new Date;
   const [month, setMonth ] = useState(date.getMonth());
@@ -131,28 +91,28 @@ export function Ranking() {
           <Text fontSize="22" fontWeight="600" marginBottom="5" textAlign="center">
             Gastos por categorias
           </Text>
-          {expenses.map(function (elemento, indice) {
-            return (
+          {userLaunchs?.map((elemento, index) => 
+            (
               <Row justifyContent="flex-start" marginLeft="5">
-                <Text fontSize="17" fontWeight="medium" marginBottom="2" color={colors[indice]}>
-                  {elemento.id +
+                <Text fontSize="17" fontWeight="medium" marginBottom="2" bold>
+                  {(index + 1) +
                     "º " +
-                    elemento.label +
+                    elemento.title +
                     " R$ " +
-                    elemento.value}
+                    elemento.data}
                 </Text>
               </Row>
-            );
-          })}
+            )
+          )}
         </Column>
 
         <Column justifyContent="center" alignItems="center">
           <VictoryPie
-            data={expenses}
-            x="label"
-            y="value"
-            width={310}
-            colorScale={colors}
+            data={userLaunchs}
+            x="title"
+            y="data"
+            width={Dimensions.get('window').width}
+            colorScale='qualitative'
           />
         </Column>
       </ScrollView>
