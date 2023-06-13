@@ -18,6 +18,7 @@ import { api } from "../../../../services";
 import { Replace } from "../../../../utils/helpers/replace";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 import { AxiosError } from "axios";
+import { categoryEnum } from "../../../../utils/enums/category";
 
 type Props = {
   modalVisible: boolean;
@@ -28,9 +29,14 @@ type Props = {
 const createLaunchFormSchema = z.object({
   title: z.string(),
   value: z.string(),
-  category: z.enum(["Fixas", "Lazer", "Contas", "Boleto", "Entretenimento"]),
+  category: categoryEnum,
   type: z.enum(["CREDIT", "DEBIT"]),
 });
+
+const typeLabel = {
+  CREDIT: 'Credito',
+  DEBIT: 'Debito'
+} as const
 
 export type LaunchFormProps = z.infer<typeof createLaunchFormSchema>;
 
@@ -178,7 +184,7 @@ export default function NewTransaction({
                     onValueChange={onChange}
                   >
                     {createLaunchFormSchema.shape.type.options.map((item) => (
-                      <Select.Item label={item} value={item}>
+                      <Select.Item label={typeLabel[item]} value={item}>
                         {item}
                       </Select.Item>
                     ))}

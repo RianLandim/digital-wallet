@@ -104,7 +104,7 @@ export function Transactions() {
           </Row>
         </Row>
 
-        <Column flex={1} height={Dimensions.get("window").height}>
+        <Column flex={1}>
           <SectionList
             onRefresh={() => refetch()}
             refreshing={fetchStatus === "fetching"}
